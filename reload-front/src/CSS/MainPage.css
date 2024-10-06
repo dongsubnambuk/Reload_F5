@@ -19,3 +19,14 @@
     font-size: 18px;
     margin-bottom: 4px;
   }
+
+  /* Search.css */
+.search-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.search-box {
+  max-width: 400px;
+  margin: 0 auto;
+}
