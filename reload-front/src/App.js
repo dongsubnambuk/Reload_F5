@@ -1,18 +1,37 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
+import LoginPage from './pages/LoginPage';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const role = 'user'; // 여기서 role이 'user' 또는 'admin'으로 설정됩니다..
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole);
+  }, []);
 
   return (
-    <div className={role === 'user' ? 'mobile-container' : 'web-container'}>
+    <div className={role === 'admin' ? 'web-container' : 'mobile-container'}>
       <Router>
         <Routes>
-          {role === 'user' ? (
-            <Route path="/" element={<MainPage />} />
+          {role === 'admin' ? (
+           <Route 
+           path="/admin-main" 
+           element={
+             <div>
+               <h2>관리자 메인 페이지</h2>
+
+               <p>여기에 관리자 기능 및 내용을 추가하세요.</p>
+             </div>
+           } 
+         />
           ) : (
-          <div>관리자</div>
+            <>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/login" element={<LoginPage />} />
+            </>
           )}
         </Routes>
       </Router>

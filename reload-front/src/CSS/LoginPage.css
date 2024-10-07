@@ -1,0 +1,146 @@
+/* 기본 스타일 */
+.login-page {
+    max-width: 390px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+
+  .loginlogo-con{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .loginlogo{
+    width: 130px;
+    height: 150px
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .tabs button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .tabs .active {
+    font-weight: bold;
+    color: #388E3C;
+  }
+  
+  .tab-slider {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #388E3C;
+    transition: left 0.3s ease; /* 슬라이더의 부드러운 전환 */
+  }
+  
+  .tab-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+  }
+  /* 로그인 폼 스타일 */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  
+  label {
+    font-size: 14px;
+  }
+  
+  input {
+    margin-top: 8px;
+    height: 50px;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-button {
+    background-color: #388E3C;
+    color: white;
+    height: 50px;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .link-group {
+
+    margin-top: 20px;
+    font-size: 15px;
+  }
+  
+  .link-group a {
+    color: #000000;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  
+  .social-login {
+    margin-top: 20px;
+    text-align: center;
+    position: relative; /* position: relative 추가 */
+  }
+
+  .social-login p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    position: relative; /* position: relative 추가 */
+  }
+  
+  .social-login p::before,
+  .social-login p::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* 수직 중앙 정렬 */
+    width: 70px; /* 선의 길이 조정 */
+    height: 1px; /* 선의 두께 */
+    background-color: #ccc; /* 선 색상 */
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .social-login p::before {
+    left: 0; /* 왼쪽 선 위치 */
+
+  }
+  
+  .social-login p::after {
+    right: 0; /* 오른쪽 선 위치 */
+
+  }
+  
