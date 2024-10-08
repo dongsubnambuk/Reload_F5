@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import { useEffect, useState } from 'react';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   const [role, setRole] = useState(null);
@@ -31,6 +32,7 @@ function App() {
             <>
               <Route path="/" element={<MainPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
             </>
           )}
         </Routes>
