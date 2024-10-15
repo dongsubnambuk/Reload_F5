@@ -119,6 +119,7 @@ const LoginPage = () => {
             <div className="form-group">
               <label>아이디</label>
               <input
+              className='login-id'
                 type="text"
                 value={userId}
                 onChange={handleUserIdChange}
@@ -129,6 +130,7 @@ const LoginPage = () => {
             <div className="form-group">
               <label>비밀번호</label>
               <input
+                 className='login-pw'
                 type="password"
                 value={password}
                 onChange={handlePasswordChange}
@@ -157,6 +159,7 @@ const LoginPage = () => {
             <div className="form-group">
               <label>관리자 코드</label>
               <input
+               className='adm-login-code'
                 type="text"
                 value={adminCode}
                 onChange={handleAdminCodeChange}

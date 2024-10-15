@@ -68,18 +68,17 @@
     margin-bottom: 15px;
     justify-content: center;
     align-items: center;
-   
   }
   
   label {
     font-size: 14px;
   }
   
-  input {
+  .login-id, .login-pw,.adm-login-code {
     margin-top: 8px;
     height: 50px;
     font-size: 14px;
-    width: 100%;
+    width: 98%;
     border: 1px solid #ccc;
   
   }
@@ -96,6 +95,12 @@
     margin-top: 10px;
     width: 100%;
     text-align: center;
+    transition: background-color 0.3s, transform 0.3s; /* 배경색과 크기 전환을 부드럽게 */
+  }
+
+  
+  .login-button:hover {
+    transform: scale(1.05); /* 호버 시 버튼을 5% 확대 */
   }
   
   .link-group {
