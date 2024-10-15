@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../CSS/LoginPage.css'; // 스타일을 따로 관리
-import { Link ,useNavigate } from 'react-router-dom'; // Link 컴포넌트 가져오기
+import { Link, useNavigate } from 'react-router-dom'; // Link 컴포넌트 가져오기
+import Header from '../components/Header';
 import loginlogo from '../images/loginglogo.png';
 
 const LoginPage = () => {
@@ -17,153 +18,156 @@ const LoginPage = () => {
   // 슬라이더 위치 계산
   const sliderPosition = activeTab === 'user' ? '0%' : '50%';
 
-    // User login fetch 함수
-    const handleUserLogin = async (event) => {
-      event.preventDefault();
-  
-      try {
-          const response = await fetch('http://3.37.122.192:8000/api/auth/login', {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                  username: userId,
-                  password: password,
-              }),
-          });
-  
-          const result = await response.json();
-  
-          if (response.status === 200) {
-              console.log(result);
-              localStorage.setItem("token", result.token);
-              localStorage.setItem("role", "user"); // 역할을 로컬 스토리지에 저장
-              console.log("로그인 성공");
-              navigate('/'); 
-          } else {
-              console.log("로그인 실패");
-              alert("로그인 실패: " + result.message);
-          }
-      } catch (error) {
-          console.error("Fetch error: ", error);
+  // User login fetch 함수
+  const handleUserLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://3.37.122.192:8000/api/auth/login', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: userId,
+          password: password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+        console.log(result);
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("role", "user"); // 역할을 로컬 스토리지에 저장
+        console.log("로그인 성공");
+        navigate('/');
+      } else {
+        console.log("로그인 실패");
+        alert("로그인 실패: " + result.message);
       }
+    } catch (error) {
+      console.error("Fetch error: ", error);
+    }
   };
 
-      // Admin login fetch 함수
-      const handleAdminLogin = async (event) => {
-        event.preventDefault();
-    
-        try {
-            const response = await fetch('http://3.37.122.192:8000/api/auth/admin/login', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  adminCode: adminCode
-                }),
-            });
-    
-            const result = await response.json();
-    
-            if (response.status === 200) {
-                console.log(result);
-                localStorage.setItem("token", result.token);
-                localStorage.setItem("role", "admin"); // 역할을 로컬 스토리지에 저장
-                console.log("로그인 성공");
-                navigate('/admin-main'); 
-            } else {
-                console.log("로그인 실패");
-                alert("로그인 실패: " + result.message);
-            }
-        } catch (error) {
-            console.error("Fetch error: ", error);
-        }
-    };
+  // Admin login fetch 함수
+  const handleAdminLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://3.37.122.192:8000/api/auth/admin/login', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          adminCode: adminCode
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+        console.log(result);
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("role", "admin"); // 역할을 로컬 스토리지에 저장
+        console.log("로그인 성공");
+        navigate('/admin-main');
+      } else {
+        console.log("로그인 실패");
+        alert("로그인 실패: " + result.message);
+      }
+    } catch (error) {
+      console.error("Fetch error: ", error);
+    }
+  };
 
 
   return (
-    <div className="login-page">
+    <>
+      <Header />
+      <div className="login-page">
         <div className='loginlogo-con'>
-            <img src={loginlogo} className='loginlogo' alt="로그인로고" />
+          <img src={loginlogo} className='loginlogo' alt="로그인로고" />
         </div>
-    
-      <div className="tabs">
-        <button
-          className={activeTab === 'user' ? 'active' : ''}
-          onClick={() => setActiveTab('user')}
-        >
-          일반 회원
-        </button>
-        <button
-          className={activeTab === 'admin' ? 'active' : ''}
-          onClick={() => setActiveTab('admin')}
-        >
-          관리자
-        </button>
-           {/* 고정된 밑줄 */}
-           <div className="tab-underline"></div>
 
-        {/* 슬라이더 바 */}
-        <div className="tab-slider" style={{ left: sliderPosition }}></div>
-      </div>
+        <div className="tabs">
+          <button
+            className={activeTab === 'user' ? 'active' : ''}
+            onClick={() => setActiveTab('user')}
+          >
+            일반 회원
+          </button>
+          <button
+            className={activeTab === 'admin' ? 'active' : ''}
+            onClick={() => setActiveTab('admin')}
+          >
+            관리자
+          </button>
+          {/* 고정된 밑줄 */}
+          <div className="tab-underline"></div>
 
-      {activeTab === 'user' && (
-        <div className="login-form">
-          <div className="form-group">
-            <label>아이디</label>
-            <input
-              type="text"
-              value={userId}
-              onChange={handleUserIdChange}
-              placeholder="아이디를 입력해 주세요."
-            />
-          </div>
+          {/* 슬라이더 바 */}
+          <div className="tab-slider" style={{ left: sliderPosition }}></div>
+        </div>
 
-          <div className="form-group">
-            <label>비밀번호</label>
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder="비밀번호를 입력해 주세요."
-            />
-          </div>
+        {activeTab === 'user' && (
+          <div className="login-form">
+            <div className="form-group">
+              <label>아이디</label>
+              <input
+                type="text"
+                value={userId}
+                onChange={handleUserIdChange}
+                placeholder="아이디를 입력해 주세요."
+              />
+            </div>
+
+            <div className="form-group">
+              <label>비밀번호</label>
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder="비밀번호를 입력해 주세요."
+              />
+            </div>
 
 
-          <button className="login-button"onClick={handleUserLogin}>로그인</button>
+            <button className="login-button" onClick={handleUserLogin}>로그인</button>
 
-          <div className="link-group">
-         <Link to="/signup">회원가입</Link> | <Link to="/find-account">아이디/비밀번호 찾기</Link>
-          </div>
+            <div className="link-group">
+              <Link to="/signup">회원가입</Link> | <Link to="/find-account">아이디/비밀번호 찾기</Link>
+            </div>
 
-          <div className="social-login">
-            <p>소셜 계정으로 간편 로그인</p>
-            <div className="social-icons">
-              <img src="/path-to-google-icon" alt="구글" />
-              <img src="/path-to-naver-icon" alt="네이버" />
-              <img src="/path-to-kakao-icon" alt="카카오" />
+            <div className="social-login">
+              <p>소셜 계정으로 간편 로그인</p>
+              <div className="social-icons">
+                <img src="/path-to-google-icon" alt="구글" />
+                <img src="/path-to-naver-icon" alt="네이버" />
+                <img src="/path-to-kakao-icon" alt="카카오" />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {activeTab === 'admin' && (
-        <div className="login-form">
-          <div className="form-group">
-            <label>관리자 코드</label>
-            <input
-              type="text"
-              value={adminCode}
-              onChange={handleAdminCodeChange}
-              placeholder="관리자 코드를 입력해 주세요."
-            />
+        {activeTab === 'admin' && (
+          <div className="login-form">
+            <div className="form-group">
+              <label>관리자 코드</label>
+              <input
+                type="text"
+                value={adminCode}
+                onChange={handleAdminCodeChange}
+                placeholder="관리자 코드를 입력해 주세요."
+              />
+            </div>
+            <button className="login-button" onClick={handleAdminLogin}>관리자 로그인</button>
           </div>
-          <button className="login-button" onClick={handleAdminLogin}>관리자 로그인</button>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 

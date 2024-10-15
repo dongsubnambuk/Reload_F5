@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../CSS/SignupPage.css';
+import Header from '../components/Header';
 import Modal from "react-modal";
 import DaumPostcode from "react-daum-postcode";
 import signuplogo from '../images/loginglogo.png';
@@ -29,7 +30,7 @@ const SignupPage = () => {
             return;
         }
         // 여기에 인증번호를 실제로 발송하는 로직을 추가
-        const generatedCode = Math.floor(1000 + Math.random() * 9000); 
+        const generatedCode = Math.floor(1000 + Math.random() * 9000);
         setVerificationCode(generatedCode.toString());
         setIsCodeSent(true);
         alert(`인증번호가 ${phoneNumber}로 발송되었습니다.`);
@@ -77,16 +78,16 @@ const SignupPage = () => {
         },
     };
 
-        //회원가입 fetch
-        const handleSignup = async (event) => {
-          event.preventDefault();
-  
-          const response = await fetch('http://3.37.122.192:8000/api/auth/register', { // 서버 URL을 실제 API 엔드포인트로 변경하세요
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
+    //회원가입 fetch
+    const handleSignup = async (event) => {
+        event.preventDefault();
+
+        const response = await fetch('http://3.37.122.192:8000/api/auth/register', { // 서버 URL을 실제 API 엔드포인트로 변경하세요
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
                 username: userID,
                 password: password,
                 name: userName,
@@ -95,26 +96,27 @@ const SignupPage = () => {
                 detailedAddress: detailAddress,
                 email: email,
                 phoneNumber: phoneNumber,
-            
-              }),
-          });
-  
-          const result = await response.json(); // 응답이 JSON 형식일 경우 이를 JavaScript 객체로 변환
-  
-          if (response.status === 200) { // 응답 status가 200 OK 일 경우
-              console.log(result);
-              console.log("회원가입 성공");
-              alert("회원가입 성공");
-              navigate('/'); 
-          } else {
-              console.log("회원가입 실패");
-              alert("회원가입 실패: " + result.message);
-          }
-      };
-  
+
+            }),
+        });
+
+        const result = await response.json(); // 응답이 JSON 형식일 경우 이를 JavaScript 객체로 변환
+
+        if (response.status === 200) { // 응답 status가 200 OK 일 경우
+            console.log(result);
+            console.log("회원가입 성공");
+            alert("회원가입 성공");
+            navigate('/');
+        } else {
+            console.log("회원가입 실패");
+            alert("회원가입 실패: " + result.message);
+        }
+    };
+
 
     return (
         <>
+            <Header />
             <div className="signup-inner">
                 <div className='signuplogo-con'>
                     <img src={signuplogo} className='signuplogo' alt="로그인로고" />
@@ -122,16 +124,16 @@ const SignupPage = () => {
 
                 {/* 아이디 입력 */}
                 <div className="form-group">
-                   
-                        <input
-                            type="text"
-                            id="userid"
-                            value={userID}
-                            className="signup-input"
-                            placeholder="아이디를 입력해주세요"
-                            onChange={(e) => serUserID(e.target.value)}
-                            required
-                        />
+
+                    <input
+                        type="text"
+                        id="userid"
+                        value={userID}
+                        className="signup-input"
+                        placeholder="아이디를 입력해주세요"
+                        onChange={(e) => serUserID(e.target.value)}
+                        required
+                    />
                 </div>
 
                 {/* 비밀번호 입력 */}
@@ -177,8 +179,8 @@ const SignupPage = () => {
                     />
                 </div>
 
-                    {/* email 입력 */}
-                    <div className="form-group">
+                {/* email 입력 */}
+                <div className="form-group">
                     <input
                         type="text"
                         id="email"
@@ -189,7 +191,7 @@ const SignupPage = () => {
                     />
                 </div>
 
-           
+
                 {/* 연락처 입력 및 인증번호 발송 */}
                 <div className="form-group">
                     <div className="phone-container">

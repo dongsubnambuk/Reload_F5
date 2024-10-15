@@ -4,6 +4,7 @@ import 'swiper/css'; // Swiper 기본 CSS
 import 'swiper/css/navigation'; // Navigation 모듈의 CSS
 import 'swiper/css/pagination'; // Pagination 모듈의 CSS
 import '../CSS/MainPage.css'; // MainPage 관련 CSS
+import Header from '../components/Header';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'; // 모듈을 swiper/modules에서 가져오기
 import { Input } from 'antd'; // Ant Design의 Input 모듈을 가져오기
 
@@ -14,6 +15,7 @@ const MainPage = () => {
 
     return (
         <>
+            <Header />
             <div className="swiper-container">
                 <Swiper
                     spaceBetween={50}
@@ -39,7 +41,7 @@ const MainPage = () => {
                 </Swiper>
             </div>
 
-         
+
             <div className="search-container">
                 <div className="search-box">
                     <Search
