@@ -1,0 +1,188 @@
+.signup-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.signuplogo-con {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.signuplogo {
+    width: 130px;
+    height: 150px;
+}
+
+/* 폼 그룹 간의 여백 */
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.signup-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* 레이블 스타일 */
+.signup-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #aaa;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.3s ease all;  /* 애니메이션 효과 */
+}
+
+.signup-input:focus + .signup-label,
+.signup-input:not(:placeholder-shown) + .signup-label {
+    top: -15px;                /* 포커스 시 위로 이동 */
+    font-size: 12px;            /* 글자 크기 축소 */
+    color: #388E3C;             /* 색상 변경 */
+}
+
+.signup-input:focus {
+    border-bottom: 2px solid #4CAF50;  /* 포커스 시 밑줄 두께 및 색상 변경 */
+}
+
+/* 에러 메시지 스타일 */
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* 주소 찾기 섹션 */
+.address {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.address-serch {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.address-serch input {
+    flex-grow: 1;
+}
+
+.address-serch button {
+    width: 30%;
+    background-color: transparent; /* 배경색 제거 */
+    color: #388E3C; /* 글자 색상 */
+    border: 1px solid #388E3C; /* 테두리 색상 추가 */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.address-serch button:hover {
+    background-color: #388E3C; /* 호버 시 배경색 추가 */
+    color: white; /* 호버 시 글자 색상 변경 */
+}
+
+.address-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.address-detail input {
+    width: 100%;
+}
+
+/* 모달 스타일 */
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.ReactModal__Content {
+    position: relative;
+    margin: auto;
+    max-width: 390px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.ReactModal__Content button {
+    background-color: #388E3C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ReactModal__Content button:hover {
+    background-color: #45a049;
+}
+
+/* 회원가입 버튼 */
+.signup-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #388E3C;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #45a049;
+}
+
+.phone-container,
+.verification-container {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* 버튼과 입력 필드 사이의 간격 */
+}
+
+.phone-input,
+.verification-input {
+    width: calc(100% - 120px); /* 버튼 크기를 감안하여 동적으로 폭 조절 */
+}
+
+.verification-btn {
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 30px;
+    background-color: transparent; /* 배경색 제거 */
+    color: #388E3C; /* 글자 색상 */
+    border: 1px solid #388E3C; /* 테두리 색상 추가 */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* 색상 변화도 포함 */
+}
+
+.verification-btn:hover {
+    background-color: #388E3C; /* 호버 시 배경색 추가 */
+    color: white; /* 호버 시 글자 색상 변경 */
+}
