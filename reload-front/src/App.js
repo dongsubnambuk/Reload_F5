@@ -4,6 +4,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import { useEffect, useState } from 'react';
 import SignupPage from './pages/SignupPage';
+import KakaoCallback from './pages/KaKaoCallback';
 
 function App() {
   const [role, setRole] = useState(null);
@@ -33,6 +34,7 @@ function App() {
               <Route path="/" element={<MainPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
             </>
           )}
         </Routes>

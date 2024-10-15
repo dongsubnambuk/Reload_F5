@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import '../CSS/LoginPage.css'; // 스타일을 따로 관리
 import { Link, useNavigate } from 'react-router-dom'; // Link 컴포넌트 가져오기
 import Header from '../components/Header';
-import loginlogo from '../images/loginglogo.png';
+import loginlogo from '../images/Logo.png';
+import KakaoLogin from '../pages/KakaoLogin';
+
 
 const LoginPage = () => {
   const [activeTab, setActiveTab] = useState('user');
@@ -91,22 +93,22 @@ const LoginPage = () => {
         <div className='loginlogo-con'>
           <img src={loginlogo} className='loginlogo' alt="로그인로고" />
         </div>
-
-        <div className="tabs">
-          <button
-            className={activeTab === 'user' ? 'active' : ''}
-            onClick={() => setActiveTab('user')}
-          >
-            일반 회원
-          </button>
-          <button
-            className={activeTab === 'admin' ? 'active' : ''}
-            onClick={() => setActiveTab('admin')}
-          >
-            관리자
-          </button>
-          {/* 고정된 밑줄 */}
-          <div className="tab-underline"></div>
+    
+      <div className="login-tabs">
+        <button
+          className={activeTab === 'user' ? 'active' : ''}
+          onClick={() => setActiveTab('user')}
+        >
+          일반 회원
+        </button>
+        <button
+          className={activeTab === 'admin' ? 'active' : ''}
+          onClick={() => setActiveTab('admin')}
+        >
+          관리자
+        </button>
+           {/* 고정된 밑줄 */}
+           <div className="tab-underline"></div>
 
           {/* 슬라이더 바 */}
           <div className="tab-slider" style={{ left: sliderPosition }}></div>
@@ -141,16 +143,14 @@ const LoginPage = () => {
               <Link to="/signup">회원가입</Link> | <Link to="/find-account">아이디/비밀번호 찾기</Link>
             </div>
 
-            <div className="social-login">
-              <p>소셜 계정으로 간편 로그인</p>
-              <div className="social-icons">
-                <img src="/path-to-google-icon" alt="구글" />
-                <img src="/path-to-naver-icon" alt="네이버" />
-                <img src="/path-to-kakao-icon" alt="카카오" />
-              </div>
-            </div>
+          <div className="social-login">
+            <p>소셜 계정으로 간편 로그인</p>
+        
+              <KakaoLogin/>
+          
           </div>
-        )}
+        </div>
+      )}
 
         {activeTab === 'admin' && (
           <div className="login-form">

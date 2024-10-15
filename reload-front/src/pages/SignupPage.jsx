@@ -4,7 +4,7 @@ import '../CSS/SignupPage.css';
 import Header from '../components/Header';
 import Modal from "react-modal";
 import DaumPostcode from "react-daum-postcode";
-import signuplogo from '../images/loginglogo.png';
+import signuplogo from '../images/Logo.png';
 
 const SignupPage = () => {
     const [userID, serUserID] = useState("");

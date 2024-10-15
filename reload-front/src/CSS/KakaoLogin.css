@@ -1,0 +1,6 @@
+.kakao-login{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    cursor: pointer;
+}
