@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/SignupPage.css';
 import Modal from "react-modal";
 import DaumPostcode from "react-daum-postcode";
-import signuplogo from '../images/loginglogo.png';
+import signuplogo from '../images/Logo.png';
 
 const SignupPage = () => {
     const [userID, serUserID] = useState("");

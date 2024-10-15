@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import '../CSS/LoginPage.css'; // 스타일을 따로 관리
 import { Link ,useNavigate } from 'react-router-dom'; // Link 컴포넌트 가져오기
-import loginlogo from '../images/loginglogo.png';
+import loginlogo from '../images/Logo.png';
+import KakaoLogin from '../pages/KakaoLogin';
+
 
 const LoginPage = () => {
   const [activeTab, setActiveTab] = useState('user');
@@ -89,7 +91,7 @@ const LoginPage = () => {
             <img src={loginlogo} className='loginlogo' alt="로그인로고" />
         </div>
     
-      <div className="tabs">
+      <div className="login-tabs">
         <button
           className={activeTab === 'user' ? 'active' : ''}
           onClick={() => setActiveTab('user')}
@@ -140,11 +142,9 @@ const LoginPage = () => {
 
           <div className="social-login">
             <p>소셜 계정으로 간편 로그인</p>
-            <div className="social-icons">
-              <img src="/path-to-google-icon" alt="구글" />
-              <img src="/path-to-naver-icon" alt="네이버" />
-              <img src="/path-to-kakao-icon" alt="카카오" />
-            </div>
+        
+              <KakaoLogin/>
+          
           </div>
         </div>
       )}
