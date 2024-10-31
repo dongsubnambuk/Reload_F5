@@ -1,0 +1,135 @@
+/* 전체 페이지 스타일 */
+.my-page {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .my-page-inner {
+    padding: 16px;
+  }
+  
+  /* 뒤로가기 및 홈 버튼 스타일 */
+  .back-button, .home-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  /* 제목 스타일 */
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #388e3c;
+    margin-bottom: 16px;
+  }
+  
+  /* 사용자 정보 섹션 스타일 */
+  .user-info {
+    display: flex;
+    flex-direction: column;
+ 
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 16px 0;
+
+  }
+  
+  .user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 8px 0;
+  }
+  
+  .user-phone {
+    color: #888;
+    margin-bottom: 12px;
+  }
+  
+  /* 구분선 스타일 */
+  .divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 12px 0;
+  }
+  
+  /* 내정보 수정 버튼 스타일 */
+  .update-info-button {
+    color: #388e3c;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+  
+  /* 섹션 제목 스타일 */
+  .section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 16px 0;
+    color: #333;
+  }
+  
+  /* 카드 스타일 */
+  .activity-item, .inquiry-item, .account-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .activity-item:hover, .inquiry-item:hover, .account-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* 아이콘 스타일 */
+  .icon {
+    font-size: 24px;
+    color: #888;
+    margin-right: 12px;
+  }
+  
+  /* 카드 세부 정보 */
+  .activity-details, .inquiry-details, .account-details {
+    flex-grow: 1;
+  }
+  
+  .activity-details h4, .inquiry-details h4, .account-details h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .activity-details p, .inquiry-details p, .account-details p {
+    margin: 4px 0;
+    color: #888;
+  }
+  
+  /* 다음 버튼 스타일 */
+  .next-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+  }
+  
+  .next-button:hover {
+    color: #555;
+  }
+  
