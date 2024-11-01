@@ -34,6 +34,8 @@ const Header = () => {
                 return '로그인';
             case '/signup':
                 return '회원가입';
+            case '/mypage':
+                return '마이페이지';
             default:
                 return 'Main Page';
         }

@@ -1,95 +1,172 @@
-import React from 'react';
-import '../CSS/Mypage.css'; 
-import Header from '../components/Header';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "../CSS/Mypage.css";
+import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
+import logo from "../images/Logo.png";
 
 const MyPage = () => {
-    const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // 모달 상태
+  const navigate = useNavigate();
+
+  // 로그아웃 함수
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/");
+  };
+
+  // 모달 열기 함수
+  const openLogoutModal = () => {
+    setIsLogoutModalOpen(true);
+  };
+
+  // 모달 닫기 함수
+  const closeLogoutModal = () => {
+    setIsLogoutModalOpen(false);
+  };
+
+  // 회원정보 조회
+  useEffect(() => {
+    const handleGet = async () => {
+      const token = localStorage.getItem("token");
+      const email = localStorage.getItem("email");
+
+      const response = await fetch(
+        `http://3.37.122.192:8000/api/account/search-account/${email}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+        setName(result.name);
+        setPhonenumber(result.phoneNumber);
+      } else {
+        console.log("로그인 부탁");
+        alert("로그인 부탁: " + result.message);
+      }
+    };
+    handleGet();
+  }, []);
+
   return (
     <div className="my-page">
-     <Header/>
+      <Header />
 
-    <div className='my-page-inner'>
-    <div className="user-info">
+      <div className="my-page-inner">
+        <div className="user-info">
           <div className="user-details">
-            <h2 className="user-name">서동섭</h2>
-            <p className="user-phone">010-3623-9285</p>
+            <div className="user-details-name">{name}</div>
+            <div className="user-details-phone">{phonenumber}</div>
             <hr className="divider" /> {/* 번호 아래 구분선 */}
           </div>
+
           <div className="user-actions">
             <div className="refresh-section">
-              <i className="fas fa-sync-alt refresh-icon"></i>
+              <img src={logo} className="mypage-logo" alt="로그인로고" />
               <span className="refresh-text">새로고침</span>
             </div>
-            <span 
-              className="update-info-button" 
-              onClick={() => navigate('/update-info')}
+            <span
+              className="update-info-button"
+              onClick={() => navigate("/update-info")}
             >
               내정보 수정 &gt;
-            </span> {/* 내정보 수정 버튼을 span으로 */}
+            </span>
           </div>
         </div>
 
-      <section className="activity-section">
-        <h3 className="section-title">활동 내역</h3>
-        <div className="activity-item">
-          <i className="fas fa-file-alt icon"></i>
-          <div className="activity-details">
-            <h4>주문 내역</h4>
-            <p>내가 주문한 상품을 알고 싶다면?</p>
+        <section className="activity-section">
+          <h3 className="section-title">활동 내역</h3>
+          <div className="activity-item" onClick={() => navigate("/order-history")}>
+            <div className="icon-wrapper">
+              <i className="fas fa-file-alt activity-icon"></i>
+            </div>
+            <div className="activity-details">
+              <h4 className="activity-title">주문 내역</h4>
+              <p className="activity-description">내가 주문한 상품을 알고 싶다면?</p>
+            </div>
+            <button className="next-button activity-next">&gt;</button>
           </div>
-          <button className="next-button">&gt;</button>
-        </div>
-        <div className="activity-item">
-          <i className="fas fa-shipping-fast icon"></i>
-          <div className="activity-details">
-            <h4>수거 신청 내역</h4>
-            <p>내가 신청한 수거 신청 내역을 알고 싶다면?</p>
+          <div className="activity-item" onClick={() => navigate("/pickup-request")}>
+            <div className="icon-wrapper">
+              <i className="fas fa-shipping-fast activity-icon"></i>
+            </div>
+            <div className="activity-details">
+              <h4 className="activity-title">수거 신청 내역</h4>
+              <p className="activity-description">내가 신청한 수거 신청 내역을 알고 싶다면?</p>
+            </div>
+            <button className="next-button activity-next">&gt;</button>
           </div>
-          <button className="next-button">&gt;</button>
-        </div>
-      </section>
+        </section>
 
-      <section className="inquiry-section">
-        <h3 className="section-title">문의/안내</h3>
-        <div className="inquiry-item">
-          <i className="fas fa-comments icon"></i>
-          <div className="inquiry-details">
-            <h4>채팅 상담</h4>
-            <p>새로고침과 함께 지구를 지켜요!</p>
+        <section className="inquiry-section">
+          <h3 className="section-title">문의/안내</h3>
+          <div className="inquiry-item" onClick={() => navigate("/chat-support")}>
+            <div className="icon-wrapper">
+              <i className="fas fa-comments inquiry-icon"></i>
+            </div>
+            <div className="inquiry-details">
+              <h4 className="inquiry-title">채팅 상담</h4>
+              <p className="inquiry-description">문의 사항은 채팅으로 빠르게!</p>
+            </div>
+            <button className="next-button inquiry-next">&gt;</button>
           </div>
-          <button className="next-button">&gt;</button>
-        </div>
-        <div className="inquiry-item">
-          <i className="fas fa-phone icon"></i>
-          <div className="inquiry-details">
-            <h4>전화 상담</h4>
-            <p>정말 새로고침을 떠나실 건가요?</p>
+          <div className="inquiry-item" onClick={() => navigate("/phone-support")}>
+            <div className="icon-wrapper">
+              <i className="fas fa-phone inquiry-icon"></i>
+            </div>
+            <div className="inquiry-details">
+              <h4 className="inquiry-title">전화 상담</h4>
+              <p className="inquiry-description">상담원 연결이 필요할때!</p>
+            </div>
+            <button className="next-button inquiry-next">&gt;</button>
           </div>
-          <button className="next-button">&gt;</button>
-        </div>
-      </section>
+        </section>
 
-      <section className="account-section">
-        <h3 className="section-title">계정</h3>
-        <div className="account-item">
-          <i className="fas fa-sign-out-alt icon"></i>
-          <div className="account-details">
-            <h4>로그아웃</h4>
-            <p>새로고침과 함께 지구를 지켜요!</p>
+        <section className="account-section">
+          <h3 className="section-title">계정</h3>
+          <div className="account-item" onClick={openLogoutModal}>
+            <div className="icon-wrapper">
+              <i className="fas fa-sign-out-alt account-icon"></i>
+            </div>
+            <div className="account-details">
+              <h4 className="account-title">로그아웃</h4>
+            </div>
+            <button className="next-button account-next">&gt;</button>
           </div>
-          <button className="next-button">&gt;</button>
-        </div>
-        <div className="account-item">
-          <i className="fas fa-user-times icon"></i>
-          <div className="account-details">
-            <h4>회원탈퇴</h4>
-            <p>정말 새로고침을 떠나실 건가요?</p>
+          <div className="account-item" onClick={() => navigate("/delete-account")}>
+            <div className="icon-wrapper">
+              <i className="fas fa-user-times account-icon"></i>
+            </div>
+            <div className="account-details">
+              <h4 className="account-title">회원탈퇴</h4>
+              <p className="account-description">정말 새로고침을 떠나실 건가요?</p>
+            </div>
+            <button className="next-button account-next">&gt;</button>
           </div>
-          <button className="next-button">&gt;</button>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* 로그아웃 모달 */}
+        {isLogoutModalOpen && (
+          <div className="logout-modal">
+            <div className="logout-modal-content">
+              <p className="logout-text">로그아웃 하시겠어요?</p>
+              <div className="logout-modal-buttons">
+                <button className="cancel-button" onClick={closeLogoutModal}>취소</button>
+                <button className="logout-button" onClick={handleLogout}>로그아웃</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
