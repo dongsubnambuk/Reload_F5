@@ -180,3 +180,11 @@
   background-color: #333;
   color: #fff;
 }
+
+.withdraw-password-input {
+  margin-bottom: 20px; /* 입력창과 버튼 사이 간격 */
+  padding: 10px;
+
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

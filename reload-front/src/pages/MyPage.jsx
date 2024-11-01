@@ -7,7 +7,10 @@ import logo from "../images/Logo.png";
 const MyPage = () => {
   const [name, setName] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // 모달 상태
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // 로그아웃 모달 상태
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false); // 회원탈퇴 모달 상태
+  const [password, setPassword] = useState(''); // 비밀번호 상태
+  const [isPasswordFieldVisible, setIsPasswordFieldVisible] = useState(false); // 비밀번호 입력 필드 상태
   const navigate = useNavigate();
 
   // 로그아웃 함수
@@ -17,14 +20,16 @@ const MyPage = () => {
     navigate("/");
   };
 
-  // 모달 열기 함수
-  const openLogoutModal = () => {
-    setIsLogoutModalOpen(true);
-  };
+  // 로그아웃 모달 열기/닫기 함수
+  const openLogoutModal = () => setIsLogoutModalOpen(true);
+  const closeLogoutModal = () => setIsLogoutModalOpen(false);
 
-  // 모달 닫기 함수
-  const closeLogoutModal = () => {
-    setIsLogoutModalOpen(false);
+  // 회원탈퇴 모달 열기/닫기 함수
+  const openWithdrawModal = () => setIsWithdrawModalOpen(true);
+  const closeWithdrawModal = () => {
+    setIsWithdrawModalOpen(false);
+    setPassword(""); // 모달 닫을 때 비밀번호 초기화
+    setIsPasswordFieldVisible(false); // 모달 닫을 때 비밀번호 입력 필드 초기화
   };
 
   // 회원정보 조회
@@ -50,12 +55,50 @@ const MyPage = () => {
         setName(result.name);
         setPhonenumber(result.phoneNumber);
       } else {
-        console.log("로그인 부탁");
         alert("로그인 부탁: " + result.message);
       }
     };
     handleGet();
   }, []);
+
+  // 회원탈퇴 처리 함수
+  const handleUserOut = async (event) => {
+    event.preventDefault();
+
+    if (!isPasswordFieldVisible) {
+      // 비밀번호 입력 필드를 먼저 표시
+      setIsPasswordFieldVisible(true);
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
+
+    try {
+      const response = await fetch("http://3.37.122.192:8000/api/auth/withdraw", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+        alert("탈퇴가 완료되었습니다.");
+        navigate("/");
+      } else {
+        alert("탈퇴 실패: " + result.message);
+      }
+    } catch (error) {
+      console.error("Fetch error: ", error);
+    }
+  };
 
   return (
     <div className="my-page">
@@ -71,7 +114,7 @@ const MyPage = () => {
 
           <div className="user-actions">
             <div className="refresh-section">
-              <img src={logo} className="mypage-logo" alt="로그인로고" />
+              <img src={logo} className="mypage-logo" alt="로고" />
               <span className="refresh-text">새로고침</span>
             </div>
             <span
@@ -142,7 +185,7 @@ const MyPage = () => {
             </div>
             <button className="next-button account-next">&gt;</button>
           </div>
-          <div className="account-item" onClick={() => navigate("/delete-account")}>
+          <div className="account-item"  onClick={openWithdrawModal}>
             <div className="icon-wrapper">
               <i className="fas fa-user-times account-icon"></i>
             </div>
@@ -166,6 +209,36 @@ const MyPage = () => {
             </div>
           </div>
         )}
+
+      {/* 회원탈퇴 모달 */}
+{/* 회원탈퇴 모달 */}
+{isWithdrawModalOpen && (
+  <div className="logout-modal">
+    <div className="logout-modal-content">
+      {!isPasswordFieldVisible ? (
+        <p className="logout-text">정말 회원탈퇴 하시겠습니까?</p>
+      ) : (
+        <p className="password-text">비밀번호를 입력해주세요.</p>
+      )}
+      {isPasswordFieldVisible && (
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="withdraw-password-input"
+        />
+      )}
+      <div className="logout-modal-buttons">
+        <button className="cancel-button" onClick={closeWithdrawModal}>취소</button>
+        <button className="logout-button" onClick={handleUserOut}>
+          {isPasswordFieldVisible ? "확인" : "회원탈퇴"}
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
       </div>
     </div>
   );
