@@ -1,11 +1,31 @@
-.kakao-login{
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* 배경색과 크기 전환을 부드럽게 */
+.kakao-login {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* 배경색과 크기 전환을 부드럽게 */
 }
-  .kakao-login:hover {
 
-    transform: scale(1.05); /* 호버 시 버튼을 5% 확대 */
-  }
+.kakao-login-button:hover {
+  transform: scale(1.05); /* 호버 시 버튼을 5% 확대 */
+}
+
+/* 로그아웃 버튼 스타일 */
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #333;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
