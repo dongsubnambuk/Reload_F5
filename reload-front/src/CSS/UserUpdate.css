@@ -1,0 +1,137 @@
+
+.user-update-inner {
+    margin-top: 30px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.user-update-form-group {
+    margin-bottom: 20px;
+}
+
+.user-update-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+/* 전화번호 입력과 인증번호 발송 버튼 스타일 */
+.phone-container {
+    display: flex;
+    align-items: center;
+}
+
+.phone-input {
+    flex: 1;
+}
+
+.verification-btn {
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 30px;
+    background-color: transparent; /* 배경색 제거 */
+    color: #388E3C; 
+    border: 1px solid #388E3C; /* 테두리 색상 추가 */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* 색상 변화도 포함 */
+}
+
+.verification-btn:hover {
+    background-color: #388E3C; /* 호버 시 배경색 추가 */
+    color: white; /* 호버 시 글자 색상 변경 */
+}
+
+/* 주소 입력 스타일 */
+.address {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-serch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.address-serch button {
+    width: 30%;
+    background-color: transparent; /* 배경색 제거 */
+    color: #388E3C; /* 글자 색상 */
+    border: 1px solid #388E3C; /* 테두리 색상 추가 */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.address-serch button:hover {
+    background-color: #388E3C; /* 호버 시 배경색 추가 */
+    color: white; /* 호버 시 글자 색상 변경 */
+}
+
+.address-detail input {
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* 취소 및 수정 버튼 스타일 */
+.user-update-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.user-update-btn-cancle,
+.user-update-btn-ok {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    width: 45%;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.user-update-btn-cancle {
+    border: 1px solid #388E3C; /* 테두리 색상 추가 */
+    color: #388E3C;
+
+}
+
+.user-update-btn-ok {
+    background-color: #2c8b2a;
+    color: #fff;
+
+}
+
+.user-update-btn-cancle:hover {
+    background-color: #ddd;
+}
+
+.user-update-btn-ok:hover {
+    background-color: #216822;
+}
+
+/* 모달 닫기 버튼 스타일 */
+button[style] {
+    align-self: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.user-update-logo{
+    display: flex;
+    justify-content: center;
+}

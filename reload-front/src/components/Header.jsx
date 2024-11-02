@@ -36,6 +36,8 @@ const Header = () => {
                 return '회원가입';
             case '/mypage':
                 return '마이페이지';
+            case '/user-update':
+                return '내정보 수정';
             default:
                 return 'Main Page';
         }

@@ -17,6 +17,8 @@ const MyPage = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("email");
+    localStorage.removeItem("username");
     navigate("/");
   };
 
@@ -36,15 +38,15 @@ const MyPage = () => {
   useEffect(() => {
     const handleGet = async () => {
       const token = localStorage.getItem("token");
-      const email = localStorage.getItem("email");
+      const username = localStorage.getItem("username");
 
       const response = await fetch(
-        `http://3.37.122.192:8000/api/account/search-account/${email}`,
+        `http://3.37.122.192:8000/api/account/search-account/${username}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: token,
+            Authorization: `Bearer ${token}`
           },
         }
       );
@@ -60,13 +62,14 @@ const MyPage = () => {
     };
     handleGet();
   }, []);
+  
 
   // 회원탈퇴 처리 함수
   const handleUserOut = async (event) => {
     event.preventDefault();
 
     if (!isPasswordFieldVisible) {
-      // 비밀번호 입력 필드를 먼저 표시
+
       setIsPasswordFieldVisible(true);
       return;
     }
@@ -122,7 +125,7 @@ const MyPage = () => {
             </div>
             <span
               className="update-info-button"
-              onClick={() => navigate("/update-info")}
+              onClick={() => navigate("/user-update")}
             >
               내정보 수정 &gt;
             </span>
