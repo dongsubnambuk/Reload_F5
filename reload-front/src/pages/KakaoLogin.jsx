@@ -50,7 +50,8 @@ const KakaoLogin = () => {
     }
   };
 
-  const fetchUserProfile = async (access_token) => {
+  const fetchUserProfile = async () => {
+    const access_token = localStorage.getItem('access_token');
     try {
       const response = await fetch('https://kapi.kakao.com/v2/user/me', {
         method: 'GET',
@@ -64,7 +65,7 @@ const KakaoLogin = () => {
         const data = await response.json();
         console.log('사용자 정보:', data);
   
-        const email = data.kakao_account?.email;
+        const email = data.kakao_account.email;
         if (email) {
           localStorage.setItem('email', email);
           console.log('이메일:', email);

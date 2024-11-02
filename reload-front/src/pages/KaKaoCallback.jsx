@@ -43,9 +43,10 @@ const KakaoCallback = () => {
       const result = await response.json() 
 
       if (response.status === 200) {
-        console.log('액세스 토큰:', result.access_token); 
-        localStorage.setItem('access_token', result.access_token);
-        navigate('/'); // 메인 화면으로 이동
+        console.log(result);
+        console.log('액세스 토큰:', result.accessToken); 
+        localStorage.setItem('access_token', result.accessToken);
+        navigate('/'); 
       } else {
         console.error('토큰 요청 실패:', result); // JSON이 아닌 경우 텍스트 형태로 출력
       }
