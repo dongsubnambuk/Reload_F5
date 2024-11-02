@@ -5,15 +5,7 @@ import '../CSS/KakaoLogin.css';
 const KakaoLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const access_token = localStorage.getItem('access_token');
-    setIsLoggedIn(!!access_token);
 
-    // access_token이 있는 경우에만 사용자 정보 가져오기
-    if (access_token) {
-      fetchUserProfile(access_token);
-    }
-  }, []);
 
   const handleKakaoLogin = () => {
     const clientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
@@ -50,35 +42,7 @@ const KakaoLogin = () => {
     }
   };
 
-  const fetchUserProfile = async () => {
-    const access_token = localStorage.getItem('access_token');
-    try {
-      const response = await fetch('https://kapi.kakao.com/v2/user/me', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${access_token}`,
-          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-        },
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        console.log('사용자 정보:', data);
-  
-        const email = data.kakao_account.email;
-        if (email) {
-          localStorage.setItem('email', email);
-          console.log('이메일:', email);
-        } else {
-          console.log('이메일 정보가 없습니다.');
-        }
-      } else {
-        console.error('사용자 정보 요청 실패:', response.statusText);
-      }
-    } catch (error) {
-      console.error('오류 발생:', error);
-    }
-  };
+
 
   return (
     <div className="kakao-login">
