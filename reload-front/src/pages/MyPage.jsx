@@ -9,6 +9,7 @@ const MyPage = () => {
   const [phonenumber, setPhonenumber] = useState("");
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // 로그아웃 모달 상태
   const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false); // 회원탈퇴 모달 상태
+  const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false); // 전화 모달 상태
   const [password, setPassword] = useState(""); // 비밀번호 상태
   const [isPasswordFieldVisible, setIsPasswordFieldVisible] = useState(false);
   const navigate = useNavigate();
@@ -32,6 +33,15 @@ const MyPage = () => {
     setIsWithdrawModalOpen(false);
     setPassword("");
     setIsPasswordFieldVisible(false);
+  };
+
+  // 전화 모달 열기/닫기 함수
+  const openPhoneModal = () => setIsPhoneModalOpen(true);
+  const closePhoneModal = () => setIsPhoneModalOpen(false);
+
+  // 전화 연결 함수
+  const handleCall = () => {
+    window.location.href = "tel:010-1111-2222"; 
   };
 
   // 회원정보 조회
@@ -62,14 +72,12 @@ const MyPage = () => {
     };
     handleGet();
   }, []);
-  
 
   // 회원탈퇴 처리 함수
   const handleUserOut = async (event) => {
     event.preventDefault();
 
     if (!isPasswordFieldVisible) {
-
       setIsPasswordFieldVisible(true);
       return;
     }
@@ -183,10 +191,7 @@ const MyPage = () => {
             </div>
             <button className="next-button inquiry-next">&gt;</button>
           </div>
-          <div
-            className="inquiry-item"
-            onClick={() => navigate("/phone-support")}
-          >
+          <div className="inquiry-item" onClick={openPhoneModal}>
             <div className="icon-wrapper">
               <i className="fas fa-phone inquiry-icon"></i>
             </div>
@@ -263,6 +268,24 @@ const MyPage = () => {
                 </button>
                 <button className="logout-button" onClick={handleUserOut}>
                   {isPasswordFieldVisible ? "확인" : "회원탈퇴"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 전화 모달 */}
+        {isPhoneModalOpen && (
+          <div className="phone-modal">
+            <div className="phone-modal-content">
+              <p className="phone-text">전화 상담을 원하시면 아래 번호로 전화하세요.</p>
+              <p className="phone-number">010-1111-2222</p>
+              <div className="phone-modal-buttons">
+                <button className="call-cancel-button" onClick={closePhoneModal}>
+                  취소
+                </button>
+                <button className="call-button" onClick={handleCall}>
+                  전화하기
                 </button>
               </div>
             </div>
