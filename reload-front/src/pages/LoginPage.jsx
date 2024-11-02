@@ -41,7 +41,7 @@ const LoginPage = () => {
       if (response.status === 200) {
         console.log(result);
         localStorage.setItem("token", result.token);
-        localStorage.setItem("email", result.email);
+        localStorage.setItem("username", result.username);
         localStorage.setItem("role", "user"); // 역할을 로컬 스토리지에 저장
         console.log("로그인 성공");
         navigate('/');
