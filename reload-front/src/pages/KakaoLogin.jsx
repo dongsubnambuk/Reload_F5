@@ -6,8 +6,13 @@ const KakaoLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    setIsLoggedIn(!!token);
+    const access_token = localStorage.getItem('access_token');
+    setIsLoggedIn(!!access_token);
+
+    // access_token이 있는 경우에만 사용자 정보 가져오기
+    if (access_token) {
+      fetchUserProfile(access_token);
+    }
   }, []);
 
   const handleKakaoLogin = () => {
@@ -32,8 +37,9 @@ const KakaoLogin = () => {
           },
         });
 
-        // 로컬 스토리지에서 토큰 삭제
+        // 로컬 스토리지에서 토큰 및 이메일 삭제
         localStorage.removeItem('access_token');
+        localStorage.removeItem('email');
         setIsLoggedIn(false);
         console.log('카카오 계정 연결 해제 성공');
       } catch (error) {
@@ -41,6 +47,35 @@ const KakaoLogin = () => {
       }
     } else {
       console.log('로그인 상태가 아닙니다.');
+    }
+  };
+
+  const fetchUserProfile = async (access_token) => {
+    try {
+      const response = await fetch('https://kapi.kakao.com/v2/user/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${access_token}`,
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log('사용자 정보:', data);
+  
+        const email = data.kakao_account?.email;
+        if (email) {
+          localStorage.setItem('email', email);
+          console.log('이메일:', email);
+        } else {
+          console.log('이메일 정보가 없습니다.');
+        }
+      } else {
+        console.error('사용자 정보 요청 실패:', response.statusText);
+      }
+    } catch (error) {
+      console.error('오류 발생:', error);
     }
   };
 
