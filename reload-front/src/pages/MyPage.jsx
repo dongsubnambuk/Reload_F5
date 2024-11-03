@@ -144,7 +144,7 @@ const MyPage = () => {
           <h3 className="section-title">활동 내역</h3>
           <div
             className="activity-item"
-            onClick={() => navigate("/order-history")}
+            onClick={() => navigate("/order-list")}
           >
             <div className="icon-wrapper">
               <i className="fas fa-file-alt activity-icon"></i>
