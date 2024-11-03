@@ -3,29 +3,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import kakaoStart from '../images/kakao_signup_large_wide.png';
 import Header from '../components/Header';
 import logo from '../images/Logo.png';
+import '../CSS/SignupType.css'
 
 const SignupType = () => {
     const [activeTab, setActiveTab] = useState("personal");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // 환경 변수로부터 키를 가져와 Kakao SDK 초기화
-        if (!window.Kakao.isInitialized()) {
-            window.Kakao.init(process.env.REACT_APP_KAKAO_KEY);
-            console.log("Kakao SDK initialized with key:", process.env.REACT_APP_KAKAO_KEY);
-        }
-    }, []);
+    const handleKakaoSignup = () => {
+        const clientId = process.env.REACT_APP_KAKAO_CLIENT_ID_TEST;
+        const redirectUri = process.env.REACT_APP_KAKAO_REDIRECT_URI_TEST;
+    
+        const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+    
+        window.location.href = kakaoAuthUrl;
+      };
+    
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
 
-    const handleKakaoSignup = () => {
-        window.Kakao.Auth.authorize({
-            redirectUri: 'http://localhost:3000/kakao/callback'
-        });
-    };
-
+ 
     return (
         <div className="social-login-container">
             <Header />
