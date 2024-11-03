@@ -7,6 +7,10 @@ import SignupPage from './pages/SignupPage';
 import KakaoCallback from './pages/KaKaoCallback';
 import MyPage from './pages/MyPage';
 import UserUpdate from './pages/UserUpdate';
+import SignupType from './pages/SignupType';
+
+
+
 
 function App() {
   const [role, setRole] = useState(null);
@@ -39,6 +43,7 @@ function App() {
               <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
               <Route path="/mypage" element={<MyPage />} />
               <Route path="/user-update" element={<UserUpdate/>} />
+              <Route path="/signup-type" element={<SignupType/>} />
             </>
           )}
         </Routes>

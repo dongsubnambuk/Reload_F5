@@ -145,7 +145,7 @@ const LoginPage = () => {
             <button className="login-button" onClick={handleUserLogin}>로그인</button>
 
             <div className="link-group">
-              <Link to="/signup">회원가입</Link> | <Link to="/find-account">아이디/비밀번호 찾기</Link>
+              <Link to="/signup-type">회원가입</Link> | <Link to="/find-account">아이디/비밀번호 찾기</Link>
             </div>
 
           <div className="social-login">

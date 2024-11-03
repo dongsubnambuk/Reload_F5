@@ -3,7 +3,7 @@
   justify-content: center;
   height: 50px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s; /* 배경색과 크기 전환을 부드럽게 */
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .kakao-login-button:hover {
