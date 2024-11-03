@@ -7,6 +7,10 @@ import SignupPage from './pages/SignupPage';
 import KakaoCallback from './pages/KaKaoCallback';
 import MyPage from './pages/MyPage';
 import UserUpdate from './pages/UserUpdate';
+import SignupType from './pages/SignupType';
+
+
+
 import OrderList from './pages/OrderList';
 
 
@@ -38,9 +42,11 @@ function App() {
               <Route path="/" element={<MainPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
-              <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+              {/* <Route path="/auth/kakao/callback" element={<KakaoCallback />} /> */}
+              <Route path="/auth" element={<KakaoCallback />} />
               <Route path="/mypage" element={<MyPage />} />
               <Route path="/user-update" element={<UserUpdate/>} />
+              <Route path="/signup-type" element={<SignupType/>} />
               <Route path="/order-list" element={<OrderList/>} />
             </>
           )}

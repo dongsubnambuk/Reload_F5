@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import '../CSS/KakaoCallback.css'; // 스피너 스타일을 위한 CSS 파일
 
 const KakaoCallback = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const hasFetched = useRef(false); // 중복 호출 방지
 
   useEffect(() => {
+    if (hasFetched.current) return; // 이미 실행된 경우 종료
+    hasFetched.current = true; // 첫 실행 후 true로 설정
+
     const existingToken = localStorage.getItem('access_token');
     if (existingToken) {
       navigate('/'); // 이미 로그인된 경우 메인 화면으로 이동
@@ -33,19 +36,19 @@ const KakaoCallback = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          code: authCode 
-        }),
+        body: JSON.stringify({ code: authCode }),
       });
 
-      const result = await response.json();
+
+      const result = await response.json() 
 
       if (response.status === 200) {
-        console.log('액세스 토큰:', result.access_token); 
-        localStorage.setItem('access_token', result.access_token);
-        navigate('/'); // 메인 화면으로 이동
+        console.log(result);
+        console.log('액세스 토큰:', result.accessToken); 
+        localStorage.setItem('access_token', result.accessToken);
+        navigate('/'); 
       } else {
-        console.error('토큰 요청 실패:', result);
+        console.error('토큰 요청 실패:', result); // JSON이 아닌 경우 텍스트 형태로 출력
       }
     } catch (error) {
       console.error('오류 발생:', error);

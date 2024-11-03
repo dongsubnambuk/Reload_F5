@@ -1,0 +1,86 @@
+.social-login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+    color: #333;
+    border-bottom: 2px solid #333;
+}
+
+.social-login-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-title {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.kakao-signup-button{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.kakao-signup-button:hover{
+    transform: scale(1.05); /* 호버 시 버튼을 5% 확대 */
+}
+.create-account-button {
+    width: 96%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #388e3c;
+    color: #388e3c;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-account-button:hover {
+    background-color: #388e3c;
+    color: #fff;
+}
+
+.login-footer {
+    margin-top: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.login-link {
+    color: #388e3c;
+    text-decoration: none;
+}
+

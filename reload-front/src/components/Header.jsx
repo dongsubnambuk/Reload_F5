@@ -38,6 +38,8 @@ const Header = () => {
                 return '마이페이지';
             case '/user-update':
                 return '내정보 수정';
+            case '/signup-type':
+                return '회원가입';
             case '/order-list':
                 return '주문내역';
             default:

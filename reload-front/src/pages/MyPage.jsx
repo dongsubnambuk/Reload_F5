@@ -20,6 +20,8 @@ const MyPage = () => {
     localStorage.removeItem("role");
     localStorage.removeItem("email");
     localStorage.removeItem("username");
+    localStorage.removeItem("id");
+    localStorage.removeItem("access_token");
     navigate("/");
   };
 
