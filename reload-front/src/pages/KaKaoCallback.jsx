@@ -31,7 +31,7 @@ const KakaoCallback = () => {
 
   const handleAuthCode = async (authCode) => {
     try {
-      const response = await fetch('http://3.37.122.192:8000/api/auth/login/kakao/token', {
+      const response = await fetch('http://3.37.122.192:8000/api/auth/kakao/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,8 +44,8 @@ const KakaoCallback = () => {
 
       if (response.status === 200) {
         console.log(result);
-        console.log('액세스 토큰:', result.accessToken); 
-        localStorage.setItem('access_token', result.accessToken);
+        console.log('token:', result.token); 
+        localStorage.setItem('token', result.token);
         navigate('/'); 
       } else {
         console.error('토큰 요청 실패:', result); // JSON이 아닌 경우 텍스트 형태로 출력
