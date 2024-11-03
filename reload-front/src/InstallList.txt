@@ -24,3 +24,7 @@ npm install react-daum-postcode
 
 PRTEST
 PRTEST2
+
+// 로그인 계정
+id: test
+pwd: qwer1234
