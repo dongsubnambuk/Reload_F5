@@ -5,10 +5,7 @@ import '../CSS/KakaoLogin.css';
 const KakaoLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    setIsLoggedIn(!!token);
-  }, []);
+
 
   const handleKakaoLogin = () => {
     const clientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
@@ -32,8 +29,9 @@ const KakaoLogin = () => {
           },
         });
 
-        // 로컬 스토리지에서 토큰 삭제
+        // 로컬 스토리지에서 토큰 및 이메일 삭제
         localStorage.removeItem('access_token');
+        localStorage.removeItem('email');
         setIsLoggedIn(false);
         console.log('카카오 계정 연결 해제 성공');
       } catch (error) {
@@ -43,6 +41,8 @@ const KakaoLogin = () => {
       console.log('로그인 상태가 아닙니다.');
     }
   };
+
+
 
   return (
     <div className="kakao-login">
