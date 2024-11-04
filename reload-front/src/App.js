@@ -8,7 +8,7 @@ import KakaoCallback from './pages/KaKaoCallback';
 import MyPage from './pages/MyPage';
 import UserUpdate from './pages/UserUpdate';
 import SignupType from './pages/SignupType';
-
+import OrderListDetail from './pages/OrderListDetail';
 
 
 import OrderList from './pages/OrderList';
@@ -48,6 +48,7 @@ function App() {
               <Route path="/user-update" element={<UserUpdate/>} />
               <Route path="/signup-type" element={<SignupType/>} />
               <Route path="/order-list" element={<OrderList/>} />
+              <Route path="/order-list-detail" element={<OrderListDetail/>} />
             </>
           )}
         </Routes>

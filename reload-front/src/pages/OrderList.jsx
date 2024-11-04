@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Button, Typography, Row, Col, Divider } from 'antd';
+import { Card, Typography, Divider, Row, Col, Button } from 'antd';
 import Header from '../components/Header';
-import '../CSS/OrderList.css';
-import logo from '../images/Logo.png';
 import { useNavigate } from "react-router-dom";
+import '../CSS/OrderList.css';
+import logo from "../images/Logo.png";
 
 const { Title, Text } = Typography;
 
@@ -13,54 +13,11 @@ const OrderList = () => {
 
   useEffect(() => {
     const exampleData = [
-      {
-        id: 1,
-        date: '2024-10-01',
-        name: 'D. 김철수',
-        description: '기깔나는 식탁',
-        price: '120,000',
-        image: 'https://example.com/table-image.jpg'
-      },
-      {
-        id: 2,
-        date: '2024-10-01',
-        name: 'D. 김철수',
-        description: '기깔나는 식탁',
-        price: '120,000',
-        image: 'https://example.com/table-image.jpg'
-      },
-      {
-        id: 3,
-        date: '2024-10-10',
-        name: 'D. 김철수',
-        description: '기깔나는 식탁',
-        price: '120,000',
-        image: 'https://example.com/table-image.jpg'
-      },
-      {
-        id: 3,
-        date: '2024-10-10',
-        name: 'D. 김철수',
-        description: '기깔나는 식탁',
-        price: '120,000',
-        image: 'https://example.com/table-image.jpg'
-      },
-      {
-        id: 3,
-        date: '2024-10-10',
-        name: 'D. 김철수',
-        description: '기깔나는 식탁',
-        price: '120,000',
-        image: 'https://example.com/table-image.jpg'
-      },
-      {
-        id: 3,
-        date: '2024-10-17',
-        name: 'D. 김철수',
-        description: '기깔나는 식탁',
-        price: '120,000',
-        image: 'https://example.com/table-image.jpg'
-      }
+      { id: 1, date: '2024-10-01', name: 'D. 김철수', description: '기깔나는 식탁', price: '120,000', image: 'https://example.com/table-image.jpg' },
+      { id: 2, date: '2024-10-01', name: 'D. 김철수', description: '기깔나는 식탁', price: '120,000', image: 'https://example.com/table-image.jpg' },
+      { id: 3, date: '2024-10-10', name: 'D. 김철수', description: '기깔나는 식탁', price: '120,000', image: 'https://example.com/table-image.jpg' },
+      { id: 4, date: '2024-10-10', name: 'D. 김철수', description: '기깔나는 식탁', price: '120,000', image: 'https://example.com/table-image.jpg' },
+      { id: 5, date: '2024-10-17', name: 'D. 김철수', description: '기깔나는 식탁', price: '120,000', image: 'https://example.com/table-image.jpg' },
     ];
 
     setOrders(exampleData);
@@ -68,7 +25,7 @@ const OrderList = () => {
 
   const groupOrdersByDate = (orders) => {
     return orders.reduce((acc, order) => {
-      const orderDate = new Date(order.date).toISOString().split('T')[0];
+      const orderDate = order.date;
       if (!acc[orderDate]) {
         acc[orderDate] = [];
       }
@@ -92,7 +49,7 @@ const OrderList = () => {
           >
             <div className="order-card-header">
               <Title level={5} className="order-date">{date}</Title>
-              <Text className="order-detail-info" onClick={() => navigate("/order-list-detail")}>상세정보</Text>
+              <Button size="small" onClick={() => navigate(`/order-list-detail/${date}`)}>상세정보</Button>
             </div>
             {groupedOrders[date].map((order, index) => (
               <div key={order.id} className="order-item">
@@ -112,7 +69,6 @@ const OrderList = () => {
                   </Col>
                   <Col span={6} className="order-actions">
                     <Button size="small" className="order-button">환불 요청</Button>
-                    <Button size="small" className="order-button">배송 조회</Button>
                   </Col>
                 </Row>
                 {index < groupedOrders[date].length - 1 && <Divider />}

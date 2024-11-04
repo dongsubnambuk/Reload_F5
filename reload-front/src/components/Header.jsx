@@ -43,7 +43,7 @@ const Header = () => {
             case '/order-list':
                 return '주문내역';
             case '/order-list-detail':
-                return '상세내역';
+                return '주문 상세 내역';
             default:
                 return 'Main Page';
         }
