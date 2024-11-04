@@ -1,10 +1,12 @@
 .order-history-content{
-    padding: 10px;
+    padding: 15px;
+    max-height: 760px; 
+    overflow-y: auto; 
 }
+
   
   .order-history-title {
-
-    padding: 20px;
+   padding-left: 15px;
   }
   
   .order-card {
@@ -12,6 +14,7 @@
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+
   }
   
   .order-card-header {
