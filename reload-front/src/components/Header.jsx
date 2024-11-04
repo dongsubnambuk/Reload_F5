@@ -40,6 +40,8 @@ const Header = () => {
                 return '내정보 수정';
             case '/order-list':
                 return '주문내역';
+            case '/order-list-detail':
+                return '상세내역';
             default:
                 return 'Main Page';
         }
