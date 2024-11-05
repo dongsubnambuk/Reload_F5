@@ -49,7 +49,7 @@ const OrderList = () => {
           >
             <div className="order-card-header">
               <Title level={5} className="order-date">{date}</Title>
-              <Button size="small" onClick={() => navigate(`/order-list-detail/${date}`)}>상세정보</Button>
+              <Button size="small" onClick={() => navigate('/order-list-detail', { state: { date } })}>상세정보</Button>
             </div>
             {groupedOrders[date].map((order, index) => (
               <div key={order.id} className="order-item">

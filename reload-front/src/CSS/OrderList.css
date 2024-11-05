@@ -1,7 +1,12 @@
 .order-history-content{
     padding: 15px;
-    max-height: 760px; 
+    max-height: 600px; 
     overflow-y: auto; 
+
+}
+
+.order-history-container{
+  height: 100vh;
 }
 
   
