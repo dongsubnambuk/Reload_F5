@@ -42,7 +42,7 @@ const Header = () => {
                 return '회원가입';
             case '/order-list':
                 return '주문내역';
-            case '/order-list-detail':
+            case '/order-list-detail/:date':
                 return '주문 상세 내역';
             default:
                 return 'Main Page';

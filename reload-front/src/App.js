@@ -48,7 +48,7 @@ function App() {
               <Route path="/user-update" element={<UserUpdate/>} />
               <Route path="/signup-type" element={<SignupType/>} />
               <Route path="/order-list" element={<OrderList/>} />
-              <Route path="/order-list-detail" element={<OrderListDetail/>} />
+              <Route path="/order-list-detail/:date" element={<OrderListDetail />} />
             </>
           )}
         </Routes>
