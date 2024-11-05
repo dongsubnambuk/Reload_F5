@@ -50,10 +50,10 @@ const MyPage = () => {
   useEffect(() => {
     const handleGet = async () => {
       const token = localStorage.getItem("token");
-      const username = localStorage.getItem("username");
+      const email = localStorage.getItem("email");
 
       const response = await fetch(
-        `http://3.37.122.192:8000/api/account/search-account/${username}`,
+        `http://3.37.122.192:8000/api/account/search-account/${email}`,
         {
           method: "GET",
           headers: {

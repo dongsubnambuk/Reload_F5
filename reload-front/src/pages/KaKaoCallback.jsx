@@ -5,61 +5,115 @@ const KakaoCallback = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const hasFetched = useRef(false); // 중복 호출 방지
+  const hasFetched = useRef(false);
 
   useEffect(() => {
-    if (hasFetched.current) return; // 이미 실행된 경우 종료
-    hasFetched.current = true; // 첫 실행 후 true로 설정
-
-    const existingToken = localStorage.getItem('access_token');
-    if (existingToken) {
-      navigate('/'); // 이미 로그인된 경우 메인 화면으로 이동
-      return;
-    }
+    if (hasFetched.current) return;
+    hasFetched.current = true;
 
     const queryParams = new URLSearchParams(location.search);
     const authCode = queryParams.get('code');
+    const state = queryParams.get('state'); // state 값으로 회원가입 여부 확인
 
     if (authCode) {
       console.log('인가 코드:', authCode);
-      setIsLoading(true); // 로딩 시작
-      handleAuthCode(authCode);
+      setIsLoading(true);
+      state === 'signup' ? handleRegister(authCode) : handleLogin(authCode);
     } else {
       console.log('인가 코드가 없습니다.');
     }
   }, [location, navigate]);
 
-  const handleAuthCode = async (authCode) => {
+const handleLogin = async (authCode) => {
+  try {
+    const response = await fetch('http://3.37.122.192:8000/api/auth/kakao/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code: authCode }),
+    });
+
+    if (response.status === 405) {
+      const confirmIntegration = window.confirm('통합하시겠습니까?');
+      if (confirmIntegration) {
+        await handleIntegration(authCode);
+      }
+    } else if (response.status === 200) {
+      const result = await response.json();
+      if (result.token) {
+        console.log(result);
+        console.log(result.user.email);
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('email', result.user.email);
+        navigate('/');
+      } else {
+        console.error('로그인 응답에 토큰이 없습니다:', result);
+      }
+    } else {
+      const errorData = await response.json();
+      console.error(`로그인 실패 - 상태 코드 ${response.status}:`, errorData);
+    }
+  } catch (error) {
+    console.error('로그인 요청 오류:', error);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
+  const handleIntegration = async (authCode) => {
     try {
-      const response = await fetch('http://3.37.122.192:8000/api/auth/kakao/login', {
-        method: 'POST',
+      const response = await fetch('http://3.37.122.192:8000/api/auth/kakao/integration', {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ code: authCode }),
       });
 
-
-      const result = await response.json() 
-
       if (response.status === 200) {
-        console.log(result);
-        console.log('token:', result.token); 
+        const result = await response.json();
         localStorage.setItem('token', result.token);
-        navigate('/'); 
+        navigate('/');
       } else {
-        console.error('토큰 요청 실패:', result); // JSON이 아닌 경우 텍스트 형태로 출력
+        console.error('통합 실패:', await response.json());
       }
     } catch (error) {
-      console.error('오류 발생:', error);
+      console.error('통합 요청 오류:', error);
+    }
+  };
+
+  const handleRegister = async (authCode) => {
+    try {
+      const response = await fetch('http://3.37.122.192:8000/api/auth/kakao/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code: authCode }),
+      });
+  
+      if (response.status === 200) {
+        const result = await response.json();
+        localStorage.setItem('token', result.token);
+        navigate('/');
+      } else if (response.status === 405) {
+        alert("이미 회원가입되었습니다.");
+        navigate('/login');
+      } else {
+        console.error('회원가입 실패:', await response.json());
+      }
+    } catch (error) {
+      console.error('회원가입 요청 오류:', error);
     } finally {
-      setIsLoading(false); // 로딩 완료
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="kakao-callback">
-      <div className="spinner"></div> {/* 항상 스피너만 표시 */}
+      {isLoading && <div className="spinner"></div>}
     </div>
   );
 };
