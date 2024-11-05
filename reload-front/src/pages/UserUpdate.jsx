@@ -56,10 +56,10 @@ const UserUpdate = () => {
   useEffect(() => {
     const handleGet = async () => {
       const token = localStorage.getItem("token");
-      const username = localStorage.getItem("username");
+      const email = localStorage.getItem("email");
 
       const response = await fetch(
-        `http://3.37.122.192:8000/api/account/search-account/${username}`,
+        `http://3.37.122.192:8000/api/account/search-account/${email}`,
         {
           method: "GET",
           headers: {
@@ -72,9 +72,9 @@ const UserUpdate = () => {
       const result = await response.json();
 
       if (response.status === 200) {
+   
         setUserName(result.name);
         setPhonenumber(result.phoneNumber);
-        setEmail(result.email);
         setZipCode(result.postalCode);
         setRoadAddress(result.roadNameAddress);
         setDetailAddress(result.detailedAddress);
@@ -104,7 +104,6 @@ const UserUpdate = () => {
           postalCode: zipCode,
           roadNameAddress: roadAddress,
           detailedAddress: detailAddress,
-          email: email,
           phoneNumber: phoneNumber,
         }),
       }
@@ -137,17 +136,6 @@ const UserUpdate = () => {
             value={userName}
             className="user-update-input"
             onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
-
-        {/* email 입력 */}
-        <div className="user-update-form-group">
-          <input
-            type="text"
-            id="email"
-            value={email}
-            className="user-update-input"
-            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -204,7 +192,7 @@ const UserUpdate = () => {
         </Modal>
 
         <div className="user-update-btn">
-          <button className="user-update-btn-cancle">취소</button>
+          <button className="user-update-btn-cancle"  onClick={() => navigate("/mypage")}>취소</button>
           <button className="user-update-btn-ok" onClick={handleUserUpdate}>
             수정
           </button>
