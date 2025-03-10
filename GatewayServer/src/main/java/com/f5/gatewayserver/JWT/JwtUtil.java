@@ -84,8 +84,14 @@ public class JwtUtil {
         }
     }
 
-    @GetMapping("/home")
-    public String homePage(HttpServletRequest request){
-        return "home";
+    public String getRoleFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        // "role" 클레임 가져오기
+        return claims.get("role", String.class); // 문자열을 Enum으로 변환
     }
 }
