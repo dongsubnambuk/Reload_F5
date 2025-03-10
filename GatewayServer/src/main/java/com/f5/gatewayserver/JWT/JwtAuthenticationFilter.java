@@ -11,8 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -24,6 +23,11 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         // JWT 검증 로직
         String path = exchange.getRequest().getPath().toString();
+        String method = exchange.getRequest().getMethod().toString(); // 권한 설정의 기반을 다졌도다
+
+        // 지금 대칭키 검증을 쓰면서 secretKey 를 받아와서 쓰고 있음.
+        // 이제 이걸 수정해서 auth 랑 비대칭키 인증으로 변경하고 토큰 유효성 검사를 조져야함.
+        // 아니면 여기에서 토큰 검증을 auth 쪽에 엔드포인트 만들어서 검사 시키는 방법도 있긴 한데, 굳이? 싶음.
 
         // JWT 검증을 생략할 경로 설정
         if (path.startsWith("/api/auth/login") ||
@@ -61,6 +65,15 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
         if (!jwtUtil.isTokenValid(token)) {
             System.out.println("Invalid JWT Token for path 2: " + path); // 로그 추가
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid JWT Token");
+        }
+
+        if((path.equals("/api/account/designer/update-designer") && method.equals("PATCH")) ||
+                (path.equals("/api/account/designer/add-designer") && method.equals("POST"))) {
+            String role = jwtUtil.getRoleFromToken(token);
+            if (!Objects.equals(role, "admin")) { // ADMIN이 아니면 차단
+                System.out.println("Access Denied: Admin role required : " + path);
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access Denied: Admin role required");
+            }
         }
 
         return chain.filter(exchange);
