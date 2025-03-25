@@ -77,7 +77,7 @@ public class ChatbotServiceImpl implements ChatbotService {
             LocalDate today = LocalDate.now();
             LocalDate formattedToday = convertStringToLocalDate(today.toString(), format);
             List<PickupStatusDTO> pickups = getPickupStatus(formattedToday, sender);
-            HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(pickups.toString(), headers, question);
+            HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(pickups.toString(), headers, question, "pickup");
 
             ResponseEntity<String> chatResponse;
             chatResponse = restTemplate.postForEntity(
@@ -112,7 +112,7 @@ public class ChatbotServiceImpl implements ChatbotService {
 
         }
         IndexDTO[] indexDTOs = searchQuestion(question).toArray(new IndexDTO[0]);
-        HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(Arrays.toString(indexDTOs), headers, question);
+        HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(Arrays.toString(indexDTOs), headers, question, "normal");
 
         ResponseEntity<String> chatResponse = restTemplate.postForEntity(
                 "https://api.openai.com/v1/chat/completions",
@@ -139,20 +139,34 @@ public class ChatbotServiceImpl implements ChatbotService {
         }
     }
 
+    public static String gptContent(String type) {
+        if(type.equals("pickup")) {
+            return
+                    """
+                    너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
+                    안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                    환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.
+                    이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
+                    DTO 같은 객체 그대로 보내지 말고 정리해서 보내.\
+                    수거 상태 관련 질문의 경우 현재 수거 총 갯수는 몇개이며 날짜별로 진행상황이 어떤지 적어야해.\
+                    만약 빈 리스트가 온다면 현재 진행중인게 없다고 답변하면 돼.\
+                    개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.""";
+        } else {
+            return
+                    """
+                    너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
+                    안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                    환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.
+                    이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
+                    """;
+        }
+    }
 
-    private static HttpEntity<Map<String, Object>> getMapHttpEntity(String indexDTOs, HttpHeaders headers, String question) {
+    private static HttpEntity<Map<String, Object>> getMapHttpEntity(String indexDTOs, HttpHeaders headers, String question, String type) {
         Map<String, Object> chatBody = Map.of(
-                "model", "gpt-4",
+                "model", "gpt-4o-mini",
                 "messages", List.of(
-                        Map.of("role", "system", "content", """
-                                너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
-                                안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
-                                환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.
-                                이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
-                                DTO 같은 객체 그대로 보내지 말고 정리해서 보내.\
-                                수거 상태 관련 질문의 경우 현재 수거 총 갯수는 몇개이며 날짜별로 진행상황이 어떤지 적어야해.\
-                                만약 빈 리스트가 온다면 현재 진행중인게 없다고 답변하면 돼.\
-                                개행문자는 HTML 형식으로 <br/>로 적어서 보내줘."""),
+                        Map.of("role", "system", "content", gptContent(type)),
                         Map.of("role", "user", "content","contents: " +
                                 indexDTOs +
                                 "\n\n사용자 질문: " + question)

@@ -19,4 +19,7 @@ public class ChatEntity {
 
     @Column
     private String sender;
+
+    @Column
+    private Boolean bot;
 }

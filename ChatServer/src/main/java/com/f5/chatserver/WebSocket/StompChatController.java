@@ -2,7 +2,9 @@ package com.f5.chatserver.WebSocket;
 
 import com.f5.chatserver.DTO.ChatDTO;
 import com.f5.chatserver.DTO.MessageDTO;
+import com.f5.chatserver.Repository.ChatRepository;
 import com.f5.chatserver.Service.ChatService;
+import com.f5.chatserver.Service.ChatbotService;
 import com.f5.chatserver.Service.MessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Controller;
 @Transactional
 public class StompChatController {
 
+    private final ChatRepository chatRepository;
+    private final ChatbotService chatbotService;
     private final ObjectMapper objectMapper;
     private final ChatService chatService;
     private final MessageService messageService;
@@ -36,7 +40,20 @@ public class StompChatController {
 
         // 메시지를 해당 채팅방의 모든 구독자에게 전송
         String destination = "/topic/chat/" + messageDTO.getChatId();
-        messagingTemplate.convertAndSend("/topic/admin/new-room", messageDTO);
-        messagingTemplate.convertAndSend(destination, messageDTO);
+        if(chatRepository.findByChatId(messageDTO.getChatId()).getBot()) {
+            if(!messageDTO.getSender().equals("새로고침")) {
+                messagingTemplate.convertAndSend("/topic/admin/new-room", messageDTO);
+                messagingTemplate.convertAndSend(destination, messageDTO);
+                messageDTO.setContent(chatbotService.searchAnswer(messageDTO.getContent(), messageDTO.getSender()).getAnswer());
+                messageDTO.setSender("새로고침");
+                messagingTemplate.convertAndSend(destination, messageDTO);
+            } else {
+                messagingTemplate.convertAndSend("/topic/admin/new-room", messageDTO);
+                messagingTemplate.convertAndSend(destination, messageDTO);
+            }
+        } else {
+            messagingTemplate.convertAndSend("/topic/admin/new-room", messageDTO);
+            messagingTemplate.convertAndSend(destination, messageDTO);
+        }
     }
 }

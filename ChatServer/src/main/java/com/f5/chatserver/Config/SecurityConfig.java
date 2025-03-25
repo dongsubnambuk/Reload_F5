@@ -27,7 +27,8 @@ public class SecurityConfig {
                         authorizeRequests
                                 // POST 요청만 허용
                                 .requestMatchers(HttpMethod.POST,
-                                        "/api/chat/create-chat")
+                                        "/api/chat/create-chat",
+                                        "/api/chat/bot-stat")
                                 .permitAll()
 
                                 // GET 요청만 허용

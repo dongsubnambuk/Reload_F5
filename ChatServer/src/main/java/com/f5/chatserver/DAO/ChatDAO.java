@@ -9,4 +9,5 @@ public interface ChatDAO {
     ChatDTO createChat(String email, String sender);
     LinkedHashMap<Long, String> findAllChat();
     List<ChatDTO> getAllUserChat(String email);
+    ChatDTO setBotStatus(Long chatId, Boolean status);
 }
