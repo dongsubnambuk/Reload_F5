@@ -14,4 +14,5 @@ public interface ChatService {
     ChatDTO createRoom(String email, String sender);
     List<ChatDTO> findUserChatAll(String email);
     <T> void sendMessage(Long chatId, T message);
+    ChatDTO setBotStatus(Long chatId, Boolean status);
 }

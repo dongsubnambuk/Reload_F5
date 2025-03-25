@@ -23,6 +23,7 @@ public class ChatDAOImpl implements ChatDAO {
             ChatEntity chatEntity = new ChatEntity();
             chatEntity.setEmail(email);
             chatEntity.setSender(sender);
+            chatEntity.setBot(true);
             chatRepository.save(chatEntity);
             ChatDTO chatDTO = new ChatDTO();
             chatDTO.setChatId(chatEntity.getChatId());
@@ -63,5 +64,18 @@ public class ChatDAOImpl implements ChatDAO {
             throw new IllegalStateException("유저 채팅 리스트 로드 실패");
         }
         return chatDTOList;
+    }
+
+    @Override
+    public ChatDTO setBotStatus(Long chatId, Boolean status) {
+        ChatEntity chatEntity = chatRepository.findByChatId(chatId);
+        chatEntity.setBot(status);
+        chatRepository.save(chatEntity);
+        return ChatDTO.builder()
+                .chatId(chatEntity.getChatId())
+                .email(chatEntity.getEmail())
+                .sender(chatEntity.getSender())
+                .bot(chatEntity.getBot())
+                .build();
     }
 }

@@ -49,4 +49,16 @@ public class ChatController {
                             .build());
         }
     }
+
+    @PostMapping("/bot-stat")
+    public ResponseEntity<?> setBotStatus(@RequestParam("chatId") Long id, @RequestParam("status") Boolean status){
+        try{
+            return ResponseEntity.ok(chatService.setBotStatus(id, status));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(StatusCodeDTO.builder()
+                            .code(404L)
+                            .msg(e.getMessage())
+                            .build());
+        }
+    }
 }

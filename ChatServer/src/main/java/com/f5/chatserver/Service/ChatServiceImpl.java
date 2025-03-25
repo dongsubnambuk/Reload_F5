@@ -36,6 +36,7 @@ public class ChatServiceImpl implements ChatService {
             chatRooms.put(chatEntity.getChatId(), ChatDTO.builder()
                     .chatId(chatEntity.getChatId())
                     .email(chatEntity.getEmail())
+                    .bot(chatEntity.getBot())
                     .build());
         }
     }
@@ -84,6 +85,15 @@ public class ChatServiceImpl implements ChatService {
             messagingTemplate.convertAndSend(destination, message); // STOMP로 메시지 전송
         } catch (Exception e) {
             log.error("메시지 전송 실패");
+        }
+    }
+
+    @Override
+    public ChatDTO setBotStatus(Long chatId, Boolean status) {
+        try {
+            return chatDAO.setBotStatus(chatId, status);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
