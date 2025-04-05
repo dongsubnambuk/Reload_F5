@@ -31,6 +31,7 @@ public class ChatbotServiceImpl implements ChatbotService {
     @Value("${openai.organization-id}")
     private String openai_organization_id;
 
+    ObjectMapper objectMapper = new ObjectMapper();
     private final RestTemplate restTemplate;
 
     public List<IndexDTO> searchQuestion(String question) {
@@ -50,6 +51,12 @@ public class ChatbotServiceImpl implements ChatbotService {
                 queryBody,
                 IndexDTO[].class
         );
+        try {
+            String json = objectMapper.writeValueAsString(response.getBody());
+            log.info(json);
+        } catch (Exception e) {
+            log.error("응답을 JSON으로 변환하는 데 실패했습니다", e);
+        }
         return Arrays.asList(Objects.requireNonNull(response.getBody()));
     }
 
@@ -62,6 +69,37 @@ public class ChatbotServiceImpl implements ChatbotService {
         }
     }
 
+    public ChatResponseDTO returnData(String index, HttpHeaders headers, String question, String type) {
+        HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(index, headers, question, type);
+
+        ResponseEntity<String> chatResponse;
+        chatResponse = restTemplate.postForEntity(
+//                "https://7b0c-34-143-211-17.ngrok-free.app/v1/chat/completions",
+                "https://api.openai.com/v1/chat/completions",
+                chatRequest,
+                String.class
+        );
+
+        // chatResponse에서 body를 JSON으로 파싱하여 처리
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            JsonNode root = mapper.readTree(chatResponse.getBody());
+            String answerContent = root
+                    .path("choices").get(0)
+                    .path("message")
+                    .path("content")
+                    .asText();
+            log.info("message: {}", answerContent);
+
+            return ChatResponseDTO.builder()
+                    .answer(answerContent)
+                    .question(question)
+                    .build();  // ChatResponseDTO 생성자 또는 setter 사용
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("JSON Parsing 실패: " + e.getMessage());
+        }
+    }
+
     @Override
     public ChatResponseDTO searchAnswer(String question, String sender) {
         String format = "yyyy-MM-dd";
@@ -70,52 +108,38 @@ public class ChatbotServiceImpl implements ChatbotService {
         headers.add("OpenAI-Organization", openai_organization_id);
         headers.add("OpenAI-Project", openai_project_id);
         headers.setContentType(MediaType.APPLICATION_JSON);
-        if(question.contains("수거") &&
-                question.contains("오늘") &&
-                question.contains("상태") ||
-                question.contains("진행")) {
-            LocalDate today = LocalDate.now();
-            LocalDate formattedToday = convertStringToLocalDate(today.toString(), format);
-            List<PickupStatusDTO> pickups = getPickupStatus(formattedToday, sender);
-            HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(pickups.toString(), headers, question, "pickup");
+        if(question.contains("수거")) {
+            if(question.contains("상태") ||
+                    question.contains("진행")) {
 
-            ResponseEntity<String> chatResponse;
-            chatResponse = restTemplate.postForEntity(
-                    "https://api.openai.com/v1/chat/completions",
-                    chatRequest,
-                    String.class
-            );
+                LocalDate today = LocalDate.now();
+                LocalDate formattedToday = convertStringToLocalDate(today.toString(), format);
+                List<PickupStatusDTO> pickups = getPickupStatus(formattedToday, sender);
 
-            // chatResponse에서 body를 JSON으로 파싱하여 처리
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                JsonNode root = mapper.readTree(chatResponse.getBody());
-                String answerContent = root
-                        .path("choices").get(0)
-                        .path("message")
-                        .path("content")
-                        .asText();
-                log.info("message: {}", answerContent);
+                return returnData(pickups.toString(), headers, question, "pickup-status");
 
-                return ChatResponseDTO.builder()
-                        .answer(answerContent)
-                        .question(question)
-                        .build();  // ChatResponseDTO 생성자 또는 setter 사용
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException("JSON Parsing 실패: " + e.getMessage());
+            } else if (question.contains("가격")) {
+
+                LocalDate today = LocalDate.now();
+                LocalDate formattedToday = convertStringToLocalDate(today.toString(), format);
+                List<PickupStatusDTO> pickups = getPickupStatus(formattedToday, sender);
+
+                return returnData(pickups.toString(), headers, question, "pickup-price");
             }
-
-
-        } else if (question.contains("수거") &&
-                question.contains("오늘") &&
-                question.contains("가격")){
-
         }
-        IndexDTO[] indexDTOs = searchQuestion(question).toArray(new IndexDTO[0]);
-        HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(Arrays.toString(indexDTOs), headers, question, "normal");
+        String json;
+        try {
+            json = objectMapper.writeValueAsString(searchQuestion(question));
+            log.info(json);
+        } catch (Exception e) {
+            log.error("응답을 JSON으로 변환하는 데 실패했습니다", e);
+            throw new IllegalStateException(e);
+        }
+        HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(json, headers, question, "normal");
 
         ResponseEntity<String> chatResponse = restTemplate.postForEntity(
-                "https://api.openai.com/v1/chat/completions",
+//                "https://7b0c-34-143-211-17.ngrok-free.app/v1/chat/completions",
+                    "https://api.openai.com/v1/chat/completions",
                 chatRequest,
                 String.class
         );
@@ -140,24 +164,51 @@ public class ChatbotServiceImpl implements ChatbotService {
     }
 
     public static String gptContent(String type) {
-        if(type.equals("pickup")) {
-            return
-                    """
-                    너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
-                    안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
-                    환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.
-                    이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
-                    DTO 같은 객체 그대로 보내지 말고 정리해서 보내.\
-                    수거 상태 관련 질문의 경우 현재 수거 총 갯수는 몇개이며 날짜별로 진행상황이 어떤지 적어야해.\
-                    만약 빈 리스트가 온다면 현재 진행중인게 없다고 답변하면 돼.\
-                    개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.""";
+        if(type.contains("pickup")) {
+            if(type.contains("status")) {
+                return
+                        """
+                                너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
+                                안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                                사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
+                                이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
+                                DTO 같은 객체 그대로 보내지 말고 정리해서 보내.\
+                                수거 상태 관련 질문의 경우 현재 수거 총 갯수는 몇개이며 날짜별로 진행상황이 어떤지 적어야해.\
+                                만약 질문에 오늘이라는게 포함되어 있으면, pickupDate 가 오늘인 정보만 정리해서 보내면 돼.\
+                                나머지 요청들은 적당히 사용자 질문을 보고 판단해서 보내줘.\
+                                만약 빈 리스트가 온다면 현재 진행중인게 없다고 답변하면 돼.\
+                                개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.""";
+            } else if (type.contains("price")) {
+                return
+                        """
+                                너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
+                                안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                                사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
+                                이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
+                                DTO 같은 객체 그대로 보내지 말고 정리해서 보내.\
+                                이 질문은 pricePreview 가 아닌 price 의 값을 보고 정리해서 보내면 돼.\
+                                만약 질문에 오늘이라는게 포함되어 있으면 pickupDate 를 보고 오늘인 것만 보내면 돼.\
+                                만약 빈 리스트가 온다면 현재 진행중인게 없다고 답변하면 돼.\
+                                개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.""";
+            } else {
+                return
+                        """
+                        너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
+                        안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                        사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
+                        이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
+                        """;
+            }
         } else {
             return
                     """
                     너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
                     안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
-                    환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.
-                    이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
+                    사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
+                    이걸 기반으로 보내준 벡터 DB의 결과인 'indexDTO' 와 '사용자 질문'을 보고 답변을 만들어줘.\
+                    사용자 질문에 맞게 indexDTO 의 title 과 content 를 보고 가장 알맞는 내용을 골라.\
+                    깔끔하게 정리해서 보내.\
+                    절대로 임의의 내용을 추가하지 마.\
                     """;
         }
     }
