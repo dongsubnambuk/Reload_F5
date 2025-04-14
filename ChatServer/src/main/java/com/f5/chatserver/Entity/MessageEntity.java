@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name="message")
 @Builder
 @Getter
 @Setter
@@ -24,6 +25,7 @@ public class MessageEntity {
     private String content;
 
     @Column(nullable = false)
+
     private String sender;
 
     @Column(nullable = false)
