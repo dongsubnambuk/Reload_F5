@@ -33,6 +33,7 @@ public class ChatbotServiceImpl implements ChatbotService {
 
     ObjectMapper objectMapper = new ObjectMapper();
     private final RestTemplate restTemplate;
+    private final MessageService messageService;
 
     public List<IndexDTO> searchQuestion(String question) {
         RestTemplate rt = new RestTemplate();

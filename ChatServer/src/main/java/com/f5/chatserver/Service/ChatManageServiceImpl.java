@@ -5,8 +5,10 @@ import com.f5.chatserver.Entity.ChatEntity;
 import com.f5.chatserver.Entity.MessageEntity;
 import com.f5.chatserver.Repository.ChatRepository;
 import com.f5.chatserver.Repository.MessageRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,16 +17,11 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ChatManageServiceImpl implements ChatManageService {
     private final ChatRepository chatRepository;
     private final MessageRepository messageRepository;
     private final SimpMessagingTemplate messagingTemplate;
-
-    public ChatManageServiceImpl(ChatRepository chatRepository, MessageRepository messageRepository, SimpMessagingTemplate messagingTemplate) {
-        this.chatRepository = chatRepository;
-        this.messageRepository = messageRepository;
-        this.messagingTemplate = messagingTemplate;
-    }
 
     @Override
     public void loadDetails(){
@@ -50,13 +47,16 @@ public class ChatManageServiceImpl implements ChatManageService {
     public void sendMessageList(Long chatId) {
         List<MessageDTO> messageDTOS = new ArrayList<>();
         List<MessageEntity> messageEntityList = messageRepository.findAllByChatEntity(chatRepository.findByChatId(chatId));
-        for(MessageEntity messageEntity : messageEntityList){
+
+        for (MessageEntity messageEntity : messageEntityList) {
             messageDTOS.add(MessageDTO.builder()
                     .chatId(chatId)
                     .content(messageEntity.getContent())
                     .sender(messageEntity.getSender())
                     .build());
         }
+        log.info(messageDTOS.toString());
+
         messagingTemplate.convertAndSend("/topic/chat/" + chatId, messageDTOS);
         log.info("유저 {} 채팅방 이전 메세지 전송 성공", chatId);
     }

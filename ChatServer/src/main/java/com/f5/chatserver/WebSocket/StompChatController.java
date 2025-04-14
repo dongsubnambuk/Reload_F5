@@ -47,6 +47,7 @@ public class StompChatController {
                 messageDTO.setContent(chatbotService.searchAnswer(messageDTO.getContent(), messageDTO.getSender()).getAnswer());
                 messageDTO.setSender("새로고침");
                 messagingTemplate.convertAndSend(destination, messageDTO);
+                messageService.saveMessage(messageDTO);
             } else {
                 messagingTemplate.convertAndSend("/topic/admin/new-room", messageDTO);
                 messagingTemplate.convertAndSend(destination, messageDTO);

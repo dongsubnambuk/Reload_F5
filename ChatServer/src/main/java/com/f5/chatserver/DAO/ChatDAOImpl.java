@@ -25,11 +25,12 @@ public class ChatDAOImpl implements ChatDAO {
             chatEntity.setSender(sender);
             chatEntity.setBot(true);
             chatRepository.save(chatEntity);
-            ChatDTO chatDTO = new ChatDTO();
-            chatDTO.setChatId(chatEntity.getChatId());
-            chatDTO.setEmail(email);
-            chatDTO.setSender(sender);
-            return chatDTO;
+            return ChatDTO.builder()
+                    .chatId(chatEntity.getChatId())
+                    .email(email)
+                    .sender(sender)
+                    .bot(chatEntity.getBot())
+                    .build();
         } catch (Exception e) {
             throw new IllegalStateException("방 생성 실패");
         }
