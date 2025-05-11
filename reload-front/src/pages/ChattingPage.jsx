@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Avatar } from 'antd';
-import { UserOutlined, SendOutlined, MenuOutlined, CloseOutlined, ArrowUpOutlined } from '@ant-design/icons';
+import { UserOutlined, SendOutlined, MenuOutlined, CloseOutlined, ArrowUpOutlined, CustomerServiceOutlined, RobotOutlined } from '@ant-design/icons';
 import SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
 import Header from '../components/Header';
@@ -14,17 +14,19 @@ const ChattingPage = () => {
   const [chatId, setChatId] = useState(null); // 동적으로 설정된 채팅방 ID
   const messageContainerRef = useRef(null);
   const [quickQuestions, setQuickQuestions] = useState([
-    '회원가입 절차', '로그인 절차', '상품 구매 방법', '장바구니 담는 방법',
-    '수거 신청 방법', '수거 일자 변경', '수거 진행 상태 확인'
+    '회원정보 수정 방법', '상품 구매 방법', '장바구니 담는 방법', 
+    '수거 신청 방법', '수거 일자 변경', '수거 진행 상태 확인', '상담사와 1:1 채팅 방법'
   ]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [suggestionVisible, setSuggestionVisible] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  // 챗봇 상태 관리 추가
+  const [isBotMode, setIsBotMode] = useState(true);
 
   // 카테고리별 자주 묻는 질문
   const categoryQuestions = {
-    '계정 관리': ['회원가입 절차', '로그인 절차', '회원정보 수정 방법'],
+    '계정 관리': ['회원정보 수정 방법'],
     '쇼핑 정보': ['상품 구매 방법', '장바구니 담는 방법'],
     '수거 서비스': ['수거 신청 방법', '수거 일자 변경', '수거 진행 상태 확인', '수거 당일 부재 시 집에 없을 시'],
     '고객 지원': ['상담사와 1:1 채팅 방법']
@@ -177,7 +179,6 @@ const ChattingPage = () => {
         hour: '2-digit',
         minute: '2-digit',
       });
-
       setMessages((prevMessages) => [...prevMessages, message]);
       setInput('');
       setSuggestionVisible(false);
@@ -186,12 +187,57 @@ const ChattingPage = () => {
       setIsLoading(true);
     }
   };
+
+  // 챗봇/상담사 전환 함수 추가
+  const toggleBotMode = async () => {
+    if (!chatId) return;
+    
+    try {
+      const token = localStorage.getItem('token');
+      const newStatus = !isBotMode;
+      
+      const response = await fetch(
+        `https://refresh-f5-server.o-r.kr/api/chat/bot-stat?chatId=${chatId}&status=${newStatus}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({}),
+        }
+      );
+      
+      if (response.status === 200) {
+        const result = await response.json();
+        console.log('Bot status changed:', result);
+        setIsBotMode(result.bot);
+        
+        // 상태 변경 메시지 추가
+        const statusChangeMessage = {
+          sender: '시스템',
+          content: `${result.bot ? '챗봇' : '상담사'} 모드로 전환되었습니다.`,
+          time: new Date().toLocaleTimeString('ko-KR', {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+        };
+        
+        setMessages(prevMessages => [...prevMessages, statusChangeMessage]);
+      } else {
+        console.error('Bot status change failed');
+      }
+    } catch (error) {
+      console.error('Error changing bot status:', error);
+    }
+  };
+
   // 입력 내용이 변경될 때 관련 제안 표시
   useEffect(() => {
     if (input.trim() && input.length > 1) {
       // 입력된 내용을 기반으로 추천 질문 필터링
       const allQuestions = [
-        '회원가입 절차', '로그인 절차', '상품 구매 방법', '장바구니 담는 방법',
+        '상품 구매 방법', '장바구니 담는 방법',
         '수거 신청 방법', '수거 일자 변경', '수거 진행 상태 확인', '수거 당일 부재 시 집에 없을 시',
         '상담사와 1:1 채팅 방법', '회원정보 수정 방법'
       ];
@@ -332,6 +378,17 @@ const ChattingPage = () => {
         >
           <MenuOutlined />
         </button>
+        
+        {/* 챗봇/상담사 전환 버튼 추가 */}
+        <button
+          className="chatting-bot-toggle-button"
+          onClick={toggleBotMode}
+          aria-label={isBotMode ? "상담사 모드로 전환" : "챗봇 모드로 전환"}
+          title={isBotMode ? "상담사 모드로 전환" : "챗봇 모드로 전환"}
+        >
+          {isBotMode ? <CustomerServiceOutlined /> : <RobotOutlined />}
+        </button>
+        
         <input
           className="chatting-chat-input"
           type="text"
