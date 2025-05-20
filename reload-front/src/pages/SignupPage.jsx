@@ -78,18 +78,22 @@ const SignupPage = () => {
         } else {
           setEmailError("사용 가능한 이메일입니다.");
         }
-        await new Promise((resolve) => setIsEmailCheckModalOpen(true) && resolve()); // 모달 열기 후 대기
+      } else if (response.status === 404) {
+        // 404는 이메일 중복일 때 발생
+        setEmailError("이메일 중복입니다. 다른 이메일을 사용해주세요.");
       } else {
         console.error("이메일 중복 확인 실패:", response.statusText);
         setEmailError("이메일 중복 확인에 실패했습니다. 다시 시도해주세요.");
-        await new Promise((resolve) => setIsEmailCheckModalOpen(true) && resolve()); // 에러 메시지를 표시하기 위해 모달 열기
       }
+  
+      await new Promise((resolve) => setIsEmailCheckModalOpen(true) && resolve()); // 모달 열기 후 대기
     } catch (error) {
       console.error("오류 발생:", error);
       setEmailError("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
       await new Promise((resolve) => setIsEmailCheckModalOpen(true) && resolve()); // 에러 메시지를 표시하기 위해 모달 열기
     }
   };
+  
   
 
   //회원가입
@@ -134,20 +138,32 @@ const SignupPage = () => {
 
        {/* 이메일 입력과 중복확인 버튼 */}
        <div className="form-group email-group">
-          <input
-            type="text"
-            id="email"
-            value={email}
-            className="signup-input"
-            placeholder="이메일을 입력해주세요."
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setEmailError("");
-            }}
-          />
+       <input
+          type="email"
+          id="email"
+          value={email}
+          className="signup-input"
+          placeholder="이메일을 입력해주세요."
+          onChange={(e) => {
+            const newEmail = e.target.value;
+            setEmail(newEmail);
+
+            // 이메일 형식 유효성 검사
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (newEmail === "") {
+              setEmailError(""); // 비어있으면 에러 없음
+            } else if (!emailRegex.test(newEmail)) {
+              setEmailError("올바른 이메일 형식을 입력해주세요.");
+            } else {
+              setEmailError(""); // 형식이 맞으면 에러 제거
+            }
+          }}
+        />
+    
           <button  className="email-check-btn"  onClick={checkEmailExists}>
             중복 확인
           </button>
+       
         </div>
 
         {/* 이메일 중복 확인 모달 */}
@@ -167,7 +183,9 @@ const SignupPage = () => {
             </button>
           </div>
         </Modal>
-
+        {emailError && (
+          <p className="error-message">{emailError}</p>
+        )}
         <div className="form-group">
           <input
             type="password"
