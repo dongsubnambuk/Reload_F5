@@ -23,11 +23,9 @@ public class ChatDAOImpl implements ChatDAO {
             if(chatRepository.existsByEmail(email)){
                 return chatRepository.findByEmail(email).toChatDTO();
             } else {
-                ChatEntity chatEntity = new ChatEntity();
-                chatEntity.setEmail(email);
-                chatEntity.setSender(sender);
-                chatEntity.setBot(true);
-                return chatRepository.save(chatEntity).toChatDTO();
+                return chatRepository.save(ChatEntity.builder()
+                        .email(email).sender(sender).bot(true).build())
+                        .toChatDTO();
             }
         } catch (Exception e) {
             throw new IllegalStateException("방 생성 실패");
