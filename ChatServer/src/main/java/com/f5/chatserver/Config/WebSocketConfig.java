@@ -31,7 +31,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws/chat")
                 .setAllowedOrigins("http://127.0.0.1:3000",
-                        "https:refresh-f5-server.o-r.kr",
+                        "https://refresh-f5-server.o-r.kr",
                         "https://refresh-f5.store")
                 .withSockJS();
     }

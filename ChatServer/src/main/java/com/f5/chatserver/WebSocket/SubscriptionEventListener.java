@@ -32,7 +32,7 @@ public class SubscriptionEventListener {
                 MessageDTO welcomeMessage = MessageDTO.builder()
                         .chatId(chatId)
                         .sender("새로고침")
-                        .content(" 안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!<br/> 사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지!<br/> 궁금한 게 있으면 언제든지 저를 불러주세요.")
+                        .content(" 안녕하세요! 저는 새로고침의 진짜 친구, 에코봇이에요!<br/> 사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지!<br/> 궁금한 게 있으면 언제든지 저를 불러주세요.")
                         .build();
 
                 messagingTemplate.convertAndSend(destination, welcomeMessage);

@@ -14,6 +14,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
@@ -32,6 +34,7 @@ public class StompChatController {
         // 메시지 로깅
         log.info("Received message: {}", messageDTO);
 
+        messageDTO.setSendTime(LocalDateTime.now());
         // 메시지 저장
         messageService.saveMessage(messageDTO);
 
@@ -46,6 +49,7 @@ public class StompChatController {
                 messagingTemplate.convertAndSend(destination, messageDTO);
                 messageDTO.setContent(chatbotService.searchAnswer(messageDTO.getContent(), messageDTO.getSender()).getAnswer());
                 messageDTO.setSender("새로고침");
+                messageDTO.setSendTime(LocalDateTime.now());
                 messagingTemplate.convertAndSend(destination, messageDTO);
                 messageService.saveMessage(messageDTO);
             } else {

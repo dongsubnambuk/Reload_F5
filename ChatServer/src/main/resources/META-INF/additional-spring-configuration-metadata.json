@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "faiss.faiss_uri",
+      "type": "java.lang.String",
+      "description": "Description for faiss.faiss_uri."
+    },
+    {
+      "name": "openai.openai_request_uri",
+      "type": "java.lang.String",
+      "description": "Description for openai.openai_request_uri."
+    }
+  ] }

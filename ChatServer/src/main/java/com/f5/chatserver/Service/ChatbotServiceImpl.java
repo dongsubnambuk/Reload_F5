@@ -30,6 +30,14 @@ public class ChatbotServiceImpl implements ChatbotService {
     private String openai_project_id;
     @Value("${openai.organization-id}")
     private String openai_organization_id;
+    @Value("${faiss_uri}")
+    private String faiss_uri;
+    @Value("${openai.openai_request_uri}")
+    private String openai_request_uri;
+    @Value("${pickup_server}")
+    private String pickup_server;
+    @Value("${account_server}")
+    private String account_server;
 
     ObjectMapper objectMapper = new ObjectMapper();
     private final RestTemplate restTemplate;
@@ -47,7 +55,7 @@ public class ChatbotServiceImpl implements ChatbotService {
 
         HttpEntity<Map<String, String>> queryBody = new HttpEntity<>(requestBody, headers);
         ResponseEntity<IndexDTO[]> response = rt.exchange(
-                "http://52.78.201.40:9000/search",
+                faiss_uri,
                 HttpMethod.POST,
                 queryBody,
                 IndexDTO[].class
@@ -74,12 +82,14 @@ public class ChatbotServiceImpl implements ChatbotService {
         HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(index, headers, question, type);
 
         ResponseEntity<String> chatResponse;
+        log.info("chatRequest: {}", chatRequest);
         chatResponse = restTemplate.postForEntity(
-//                "https://7b0c-34-143-211-17.ngrok-free.app/v1/chat/completions",
-                "https://api.openai.com/v1/chat/completions",
+//                "https://8e93-34-59-222-17.ngrok-free.app/v1/chat/completions",
+                openai_request_uri,
                 chatRequest,
                 String.class
         );
+        log.info("chatResponse: {}", chatResponse);
 
         // chatResponse에서 body를 JSON으로 파싱하여 처리
         ObjectMapper mapper = new ObjectMapper();
@@ -139,8 +149,8 @@ public class ChatbotServiceImpl implements ChatbotService {
         HttpEntity<Map<String, Object>> chatRequest = getMapHttpEntity(json, headers, question, "normal");
 
         ResponseEntity<String> chatResponse = restTemplate.postForEntity(
-//                "https://7b0c-34-143-211-17.ngrok-free.app/v1/chat/completions",
-                    "https://api.openai.com/v1/chat/completions",
+//                "https://8e93-34-59-222-17.ngrok-free.app/v1/chat/completions",
+                openai_request_uri,
                 chatRequest,
                 String.class
         );
@@ -170,7 +180,7 @@ public class ChatbotServiceImpl implements ChatbotService {
                 return
                         """
                                 너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
-                                안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                                안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 에코봇이에요!\
                                 사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
                                 이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
                                 DTO 같은 객체 그대로 보내지 말고 정리해서 보내.\
@@ -183,7 +193,7 @@ public class ChatbotServiceImpl implements ChatbotService {
                 return
                         """
                                 너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
-                                안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                                안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 에코봇이에요!\
                                 사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
                                 이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
                                 DTO 같은 객체 그대로 보내지 말고 정리해서 보내.\
@@ -195,22 +205,22 @@ public class ChatbotServiceImpl implements ChatbotService {
                 return
                         """
                         너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
-                        안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                        안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 에코봇이에요!\
                         사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
                         이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
-                        """;
+                        개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.""";
             }
         } else {
             return
                     """
                     너는 고객 지원용 챗봇이야. 아래는 기본적인 너의 인격을 말해줄게.\s
-                    안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 새진이에요!\
+                    안녕하세요! 저는 새로고침의 진짜 친구, 챗봇 에코봇이에요!\
                     사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
                     이걸 기반으로 보내준 벡터 DB의 결과인 'indexDTO' 와 '사용자 질문'을 보고 답변을 만들어줘.\
                     사용자 질문에 맞게 indexDTO 의 title 과 content 를 보고 가장 알맞는 내용을 골라.\
                     깔끔하게 정리해서 보내.\
                     절대로 임의의 내용을 추가하지 마.\
-                    """;
+                    개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.""";
         }
     }
 
@@ -233,15 +243,17 @@ public class ChatbotServiceImpl implements ChatbotService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
+        log.info("account 요청");
         Map<String, String> body = Map.of("today", today.toString());
         HttpEntity<Map<String, String>> request = new HttpEntity<>(body, headers);
         ResponseEntity<Map<String, UserDetailDTO>> response = restTemplate.exchange(
-                "http://172.35.2.84:11000/api/account/user-list",
+                account_server+"/user-list",
                 HttpMethod.GET,
                 request,
                 new ParameterizedTypeReference<>() {
                 }
         );
+        log.info("account 응답");
 
         Map<String, UserDetailDTO> users = response.getBody();
         List<PickupStatusDTO> pickupStatusDTOs = new ArrayList<>();
@@ -260,14 +272,16 @@ public class ChatbotServiceImpl implements ChatbotService {
 
                 HttpEntity<Void> entity = new HttpEntity<>(innerHeaders);
 
+                log.info("pickup 요청");
                 // 일치하는 이메일을 사용해 요청을 보냄
                 ResponseEntity<PickupStatusDTO[]> innerResponse = restTemplate.exchange(
-                        "http://3.37.122.192:12000/api/pickup/my-pickup?email={email}",
+                        pickup_server+"/my-pickup?email={email}",
                         HttpMethod.GET,
                         entity,
                         PickupStatusDTO[].class,
                         email
                 );
+                log.info("pickup 응답");
 
                 PickupStatusDTO[] result = innerResponse.getBody();
                 pickupStatusDTOs.addAll(Arrays.asList(result));
