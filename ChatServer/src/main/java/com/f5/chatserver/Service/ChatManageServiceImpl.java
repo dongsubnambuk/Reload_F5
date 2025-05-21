@@ -50,16 +50,17 @@ public class ChatManageServiceImpl implements ChatManageService {
         List<MessageEntity> messageEntityList = messageRepository.findAllByChatEntity(chatRepository.findByChatId(chatId));
 
         for (MessageEntity messageEntity : messageEntityList) {
-            messageDTOS.add(MessageDTO.builder()
+            messagingTemplate.convertAndSend("/topic/chat/" + chatId,
+                    MessageDTO.builder()
                     .chatId(chatId)
                     .content(messageEntity.getContent())
                     .sender(messageEntity.getSender())
                     .sendTime(messageEntity.getSendTime())
                     .build());
         }
-        log.info(messageDTOS.toString());
+        //log.info(messageDTOS.toString());
 
-        messagingTemplate.convertAndSend("/topic/chat/" + chatId, messageDTOS);
+        //messagingTemplate.convertAndSend("/topic/chat/" + chatId, messageDTOS);
         log.info("유저 {} 채팅방 이전 메세지 전송 성공", chatId);
     }
 }

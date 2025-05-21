@@ -52,6 +52,7 @@ public class StompChatController {
                 messageDTO.setSendTime(LocalDateTime.now());
                 messagingTemplate.convertAndSend(destination, messageDTO);
                 messageService.saveMessage(messageDTO);
+                log.info("메시지 전송 성공: " + messageDTO);
             } else {
                 messagingTemplate.convertAndSend("/topic/admin/new-room", messageDTO);
                 messagingTemplate.convertAndSend(destination, messageDTO);

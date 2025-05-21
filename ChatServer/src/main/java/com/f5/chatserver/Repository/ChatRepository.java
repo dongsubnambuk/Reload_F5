@@ -10,4 +10,6 @@ import java.util.List;
 public interface ChatRepository extends JpaRepository<ChatEntity, Long> {
     ChatEntity findByChatId(Long chatId);
     List<ChatEntity> findAllByEmail(String email);
+    Boolean existsByEmail(String email);
+    ChatEntity findByEmail(String email);
 }

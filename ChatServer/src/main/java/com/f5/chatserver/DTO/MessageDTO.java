@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
+@ToString
 public class MessageDTO {
     private Long chatId;
     private String content;

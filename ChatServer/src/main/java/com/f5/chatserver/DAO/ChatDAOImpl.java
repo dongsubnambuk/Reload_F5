@@ -20,17 +20,15 @@ public class ChatDAOImpl implements ChatDAO {
     @Override
     public ChatDTO createChat(String email, String sender) {
         try{
-            ChatEntity chatEntity = new ChatEntity();
-            chatEntity.setEmail(email);
-            chatEntity.setSender(sender);
-            chatEntity.setBot(true);
-            chatRepository.save(chatEntity);
-            return ChatDTO.builder()
-                    .chatId(chatEntity.getChatId())
-                    .email(email)
-                    .sender(sender)
-                    .bot(chatEntity.getBot())
-                    .build();
+            if(chatRepository.existsByEmail(email)){
+                return chatRepository.findByEmail(email).toChatDTO();
+            } else {
+                ChatEntity chatEntity = new ChatEntity();
+                chatEntity.setEmail(email);
+                chatEntity.setSender(sender);
+                chatEntity.setBot(true);
+                return chatRepository.save(chatEntity).toChatDTO();
+            }
         } catch (Exception e) {
             throw new IllegalStateException("방 생성 실패");
         }

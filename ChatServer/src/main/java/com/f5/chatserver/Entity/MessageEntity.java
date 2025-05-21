@@ -21,11 +21,11 @@ public class MessageEntity {
     @JoinColumn(name = "chat_id", referencedColumnName = "chatId", nullable = false)
     private ChatEntity chatEntity;
 
-    @Column(nullable = false)
+    @Lob
+    @Column(nullable = false, length = 10000)
     private String content;
 
     @Column(nullable = false)
-
     private String sender;
 
     @Column(nullable = false)
