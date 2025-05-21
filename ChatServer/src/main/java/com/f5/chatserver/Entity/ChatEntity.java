@@ -1,5 +1,6 @@
 package com.f5.chatserver.Entity;
 
+import com.f5.chatserver.DTO.ChatDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ public class ChatEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chatId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column
@@ -23,4 +24,13 @@ public class ChatEntity {
 
     @Column
     private Boolean bot;
+
+    public ChatDTO toChatDTO(){
+        return ChatDTO.builder()
+                .chatId(chatId)
+                .email(email)
+                .sender(sender)
+                .bot(bot)
+                .build();
+    }
 }

@@ -42,11 +42,11 @@ public class CustomChannelInterceptor implements ChannelInterceptor {
                 String[] parts = destination.split("/");
                 if (parts.length == 4) {
                     Long chatId = Long.valueOf(parts[3].trim());
-                    try {
-                        chatManageService.sendMessageList(chatId);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+//                    try {
+//                        chatManageService.sendMessageList(chatId);
+//                    } catch (InterruptedException e) {
+//                        throw new RuntimeException(e);
+//                    }
                 }
             }
         }
