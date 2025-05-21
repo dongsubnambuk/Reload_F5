@@ -24,6 +24,41 @@ const ChattingPage = () => {
   // 챗봇 상태 관리 추가
   const [isBotMode, setIsBotMode] = useState(true);
 
+  // 시간 포맷팅 함수 추가 - 오전/오후 표시
+  const formatTime = (timeString) => {
+    if (!timeString) return '';
+
+    try {
+      // ISO 형식 문자열이나 일반 시간 문자열을 Date 객체로 변환
+      const date = new Date(timeString);
+
+      // 유효한 날짜인지 확인
+      if (isNaN(date.getTime())) {
+        // 이미 시:분 형식이면 그대로 반환
+        if (timeString.match(/^\d{1,2}:\d{2}$/)) {
+          return timeString;
+        }
+        return '';
+      }
+
+      // 시간과 분 추출
+      let hours = date.getHours();
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+
+      // 오전/오후 결정
+      const amPm = hours < 12 ? '오전' : '오후';
+
+      // 12시간제로 변환
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 0시는 12시로 표시
+
+      return `${amPm} ${hours.toString().padStart(2, '0')}:${minutes}`;
+    } catch (error) {
+      console.error('시간 포맷팅 오류:', error);
+      return timeString; // 오류 발생 시 원본 문자열 반환
+    }
+  };
+
   // 카테고리별 자주 묻는 질문
   const categoryQuestions = {
     '계정 관리': ['회원정보 수정 방법'],
@@ -124,6 +159,13 @@ const ChattingPage = () => {
               });
             }
 
+            // 서버에서 받은 시간 포맷팅 적용
+            if (receivedMessage.sendTime) {
+              receivedMessage.formattedTime = formatTime(receivedMessage.sendTime);
+            } else {
+              receivedMessage.formattedTime = formatTime(receivedMessage.time);
+            }
+
             // 챗봇 응답을 받으면 로딩 상태 해제
             if (receivedMessage.sender === '새로고침') {
               setIsLoading(false);
@@ -175,10 +217,12 @@ const ChattingPage = () => {
 
       // 로컬 상태에 메시지 추가 (서버에서의 응답은 필터링)
       // 타임스탬프 형식 맞추기
+      const now = new Date();
       message.time = new Date().toLocaleTimeString('ko-KR', {
         hour: '2-digit',
         minute: '2-digit',
       });
+      message.formattedTime = formatTime(now);
       setMessages((prevMessages) => [...prevMessages, message]);
       setInput('');
       setSuggestionVisible(false);
@@ -214,6 +258,7 @@ const ChattingPage = () => {
         setIsBotMode(result.bot);
         
         // 상태 변경 메시지 추가
+        const now = new Date();
         const statusChangeMessage = {
           sender: '시스템',
           content: `${result.bot ? '챗봇' : '상담사'} 모드로 전환되었습니다. 상담사가 대답하기 전까지 '...'으로 표시됩니다.`,
@@ -221,6 +266,7 @@ const ChattingPage = () => {
             hour: '2-digit',
             minute: '2-digit',
           }),
+          formattedTime: formatTime(now)
         };
         
         setMessages(prevMessages => [...prevMessages, statusChangeMessage]);
@@ -292,14 +338,14 @@ const ChattingPage = () => {
                 <div className="chatting-admin-bubble">
                   {renderHTMLContent(msg.content)}
                 </div>
-                <span className="chatting-timestamp">{msg.time}</span>
+                <span className="chatting-timestamp">{msg.formattedTime || formatTime(msg.sendTime) || formatTime(msg.time)}</span>
               </>
             ) : (
               <>
                 <div className="chatting-user-bubble">
                   <p className="chatting-message-content">{msg.content}</p>
                 </div>
-                <span className="chatting-timestamp">{msg.time}</span>
+                  <span className="chatting-timestamp">{msg.formattedTime || formatTime(msg.sendTime) || formatTime(msg.time)}</span>
               </>
             )}
           </div>
