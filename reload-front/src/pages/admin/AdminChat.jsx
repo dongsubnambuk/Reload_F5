@@ -95,9 +95,9 @@ const AdminChat = ({ stompClient, chatList, setChatList, messages, setMessages, 
               </div>
               
               <div className="chat-footer">
-                <div className={`chat-mode-badge ${chat.botMode ? 'bot' : 'counselor'}`}>
+                {/* <div className={`chat-mode-badge ${chat.botMode ? 'bot' : 'counselor'}`}>
                   {chat.botMode ? '챗봇' : '상담사'}
-                </div>
+                </div> */}
                 
                 {/* 마지막 메시지가 사용자로부터 온 경우에만 읽지 않음 표시 */}
                 {chat.isLastMessageFromUser && chat.unread > 0 && selectedUser?.chatId !== chat.chatId && (

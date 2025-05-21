@@ -34,7 +34,7 @@ const OrderList = () => {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching products:', error);
+      //console.error('Error fetching products:', error);
       return [];
     }
   };
@@ -51,7 +51,7 @@ const OrderList = () => {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching designer:', error);
+      //console.error('Error fetching designer:', error);
       return null;
     }
   };
@@ -122,7 +122,7 @@ const OrderList = () => {
 
         setOrders(sortedOrders);
       } catch (error) {
-        console.error('Error:', error);
+        //console.error('Error:', error);
       } finally {
         setLoading(false);
       }

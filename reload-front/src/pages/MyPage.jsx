@@ -123,7 +123,7 @@ const MyPage = () => {
         alert("탈퇴 실패: " + result.message);
       }
     } catch (error) {
-      console.error("Fetch error: ", error);
+      //console.error("Fetch error: ", error);
     }
   };
 

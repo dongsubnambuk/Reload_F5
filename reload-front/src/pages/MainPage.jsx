@@ -85,7 +85,7 @@ const NewProductCard = ({ product }) => {
                 const designerData = await fetchDesigner(product.designerIndex);
                 setDesigner(designerData);
             } catch (error) {
-                console.error('디자이너 데이터를 가져오는 중 오류가 발생했습니다:', error);
+                //console.error('디자이너 데이터를 가져오는 중 오류가 발생했습니다:', error);
             }
         };
 
@@ -172,10 +172,10 @@ const MainPage = () => {
             const email = localStorage.getItem("email");
 
             if (token && email) {
-                console.log("로그인 성공");
+                //console.log("로그인 성공");
                 setIsLogin(true);
             } else {
-                console.log("로그인 실패");
+                //console.log("로그인 실패");
                 setIsLogin(false);
             }
         };

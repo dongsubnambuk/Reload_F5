@@ -55,7 +55,7 @@ const PickupResultPage = () => {
                 }))
             };
 
-            console.log('Request Data:', requestData);
+            //console.log('Request Data:', requestData);
 
             const response = await fetch('https://refresh-f5-server.o-r.kr/api/pickup/new-pickup', {
                 method: 'POST',
@@ -72,7 +72,7 @@ const PickupResultPage = () => {
             }
 
             const result = await response.json();
-            console.log('API Response:', result);
+            //console.log('API Response:', result);
             
             navigate('/pickup/complete', { 
                 state: { 
@@ -83,7 +83,7 @@ const PickupResultPage = () => {
             });
 
         } catch (error) {
-            console.error('수거 신청 실패:', error);
+            //console.error('수거 신청 실패:', error);
             alert('수거 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
     };

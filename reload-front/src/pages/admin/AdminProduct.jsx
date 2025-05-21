@@ -35,7 +35,7 @@ const AdminProduct = () => {
       const data = await response.json();
       setDesigners(data);
     } catch (error) {
-      console.error('디자이너 목록 조회 중 오류 발생:', error);
+      //console.error('디자이너 목록 조회 중 오류 발생:', error);
       message.error('디자이너 목록을 불러오는데 실패했습니다.');
     }
   };
@@ -67,7 +67,7 @@ const AdminProduct = () => {
       }));
       setProducts(productsWithKeys);
     } catch (error) {
-      console.error('상품 목록 조회 중 오류 발생:', error);
+      //console.error('상품 목록 조회 중 오류 발생:', error);
       message.error('상품 목록을 불러오는데 실패했습니다.');
     } finally {
       setTableLoading(false);
@@ -109,7 +109,7 @@ const AdminProduct = () => {
         if (!productData.designerIndex) errors.push('디자이너를 선택해주세요');
       } catch (e) {
         errors.push('상품 데이터 형식이 올바르지 않습니다');
-        console.error('Product data parsing error:', e);
+        //console.error('Product data parsing error:', e);
       }
     }
 
@@ -153,7 +153,7 @@ const AdminProduct = () => {
         designerIndex: parseInt(values.designer)
       };
 
-      console.log('Product Data being sent:', productData);
+      //console.log('Product Data being sent:', productData);
       const json = JSON.stringify(productData);
       const blob = new Blob([json], {type: "application/json"});
       formData.append("product", blob);
@@ -193,7 +193,7 @@ const AdminProduct = () => {
       }
 
       const responseData = await response.json();
-      console.log('Server response data:', responseData);
+      //console.log('Server response data:', responseData);
       
       setMessage('상품이 성공적으로 등록되었습니다.');
       setIsModalOpen(false);
@@ -202,7 +202,7 @@ const AdminProduct = () => {
       fetchProducts();
       
     } catch (error) {
-      console.error('Error details:', error);
+      //console.error('Error details:', error);
 
       if (error.message === 'Failed to fetch') {
         setMessage('오류: 서버에 연결할 수 없습니다. 네트워크 연결을 확인해주세요.');

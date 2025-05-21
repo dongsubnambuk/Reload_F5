@@ -82,13 +82,13 @@ const SignupPage = () => {
         // 404는 이메일 중복일 때 발생
         setEmailError("이메일 중복입니다. 다른 이메일을 사용해주세요.");
       } else {
-        console.error("이메일 중복 확인 실패:", response.statusText);
+        //console.error("이메일 중복 확인 실패:", response.statusText);
         setEmailError("이메일 중복 확인에 실패했습니다. 다시 시도해주세요.");
       }
   
       await new Promise((resolve) => setIsEmailCheckModalOpen(true) && resolve()); // 모달 열기 후 대기
     } catch (error) {
-      console.error("오류 발생:", error);
+      //console.error("오류 발생:", error);
       setEmailError("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
       await new Promise((resolve) => setIsEmailCheckModalOpen(true) && resolve()); // 에러 메시지를 표시하기 위해 모달 열기
     }
@@ -119,11 +119,11 @@ const SignupPage = () => {
     const result = await response.json();
 
     if (response.status === 200) {
-      console.log(result);
+      //console.log(result);
       alert("회원가입 성공하였습니다. 로그인 해주세요.");
       navigate("/login");
     } else {
-      console.log("회원가입 실패");
+      //console.log("회원가입 실패");
       alert("회원가입 실패: " + result.message);
     }
   };

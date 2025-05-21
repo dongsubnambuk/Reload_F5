@@ -37,15 +37,15 @@ const LoginPage = () => {
       const result = await response.json();
 
       if (response.status === 200) {
-        console.log(result);
+        //console.log(result);
         localStorage.setItem("token", result.token);
         localStorage.setItem("email", result.user.email);
         localStorage.setItem("id", result.user.id);
         localStorage.setItem("role", result.user.role); 
-        console.log("로그인 성공");
+        //console.log("로그인 성공");
         navigate('/');
       } else {
-        console.log("로그인 실패");
+        //console.log("로그인 실패");
         if (response.status === 402) {
           alert("아이디 또는 비밀번호가 잘못되었습니다");
         } else if (response.status === 400) {
@@ -55,7 +55,7 @@ const LoginPage = () => {
         }
       }
     } catch (error) {
-      console.error("Fetch error: ", error);
+      //console.error("Fetch error: ", error);
     }
   };
 
@@ -76,18 +76,18 @@ const LoginPage = () => {
       const result = await response.json();
 
       if (response.status === 200) {
-        console.log(result);
+        //console.log(result);
         localStorage.setItem("token", result.token);
         localStorage.setItem("role", "admin");
         localStorage.setItem("adminname", result.admin.adminName);
-        console.log("로그인 성공");
+        //console.log("로그인 성공");
         navigate('/admin-main');
       } else {
-        console.log("로그인 실패");
+        //console.log("로그인 실패");
         alert("로그인 실패: " + result.message);
       }
     } catch (error) {
-      console.error("Fetch error: ", error);
+      //console.error("Fetch error: ", error);
     }
   };
 
@@ -102,7 +102,7 @@ const LoginPage = () => {
         alert("토큰 오류입니다");
       }
     } catch (error) {
-      console.error("Social login error: ", error);
+      //console.error("Social login error: ", error);
     }
   };
 

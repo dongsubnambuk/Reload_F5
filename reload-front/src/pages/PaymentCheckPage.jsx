@@ -86,7 +86,7 @@ const PaymentCheckPage = () => {
                     navigate(-1);
                 }
             } catch (error) {
-                console.error("사용자 정보 로드 실패:", error);
+                //console.error("사용자 정보 로드 실패:", error);
                 alert('사용자 정보를 불러오는데 실패했습니다.');
                 navigate(-1);
             }
@@ -165,12 +165,12 @@ const PaymentCheckPage = () => {
                 });
             } else {
                 const errorData = await response.text();
-                console.error('주문 생성 실패:', errorData);
+                //console.error('주문 생성 실패:', errorData);
                 alert('주문 처리 중 오류가 발생했습니다.');
                 cleanupPurchaseData(); // 에러 발생 시에도 데이터 정리
             }
         } catch (error) {
-            console.error("주문 처리 실패:", error);
+            //console.error("주문 처리 실패:", error);
             alert('주문 처리 중 오류가 발생했습니다.');
             cleanupPurchaseData(); // 에러 발생 시에도 데이터 정리
         }

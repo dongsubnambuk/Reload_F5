@@ -17,11 +17,11 @@ const KakaoCallback = () => {
     const state = queryParams.get('state');
   
     if (!authCode) {
-      console.log('인가 코드가 없습니다.');
+      //console.log('인가 코드가 없습니다.');
       return;
     }
   
-    console.log('인가 코드:', authCode);
+    //console.log('인가 코드:', authCode);
     setIsLoading(true);
     hasFetched.current = true;
   
@@ -29,7 +29,7 @@ const KakaoCallback = () => {
     if (state === 'signup') {
       handleRegister(authCode);
     } else if (state === 'integration') {
-      console.log('통합 진행을 위한 인가 코드:', authCode);  // 통합 시 인가 코드 확인
+      //console.log('통합 진행을 위한 인가 코드:', authCode);  // 통합 시 인가 코드 확인
       handleIntegration(authCode);
     } else {
       handleLogin(authCode);
@@ -94,7 +94,7 @@ const KakaoCallback = () => {
       }
   
     } catch (error) {
-      console.error('로그인 요청 오류:', error);
+      //console.error('로그인 요청 오류:', error);
       alert('로그인 처리 중 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
@@ -121,7 +121,7 @@ const KakaoCallback = () => {
         alert(`통합 실패: ${errorData.Msg || '알 수 없는 오류가 발생했습니다.'}`);
       }
     } catch (error) {
-      console.error('통합 요청 오류:', error);
+      //console.error('통합 요청 오류:', error);
       alert('계정 통합 중 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
@@ -147,10 +147,10 @@ const KakaoCallback = () => {
         alert('이미 회원가입되었습니다.');
         navigate('/login');
       } else {
-        console.error('회원가입 실패:', await response.json());
+        //console.error('회원가입 실패:', await response.json());
       }
     } catch (error) {
-      console.error('회원가입 요청 오류:', error);
+      //console.error('회원가입 요청 오류:', error);
     } finally {
       setIsLoading(false);
     }

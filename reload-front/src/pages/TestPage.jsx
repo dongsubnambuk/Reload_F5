@@ -33,7 +33,7 @@ export default function TestPage() {
         if (!productData.designerIndex) errors.push('디자이너 ID를 입력해주세요');
       } catch (e) {
         errors.push('상품 데이터 형식이 올바르지 않습니다');
-        console.error('Product data parsing error:', e);
+        //console.error('Product data parsing error:', e);
       }
     }
 
@@ -66,23 +66,23 @@ export default function TestPage() {
         designerIndex: parseInt(e.target.designer.value)
       };
 
-      console.log('Product Data being sent:', productData);
+      //console.log('Product Data being sent:', productData);
       const json = JSON.stringify(productData);
       const blob = new Blob([json], {type: "application/json"});
       formData.append("product", blob);
 
       // Add image files
       const imageFiles = e.target.images.files;
-      console.log('Number of images selected:', imageFiles.length);
+      //console.log('Number of images selected:', imageFiles.length);
       for (let i = 0; i < imageFiles.length; i++) {
         formData.append('images', imageFiles[i]);
-        console.log('Image file being added:', imageFiles[i].name, 'Size:', imageFiles[i].size);
+        //console.log('Image file being added:', imageFiles[i].name, 'Size:', imageFiles[i].size);
       }
 
       // Validate form data before sending
       const validationErrors = await validateForm(formData);
       if (validationErrors.length > 0) {
-        console.error('Validation errors:', validationErrors);
+        //console.error('Validation errors:', validationErrors);
         throw new Error(validationErrors.join('\n'));
       }
 
@@ -91,11 +91,11 @@ export default function TestPage() {
         throw new Error('인증 토큰이 없습니다. 로그인이 필요합니다.');
       }
 
-      console.log('Sending request to server...');
+      //console.log('Sending request to server...');
 
       // Log FormData contents for debugging
       for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ', pair[1]);
+        //console.log(pair[0] + ': ', pair[1]);
       }
 
       const response = await fetch('https://refresh-f5-server.o-r.kr/api/product/add-product', {
@@ -109,8 +109,8 @@ export default function TestPage() {
       });
 
       // Log response details for debugging
-      console.log('Response status:', response.status);
-      console.log('Response headers:', Object.fromEntries(response.headers));
+      //console.log('Response status:', response.status);
+      //console.log('Response headers:', Object.fromEntries(response.headers));
 
       if (!response.ok) {
         if (response.status === 401) {
@@ -121,16 +121,16 @@ export default function TestPage() {
       }
 
       const responseData = await response.json();
-      console.log('Server response data:', responseData);
+      //console.log('Server response data:', responseData);
       
       setMessage('상품이 성공적으로 등록되었습니다.');
       
     } catch (error) {
-      console.error('Error details:', {
-        message: error.message,
-        type: error.name,
-        stack: error.stack
-      });
+      // console.error('Error details:', {
+      //   message: error.message,
+      //   type: error.name,
+      //   stack: error.stack
+      // });
 
       if (error.message === 'Failed to fetch') {
         setMessage('오류: 서버에 연결할 수 없습니다. 네트워크 연결을 확인해주세요. CORS 설정을 확인해주세요.');

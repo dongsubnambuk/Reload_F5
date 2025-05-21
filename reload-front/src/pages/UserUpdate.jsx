@@ -113,11 +113,11 @@ const UserUpdate = () => {
     const result = await response.json();
 
     if (response.status === 200) {
-      console.log("회원정보 수정 성공");
+      //console.log("회원정보 수정 성공");
       alert("회원정보 수정 성공");
       navigate("/");
     } else {
-      console.log("회원정보 수정 실패");
+      //console.log("회원정보 수정 실패");
       alert("회원정보 수정 실패: " + result.message);
     }
   };

@@ -39,9 +39,9 @@ const ChattingPage = () => {
         const token = localStorage.getItem('token');
         const email = localStorage.getItem('email');
 
-        console.log('Initializing chat...'); // 디버깅
-        console.log('Token:', token); // 토큰 확인
-        console.log('Email:', email); // 이메일 확인
+        //console.log('Initializing chat...'); // 디버깅
+        //console.log('Token:', token); // 토큰 확인
+        //console.log('Email:', email); // 이메일 확인
 
         // 회원정보 조회
         const userResponse = await fetch(
@@ -55,14 +55,14 @@ const ChattingPage = () => {
           }
         );
 
-        console.log('User info response status:', userResponse.status); // 응답 상태 확인
+        //console.log('User info response status:', userResponse.status); // 응답 상태 확인
         const userResult = await userResponse.json();
-        console.log('User info response data:', userResult); // 응답 데이터 확인
+        //console.log('User info response data:', userResult); // 응답 데이터 확인
 
         if (userResponse.status === 200) {
           const sender = userResult.name;
           setUserName(sender); // 유저 이름 설정
-          console.log('User name set to:', sender); // 유저 이름 설정 확인
+          //console.log('User name set to:', sender); // 유저 이름 설정 확인
 
           // 채팅방 초기화 (chatId 가져오기)
           const chatResponse = await fetch(
@@ -76,13 +76,13 @@ const ChattingPage = () => {
             }
           );
 
-          console.log('Chat creation response status:', chatResponse.status); // 응답 상태 확인
+          //console.log('Chat creation response status:', chatResponse.status); // 응답 상태 확인
           const chatResult = await chatResponse.json();
-          console.log('Chat creation response data:', chatResult); // 응답 데이터 확인
+          //console.log('Chat creation response data:', chatResult); // 응답 데이터 확인
 
           if (chatResponse.status === 200) {
             setChatId(chatResult.chatId); // chatId 설정
-            console.log('Chat ID set to:', chatResult.chatId); // chatId 설정 확인
+            //console.log('Chat ID set to:', chatResult.chatId); // chatId 설정 확인
           } else {
             alert('채팅방 초기화 실패: ' + chatResult.message);
           }
@@ -90,7 +90,7 @@ const ChattingPage = () => {
           alert('회원정보 조회 실패: ' + userResult.message);
         }
       } catch (error) {
-        console.error('에러 발생:', error);
+        //console.error('에러 발생:', error);
         alert('서버와의 통신 중 문제가 발생했습니다.');
       }
     };
@@ -101,7 +101,7 @@ const ChattingPage = () => {
   // WebSocket 연결 설정
   useEffect(() => {
     if (chatId) {
-      console.log('Establishing WebSocket connection for chatId:', chatId);
+      //console.log('Establishing WebSocket connection for chatId:', chatId);
 
       const socket = new SockJS('https://refresh-f5-server.o-r.kr/ws/chat');
       const client = Stomp.over(socket);
@@ -110,11 +110,11 @@ const ChattingPage = () => {
         {},
         () => {
           setStompClient(client);
-          console.log('WebSocket connected.');
+          //console.log('WebSocket connected.');
 
           // 서버의 채팅방 구독
           client.subscribe(`/topic/chat/${chatId}`, (message) => {
-            console.log('Message received:', message);
+            //console.log('Message received:', message);
             const receivedMessage = JSON.parse(message.body);
 
             if (!receivedMessage.time) {
@@ -145,14 +145,14 @@ const ChattingPage = () => {
           });
         },
         (error) => {
-          console.error('WebSocket connection error:', error);
+          //console.error('WebSocket connection error:', error);
         }
       );
 
       return () => {
         if (stompClient) {
           stompClient.disconnect();
-          console.log('WebSocket disconnected.');
+          //console.log('WebSocket disconnected.');
         }
       };
     }
@@ -169,7 +169,7 @@ const ChattingPage = () => {
         clientTimestamp: Date.now()
       };
 
-      console.log('Sending message:', message);
+      //console.log('Sending message:', message);
 
       stompClient.send('/app/chat', {}, JSON.stringify(message));
 
@@ -210,13 +210,13 @@ const ChattingPage = () => {
       
       if (response.status === 200) {
         const result = await response.json();
-        console.log('Bot status changed:', result);
+        //console.log('Bot status changed:', result);
         setIsBotMode(result.bot);
         
         // 상태 변경 메시지 추가
         const statusChangeMessage = {
           sender: '시스템',
-          content: `${result.bot ? '챗봇' : '상담사'} 모드로 전환되었습니다.`,
+          content: `${result.bot ? '챗봇' : '상담사'} 모드로 전환되었습니다. 상담사가 대답하기 전까지 '...'으로 표시됩니다.`,
           time: new Date().toLocaleTimeString('ko-KR', {
             hour: '2-digit',
             minute: '2-digit',
@@ -225,10 +225,10 @@ const ChattingPage = () => {
         
         setMessages(prevMessages => [...prevMessages, statusChangeMessage]);
       } else {
-        console.error('Bot status change failed');
+        //console.error('Bot status change failed');
       }
     } catch (error) {
-      console.error('Error changing bot status:', error);
+      //console.error('Error changing bot status:', error);
     }
   };
 

@@ -34,7 +34,7 @@ const AdminDash = ({ setActiveTab }) => {
           message.error('수거 데이터를 불러오는 데 실패했습니다.');
         }
       } catch (error) {
-        console.error("데이터 로드 오류:", error);
+        //console.error("데이터 로드 오류:", error);
         message.error('데이터를 가져오는 중 오류가 발생했습니다.');
       } finally {
         setLoading(false);

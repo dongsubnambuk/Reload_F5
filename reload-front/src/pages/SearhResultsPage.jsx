@@ -29,7 +29,7 @@ const SearchResultsPage = () => {
                     const designerData = await fetchDesigner(product.designerIndex);
                     setDesigner(designerData);
                 } catch (error) {
-                    console.error('디자이너 데이터를 가져오는 중 오류가 발생했습니다:', error);
+                    //console.error('디자이너 데이터를 가져오는 중 오류가 발생했습니다:', error);
                 }
             };
 

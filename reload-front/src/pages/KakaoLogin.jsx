@@ -33,12 +33,12 @@ const KakaoLogin = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('email');
         setIsLoggedIn(false);
-        console.log('카카오 계정 연결 해제 성공');
+        //console.log('카카오 계정 연결 해제 성공');
       } catch (error) {
-        console.error('카카오 계정 연결 해제 실패:', error);
+        //console.error('카카오 계정 연결 해제 실패:', error);
       }
     } else {
-      console.log('로그인 상태가 아닙니다.');
+      //console.log('로그인 상태가 아닙니다.');
     }
   };
 

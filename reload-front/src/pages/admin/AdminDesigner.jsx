@@ -68,28 +68,28 @@ const AdminDesigner = () => {
   
         if (response.ok) {
           const data = await response.json();
-          console.log('서버 응답 데이터:', data);
-          console.log('응답 데이터 키:', Object.keys(data));
+          //console.log('서버 응답 데이터:', data);
+          //console.log('응답 데이터 키:', Object.keys(data));
           
           // images 배열의 첫 번째 URL을 가져옴
           const imageUrl = data.images[0];
-          console.log('찾은 이미지 URL:', imageUrl);
+          //console.log('찾은 이미지 URL:', imageUrl);
           
           if (imageUrl) {
             setImageUrl(imageUrl);
             onSuccess(data, file);
             message.success(`${file.name} 업로드 성공`);
           } else {
-            console.error('이미지 URL을 찾을 수 없습니다:', data);
+            //console.error('이미지 URL을 찾을 수 없습니다:', data);
             throw new Error('이미지 URL을 찾을 수 없습니다');
           }
         } else {
           const errorData = await response.json().catch(() => null);
-          console.error('응답 에러:', errorData);
+          //console.error('응답 에러:', errorData);
           throw new Error('이미지 업로드 실패');
         }
       } catch (error) {
-        console.error('이미지 업로드 에러:', error);
+        //console.error('이미지 업로드 에러:', error);
         onError(error);
         message.error(`${file.name} 업로드 실패`);
       }
@@ -142,7 +142,7 @@ const AdminDesigner = () => {
           message.error('디자이너 목록을 불러오는 데 실패했습니다.');
         }
       } catch (error) {
-        console.error('디자이너 목록 로드 오류:', error);
+        //console.error('디자이너 목록 로드 오류:', error);
         message.error('서버 연결에 실패했습니다.');
       }
     };
@@ -194,7 +194,7 @@ const AdminDesigner = () => {
         message.error('디자이너 등록에 실패했습니다.');
       }
     } catch (error) {
-      console.error('디자이너 등록 오류:', error);
+      //console.error('디자이너 등록 오류:', error);
       message.error('디자이너 등록 중 오류가 발생했습니다.');
     }
   };
@@ -241,11 +241,11 @@ const AdminDesigner = () => {
         setImageUrl('');
       } else {
         const errorResponse = await response.json();
-        console.error("Response Error:", errorResponse);
+        //console.error("Response Error:", errorResponse);
         message.error('디자이너 정보 수정에 실패했습니다.');
       }
     } catch (error) {
-      console.error('디자이너 수정 오류:', error);
+      //console.error('디자이너 수정 오류:', error);
       message.error('디자이너 정보 수정 중 오류가 발생했습니다.');
     }
   };

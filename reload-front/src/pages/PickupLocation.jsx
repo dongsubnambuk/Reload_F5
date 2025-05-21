@@ -68,11 +68,11 @@ const geocoderRef = useRef(null);
 // 주소 검색 함수
 const geocodePickupAddress = useCallback((roadAddress, detailAddress) => {
   if (!window.kakao || !window.kakao.maps || !map) {
-    console.error("Kakao maps 초기화 상태:", {
-      kakao: !!window.kakao,
-      maps: !!window.kakao?.maps,
-      map: !!map
-    });
+    // console.error("Kakao maps 초기화 상태:", {
+    //   kakao: !!window.kakao,
+    //   maps: !!window.kakao?.maps,
+    //   map: !!map
+    // });
     setError("지도 서비스를 초기화하는 데 실패했습니다.");
     return;
   }
@@ -106,11 +106,11 @@ const geocodePickupAddress = useCallback((roadAddress, detailAddress) => {
       pickupMarkerRef.current = marker;
       map.setCenter(coords);
     } else {
-      console.error("주소 검색 실패", {
-        status,
-        errorCode: window.kakao.maps.services.Status,
-        address: roadAddress
-      });
+      // console.error("주소 검색 실패", {
+      //   status,
+      //   errorCode: window.kakao.maps.services.Status,
+      //   address: roadAddress
+      // });
       setError("주소를 찾을 수 없습니다.");
     }
   };
@@ -165,7 +165,7 @@ const geocodePickupAddress = useCallback((roadAddress, detailAddress) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("받은 데이터:", data);
+        //console.log("받은 데이터:", data);
         geocodePickupAddress(data.roadNameAddress, data.detailedAddress);
       } else {
         setError("수거 상세 정보를 불러오는 데 실패했습니다.");
@@ -185,10 +185,10 @@ const geocodePickupAddress = useCallback((roadAddress, detailAddress) => {
   
     // 기사 마커 업데이트
     if (driverMarkerRef.current) {
-      console.log("기존 마커 위치 업데이트 중...");
+      //console.log("기존 마커 위치 업데이트 중...");
       driverMarkerRef.current.setPosition(coords);
     } else {
-      console.log("새로운 마커 생성 중...");
+      //console.log("새로운 마커 생성 중...");
       const content = `
         <div style="position: relative; width: 36px; height: 48px; text-align: center;">
           <div style="
@@ -261,7 +261,7 @@ const geocodePickupAddress = useCallback((roadAddress, detailAddress) => {
 
   const fetchDriverLocation = useCallback(async () => {
     if (!pickupId) {
-      console.error("수거 ID가 설정되지 않았습니다.");
+      //console.error("수거 ID가 설정되지 않았습니다.");
       return;
     }
   
@@ -301,7 +301,7 @@ const geocodePickupAddress = useCallback((roadAddress, detailAddress) => {
       }
   
     } catch (error) {
-      console.error("기사 위치 업데이트 오류:", error);
+      //console.error("기사 위치 업데이트 오류:", error);
       setError("기사님이 수거를 시작하지 않았습니다.");
     }
   }, [pickupId, updateDriverMarker]);

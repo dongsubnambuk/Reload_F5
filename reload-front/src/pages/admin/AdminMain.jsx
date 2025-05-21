@@ -100,13 +100,13 @@ const AdminMain = () => {
     };
 
     client.connect(connectHeaders, () => {
-      console.log('WebSocket connected in AdminMain');
+      //console.log('WebSocket connected in AdminMain');
       setStompClient(client);
 
       // 새 채팅방 생성 구독
       client.subscribe('/topic/admin/new-room', (message) => {
         const newRoom = JSON.parse(message.body);
-        console.log('New room created:', newRoom);
+        //console.log('New room created:', newRoom);
 
         if (newRoom.chatId && !subscribedChatRooms.current.has(newRoom.chatId)) {
           subscribedChatRooms.current.add(newRoom.chatId);
@@ -131,7 +131,7 @@ const AdminMain = () => {
         }
       });
     }, (error) => {
-      console.error('WebSocket connection error:', error);
+      ///console.error('WebSocket connection error:', error);
     });
   };
 

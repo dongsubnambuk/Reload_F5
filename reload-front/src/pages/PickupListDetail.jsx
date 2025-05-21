@@ -32,10 +32,10 @@ const PickupListDetail = () => {
           const data = await response.json();
           setPickupDetails(data);
         } else {
-          console.error('수거 상세 내역을 불러오는 데 실패했습니다.');
+          //console.error('수거 상세 내역을 불러오는 데 실패했습니다.');
         }
       } catch (error) {
-        console.error('데이터 로드 오류:', error);
+        //console.error('데이터 로드 오류:', error);
       } finally {
         setLoading(false);
       }

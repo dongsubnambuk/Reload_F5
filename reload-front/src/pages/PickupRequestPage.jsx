@@ -60,7 +60,7 @@ const PickupRequestPage = () => {
                 const token = localStorage.getItem('token');
 
                 if (!email || !token) {
-                    console.error('이메일 또는 토큰이 없습니다.');
+                    //console.error('이메일 또는 토큰이 없습니다.');
                     return;
                 }
 
@@ -83,10 +83,10 @@ const PickupRequestPage = () => {
                         detailedAddress: data.detailedAddress || ''
                     });
                 } else {
-                    console.error('사용자 정보를 가져오는데 실패했습니다.');
+                    //console.error('사용자 정보를 가져오는데 실패했습니다.');
                 }
             } catch (error) {
-                console.error('API 호출 중 에러 발생:', error);
+                //console.error('API 호출 중 에러 발생:', error);
             }
         };
 
@@ -260,7 +260,7 @@ const PickupRequestPage = () => {
                     setWasteTypes(data);
                 }
             } catch (error) {
-                console.error('폐기물 타입 데이터 로드 실패:', error);
+                //console.error('폐기물 타입 데이터 로드 실패:', error);
             }
         };
 

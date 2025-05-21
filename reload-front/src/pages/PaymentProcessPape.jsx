@@ -20,15 +20,15 @@ const PaymentProcessPage = () => {
             });
 
             if (!response.ok) {
-                console.error('Failed to delete order:', {
-                    status: response.status,
-                    statusText: response.statusText
-                });
+                // console.error('Failed to delete order:', {
+                //     status: response.status,
+                //     statusText: response.statusText
+                // });
             }
             
             return response.ok;
         } catch (error) {
-            console.error('Error deleting failed order:', error);
+            //console.error('Error deleting failed order:', error);
             return false;
         }
     };
@@ -42,11 +42,11 @@ const PaymentProcessPage = () => {
         
         // 모바일 결제 후 리디렉션된 경우
         if (paymentStatus !== null) {
-            console.log('Mobile payment redirect detected', {
-                status: paymentStatus,
-                merchantUid,
-                impUid
-            });
+            // console.log('Mobile payment redirect detected', {
+            //     status: paymentStatus,
+            //     merchantUid,
+            //     impUid
+            // });
             
             // localStorage에서 주문 정보 가져오기
             const storedOrderData = localStorage.getItem('currentOrder');
@@ -55,9 +55,9 @@ const PaymentProcessPage = () => {
             if (storedOrderData) {
                 try {
                     currentOrderData = JSON.parse(storedOrderData);
-                    console.log('Retrieved stored order data:', currentOrderData);
+                    //console.log('Retrieved stored order data:', currentOrderData);
                 } catch (e) {
-                    console.error('Error parsing stored order data:', e);
+                    //console.error('Error parsing stored order data:', e);
                 }
             }
 
@@ -68,7 +68,7 @@ const PaymentProcessPage = () => {
                     orderUid: currentOrderData?.orderId
                 };
 
-                console.log('Processing successful payment:', paymentData);
+                //console.log('Processing successful payment:', paymentData);
 
                 // 결제 성공 처리
                 fetch('https://refresh-f5-server.o-r.kr/api/payment/create', {
@@ -93,7 +93,7 @@ const PaymentProcessPage = () => {
                     }
                 })
                 .catch(async (error) => {
-                    console.error('Payment process error:', error);
+                    //console.error('Payment process error:', error);
                     if (currentOrderData?.orderId) {
                         await deleteFailedOrder(currentOrderData.orderId);
                     }
@@ -103,7 +103,7 @@ const PaymentProcessPage = () => {
                 return;
             } else if (paymentStatus === 'false') {
                 // 결제 실패 또는 취소된 경우
-                console.log('Mobile payment cancelled or failed');
+                //console.log('Mobile payment cancelled or failed');
                 if (currentOrderData?.orderId) {
                     deleteFailedOrder(currentOrderData.orderId);
                 }
@@ -117,13 +117,13 @@ const PaymentProcessPage = () => {
             }
         }
 
-        console.log('Payment Process Started', { 
-            orderData,
-            merchantUid: orderData?.merchantUid
-        });
+        // console.log('Payment Process Started', { 
+        //     orderData,
+        //     merchantUid: orderData?.merchantUid
+        // });
         
         if (!orderData) {
-            console.error('Order data is missing', { location });
+            //console.error('Order data is missing', { location });
             alert('주문 정보가 없습니다.');
             navigate('/cart');
             return;
@@ -133,12 +133,12 @@ const PaymentProcessPage = () => {
         localStorage.setItem('currentOrder', JSON.stringify(orderData));
 
         const loadIamportScript = () => {
-            console.log('Loading IMP script...');
+            //console.log('Loading IMP script...');
             const script = document.createElement('script');
             script.src = 'https://cdn.iamport.kr/v1/iamport.js';
             script.async = true;
             script.onerror = async (error) => {
-                console.error('Failed to load IMP script:', error);
+                //console.error('Failed to load IMP script:', error);
                 await deleteFailedOrder(orderData.orderId);
                 alert('결제 모듈 로드에 실패했습니다.');
                 navigate('/payment-failed');
@@ -150,7 +150,7 @@ const PaymentProcessPage = () => {
         const script = loadIamportScript();
 
         script.onload = () => {
-            console.log('IMP script loaded successfully');
+            //console.log('IMP script loaded successfully');
             const IMP = window.IMP;
             IMP.init("imp87540676");
 
@@ -171,11 +171,11 @@ const PaymentProcessPage = () => {
                 popup: !isMobile
             };
 
-            console.log('Payment request data:', data);
+            //console.log('Payment request data:', data);
 
             if (!isMobile) {
                 IMP.request_pay(data, async (response) => {
-                    console.log('IMP payment response:', response);
+                    //console.log('IMP payment response:', response);
 
                     if (response.success) {
                         try {
@@ -184,7 +184,7 @@ const PaymentProcessPage = () => {
                                 orderUid: orderData.orderId
                             };
                             
-                            console.log('Sending payment data to server:', paymentData);
+                            //console.log('Sending payment data to server:', paymentData);
 
                             const result = await fetch('https://refresh-f5-server.o-r.kr/api/payment/create', {
                                 method: 'POST',
@@ -195,14 +195,14 @@ const PaymentProcessPage = () => {
                             });
 
                             const resultData = await result.text();
-                            console.log('Server response:', {
-                                status: result.status,
-                                data: resultData
-                            });
+                            // console.log('Server response:', {
+                            //     status: result.status,
+                            //     data: resultData
+                            // });
 
                             if (result.status === 201) {
                                 localStorage.removeItem('currentOrder');
-                                console.log('Payment process completed successfully');
+                                //console.log('Payment process completed successfully');
                                 navigate('/payment-complete', {
                                     state: {
                                         orderInfo: orderData,
@@ -210,25 +210,25 @@ const PaymentProcessPage = () => {
                                     }
                                 });
                             } else {
-                                console.error('Payment creation failed:', {
-                                    status: result.status,
-                                    response: resultData
-                                });
+                                // console.error('Payment creation failed:', {
+                                //     status: result.status,
+                                //     response: resultData
+                                // });
                                 await deleteFailedOrder(orderData.orderId);
                                 alert(`결제 내역 생성 실패: ${resultData}`);
                                 navigate('/payment-failed');
                             }
                         } catch (error) {
-                            console.error('Payment process error:', error);
+                            //console.error('Payment process error:', error);
                             await deleteFailedOrder(orderData.orderId);
                             alert(`결제 처리 중 오류 발생: ${error.message}`);
                             navigate('/payment-failed');
                         }
                     } else {
-                        console.error('Payment failed:', {
-                            error_code: response.error_code,
-                            error_msg: response.error_msg
-                        });
+                        // console.error('Payment failed:', {
+                        //     error_code: response.error_code,
+                        //     error_msg: response.error_msg
+                        // });
                         await deleteFailedOrder(orderData.orderId);
                         alert(`결제 실패: [${response.error_code}] ${response.error_msg}`);
                         navigate('/payment-failed');
@@ -240,7 +240,7 @@ const PaymentProcessPage = () => {
         };
 
         return () => {
-            console.log('Cleaning up payment process page');
+            //console.log('Cleaning up payment process page');
             if (script.parentNode) {
                 document.body.removeChild(script);
             }

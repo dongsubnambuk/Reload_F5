@@ -60,12 +60,12 @@ const PickupDeliverPage = () => {
       });
 
       if (!response.ok) {
-        console.error("위치 업데이트 실패:", response.status);
+        //console.error("위치 업데이트 실패:", response.status);
       } else {
-        console.log("위치 업데이트 성공");
+        //console.log("위치 업데이트 성공");
       }
     } catch (error) {
-      console.error("위치 업데이트 오류:", error);
+      //console.error("위치 업데이트 오류:", error);
     }
   };
 
@@ -138,7 +138,7 @@ const PickupDeliverPage = () => {
           updateDriverMarker(latitude, longitude); // 초기 위치로 마커 설정
         },
         (error) => {
-          console.error("현재 위치를 가져올 수 없습니다:", error);
+          //console.error("현재 위치를 가져올 수 없습니다:", error);
         },
         { enableHighAccuracy: true }
       );
@@ -164,7 +164,7 @@ const PickupDeliverPage = () => {
       }, {});
       setSelectedPickupStatus(initialStatus);
     } catch (error) {
-      console.error("수거지 정보 가져오기 오류:", error);
+      //console.error("수거지 정보 가져오기 오류:", error);
     }
   };
 
@@ -180,7 +180,7 @@ const PickupDeliverPage = () => {
       const data = await response.json();
       setPickupDetails(data.details);
     } catch (error) {
-      console.error("수거지 상세 정보 가져오기 오류:", error);
+      //console.error("수거지 상세 정보 가져오기 오류:", error);
     } finally {
       setLoading(false);
     }
@@ -192,7 +192,7 @@ const PickupDeliverPage = () => {
   const handlePickupListItemClick = (pickup) => {
     // 수거 중일 때 다른 항목 클릭 불가
     if (trackingId && trackingId !== pickup.pickupId) {
-      console.log("다른 항목을 클릭할 수 없습니다.");
+      //console.log("다른 항목을 클릭할 수 없습니다.");
       return;
     }
   
@@ -246,7 +246,7 @@ const PickupDeliverPage = () => {
           window.kakao.maps.event.addListener(marker, "click", () => {
             setSelectedPickup(pickup); // 클릭한 픽업 정보를 상태로 설정
             fetchPickupDetails(pickup.pickupId); // 픽업 상세 정보 가져오기
-            console.log(`선택된 픽업 ID: ${pickup.pickupId}`);
+            //console.log(`선택된 픽업 ID: ${pickup.pickupId}`);
   
             // 기사 위치와 수거지 위치 기반으로 폴리라인 업데이트
             if (driverMarker) {
@@ -269,7 +269,7 @@ const PickupDeliverPage = () => {
   // 위치 추적 시작 함수 (기존과 동일)
   const startTracking = () => {
     if (!selectedPickup) {
-      console.error("수거지를 선택해야 위치 전송을 시작할 수 있습니다.");
+      //console.error("수거지를 선택해야 위치 전송을 시작할 수 있습니다.");
       return;
     }
   
@@ -316,7 +316,7 @@ const PickupDeliverPage = () => {
         }
       },
       (error) => {
-        console.error("위치 추적 중 오류 발생:", error);
+        //console.error("위치 추적 중 오류 발생:", error);
       },
       { enableHighAccuracy: true }
     );
@@ -329,7 +329,7 @@ const PickupDeliverPage = () => {
   // 위치 추적 중지 함수 (기존과 동일)
   const stopTracking = async (pickupId) => {
     if (!pickupId) {
-      console.error("픽업 ID가 제공되지 않았습니다.");
+      //console.error("픽업 ID가 제공되지 않았습니다.");
       return;
     }
     setTrackingId(null);
@@ -339,11 +339,11 @@ const PickupDeliverPage = () => {
   
     if (watchId !== null) {
       navigator.geolocation.clearWatch(watchId); // 위치 추적 중단
-      console.log("위치 추적이 중단되었습니다.");
+      //console.log("위치 추적이 중단되었습니다.");
       setWatchId(null); // watchId 초기화
     }
   
-    console.log(`픽업 ID ${pickupId}에 대한 위치 전송이 중단되었습니다.`);
+    //console.log(`픽업 ID ${pickupId}에 대한 위치 전송이 중단되었습니다.`);
   
     // 위치 삭제 API 호출
     try {
@@ -360,9 +360,9 @@ const PickupDeliverPage = () => {
       if (!response.ok) {
         throw new Error("위치 삭제에 실패했습니다.");
       }
-      console.log(`픽업 ID ${pickupId}의 위치가 성공적으로 삭제되었습니다.`);
+      //console.log(`픽업 ID ${pickupId}의 위치가 성공적으로 삭제되었습니다.`);
     } catch (error) {
-      console.error("위치 삭제 오류:", error);
+      //console.error("위치 삭제 오류:", error);
     }
   };
   
@@ -389,14 +389,14 @@ const PickupDeliverPage = () => {
         // 수거지 위치 (도착지)
         const endCoords = new window.kakao.maps.LatLng(pickupLat, pickupLng);
   
-        console.log("출발지 좌표:", startCoords.getLng(), startCoords.getLat());
-        console.log("도착지 좌표:", endCoords.getLng(), endCoords.getLat());
+        //console.log("출발지 좌표:", startCoords.getLng(), startCoords.getLat());
+        //console.log("도착지 좌표:", endCoords.getLng(), endCoords.getLat());
   
         // 폴리라인 업데이트
         updatePolylineWithNaviAPI(startCoords, endCoords);
       },
       (error) => {
-        console.error("현재 위치를 가져오는 데 실패했습니다:", error);
+        //console.error("현재 위치를 가져오는 데 실패했습니다:", error);
       },
       { enableHighAccuracy: true }
     );
@@ -453,7 +453,7 @@ const PickupDeliverPage = () => {
         polyline.setPath(points);
       }
     } catch (error) {
-      console.error("카카오내비 경로 업데이트 오류:", error);
+      //console.error("카카오내비 경로 업데이트 오류:", error);
     }
   };
 
@@ -492,7 +492,7 @@ const PickupDeliverPage = () => {
               updateDriverMarker(latitude, longitude);
             },
             (error) => {
-              console.error("현재 위치를 가져올 수 없습니다:", error);
+              //console.error("현재 위치를 가져올 수 없습니다:", error);
             },
             { enableHighAccuracy: true }
           );

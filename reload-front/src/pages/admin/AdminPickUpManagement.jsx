@@ -28,11 +28,11 @@ const AdminPickupManagement = () => {
         if (response.ok && Array.isArray(data)) {
           setPickupData(data);
         } else {
-          console.error("API 응답이 배열이 아닙니다:", data);
+          //console.error("API 응답이 배열이 아닙니다:", data);
           setPickupData([]);
         }
       } catch (error) {
-        console.error("수거 신청 데이터를 가져오는 중 오류 발생:", error);
+        //console.error("수거 신청 데이터를 가져오는 중 오류 발생:", error);
         message.error('수거 신청 데이터를 가져오는 데 실패했습니다.');
         setPickupData([]);
       }
@@ -113,7 +113,7 @@ const AdminPickupManagement = () => {
         message.error('상세 정보를 가져오는 데 실패했습니다: ' + (errorData.message || ''));
       }
     } catch (error) {
-      console.error("상세 정보 로드 중 오류 발생:", error);
+      //console.error("상세 정보 로드 중 오류 발생:", error);
       message.error('상세 정보를 가져오는 중 오류가 발생했습니다.');
     }
   };
