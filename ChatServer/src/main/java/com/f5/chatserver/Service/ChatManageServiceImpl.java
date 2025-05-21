@@ -35,6 +35,7 @@ public class ChatManageServiceImpl implements ChatManageService {
                         .chatId(chatEntity.getChatId())
                         .content(messageEntity.getContent())
                         .sender(messageEntity.getSender())
+                        .sendTime(messageEntity.getSendTime())
                         .build());
             }
             details.put(chatEntity.getChatId(), messageDTOS);
@@ -53,6 +54,7 @@ public class ChatManageServiceImpl implements ChatManageService {
                     .chatId(chatId)
                     .content(messageEntity.getContent())
                     .sender(messageEntity.getSender())
+                    .sendTime(messageEntity.getSendTime())
                     .build());
         }
         log.info(messageDTOS.toString());
