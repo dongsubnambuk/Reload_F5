@@ -15,6 +15,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -49,7 +51,8 @@ public class StompChatController {
                 messagingTemplate.convertAndSend(destination, messageDTO);
                 messageDTO.setContent(chatbotService.searchAnswer(messageDTO.getContent(), messageDTO.getSender()).getAnswer());
                 messageDTO.setSender("새로고침");
-                messageDTO.setSendTime(LocalDateTime.now());
+                // 한국 시간으로 설정
+                messageDTO.setSendTime(ZonedDateTime.now(ZoneId.of("Asia/Seoul")).toLocalDateTime());
                 messagingTemplate.convertAndSend(destination, messageDTO);
                 messageService.saveMessage(messageDTO);
                 log.info("메시지 전송 성공: " + messageDTO);

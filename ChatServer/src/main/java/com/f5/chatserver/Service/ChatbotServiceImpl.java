@@ -190,7 +190,7 @@ public class ChatbotServiceImpl implements ChatbotService {
                         나머지 요청들은 적당히 사용자 질문을 보고 판단해서 보내줘.\
                         만약 빈 리스트가 온다면 현재 진행중인게 없다고 답변하면 돼.\
                         개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.\
-                        굵은글씨는 모두 HTML 형식으로 <Strong>으로 적어서 보내줘.""";
+                        굵은글씨는 모두 HTML 형식으로 <b>으로 적어서 보내줘.""";
             } else if (type.contains("price")) {
                 return
                         """
@@ -203,7 +203,7 @@ public class ChatbotServiceImpl implements ChatbotService {
                         만약 질문에 오늘이라는게 포함되어 있으면 pickupDate 를 보고 오늘인 것만 보내면 돼.\
                         만약 빈 리스트가 온다면 현재 진행중인게 없다고 답변하면 돼.\
                         개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.\
-                        굵은글씨는 모두 HTML 형식으로 <Strong>으로 적어서 보내줘.""";
+                        굵은글씨는 모두 HTML 형식으로 <b>으로 적어서 보내줘.""";
             } else {
                 return
                         """
@@ -212,7 +212,7 @@ public class ChatbotServiceImpl implements ChatbotService {
                         사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지! 궁금한 게 있으면 언제든지 저를 불러주세요.\
                         이걸 기반으로 보내준 벡터 DB의 결과인 'contents' 와 '사용자 질문'을 보고 답변을 만들어줘.\
                         개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.\
-                        굵은글씨는 모두 HTML 형식으로 <Strong>으로 적어서 보내줘.""";
+                        굵은글씨는 모두 HTML 형식으로 <b>으로 적어서 보내줘.""";
             }
         } else {
             return
@@ -225,13 +225,13 @@ public class ChatbotServiceImpl implements ChatbotService {
                     깔끔하게 정리해서 보내.\
                     절대로 임의의 내용을 추가하지 마.\
                     개행문자는 모두 HTML 형식으로 <br/>로 적어서 보내줘.\
-                    굵은글씨는 모두 HTML 형식으로 <Strong>으로 적어서 보내줘.""";
+                    굵은글씨는 모두 HTML 형식으로 <b>으로 적어서 보내줘.""";
         }
     }
 
     private static HttpEntity<Map<String, Object>> getMapHttpEntity(String indexDTOs, HttpHeaders headers, String question, String type) {
         Map<String, Object> chatBody = Map.of(
-                "model", "gpt-4",
+                "model", "gpt-4.1-nano",
                 "messages", List.of(
                         Map.of("role", "system", "content", gptContent(type)),
                         Map.of("role", "user", "content","contents: " +
