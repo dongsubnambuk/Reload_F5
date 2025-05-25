@@ -108,4 +108,13 @@ public class PickupServiceImpl implements PickupService {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    @Override
+    public List<MyPickupDTO> myPickupsEmail(String name) {
+        try{
+            return pickupDAO.getPickupsName(name);
+        } catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 }

@@ -169,4 +169,9 @@ public class PickupController {
                             .build());
         }
     }
+
+//    @PostMapping("/my-pickups/name")
+//    public ResponseEntity<?> myPickups(@RequestParam("name") String name) {
+//        return pickupService.myPickupsEmail(name);
+//    }
 }

@@ -1,0 +1,1806 @@
+{
+  "생활용품": [
+    {
+      "id": "DS_1",
+      "description": "2인용",
+      "price": 7000,
+      "type": "토퍼 매트"
+    },
+    {
+      "id": "DS_2",
+      "description": "1인용",
+      "price": 5000,
+      "type": "토퍼 매트"
+    },
+    {
+      "id": "DS_3",
+      "description": "2인용",
+      "price": 5000,
+      "type": "스펀지 매트"
+    },
+    {
+      "id": "DS_4",
+      "description": "1인용",
+      "price": 3000,
+      "type": "스펀지 매트"
+    },
+    {
+      "id": "DS_5",
+      "description": "윗몸일으키기(등받이부분)",
+      "price": 3000,
+      "type": "헬스기구"
+    },
+    {
+      "id": "DS_6",
+      "description": "덜덜이,샌드백,거꾸리",
+      "price": 6000,
+      "type": "헬스기구"
+    },
+    {
+      "id": "DS_7",
+      "description": "",
+      "price": 1000,
+      "type": "배게(쿠션)"
+    },
+    {
+      "id": "DS_8",
+      "description": "",
+      "price": 1000,
+      "type": "메모리폼"
+    },
+    {
+      "id": "DS_9",
+      "description": "1개당",
+      "price": 3000,
+      "type": "놀이방매트 더블"
+    },
+    {
+      "id": "DS_10",
+      "description": "1개당",
+      "price": 2000,
+      "type": "놀이방매트 싱글(요가매트)"
+    },
+    {
+      "id": "DS_11",
+      "description": "",
+      "price": 2000,
+      "type": "비데"
+    },
+    {
+      "id": "DS_12",
+      "description": "골프가방",
+      "price": 3000,
+      "type": "가방"
+    },
+    {
+      "id": "DS_13",
+      "description": "가로 50cm 이상",
+      "price": 3000,
+      "type": "가방 (캐리어)"
+    },
+    {
+      "id": "DS_14",
+      "description": "가로 50cm 미만",
+      "price": 2000,
+      "type": "가방 (캐리어)"
+    },
+    {
+      "id": "DS_15",
+      "description": "높이 1m 이상",
+      "price": 4000,
+      "type": "가스오븐레인지"
+    },
+    {
+      "id": "DS_16",
+      "description": "길이 100cm 이상",
+      "price": 2000,
+      "type": "게시판"
+    },
+    {
+      "id": "DS_17",
+      "description": "길이 100cm 미만",
+      "price": 1000,
+      "type": "화이트보드"
+    },
+    {
+      "id": "DS_18",
+      "description": "높이, 너비 60cm 이상",
+      "price": 4000,
+      "type": "고무대야"
+    },
+    {
+      "id": "DS_19",
+      "description": "높이, 너비 60cm 미만",
+      "price": 2000,
+      "type": "고무대야"
+    },
+    {
+      "id": "DS_20",
+      "description": "가장 긴 면 90cm 이상",
+      "price": 3000,
+      "type": "교자상·밥상"
+    },
+    {
+      "id": "DS_21",
+      "description": "가장 긴 면 90cm 미만",
+      "price": 2000,
+      "type": "교자상·밥상"
+    },
+    {
+      "id": "DS_22",
+      "description": "차식탁(다과상)",
+      "price": 1000,
+      "type": "교자상·밥상"
+    },
+    {
+      "id": "DS_23",
+      "description": "가장 긴 면 100cm 이상",
+      "price": 10000,
+      "type": "금고(가정용)"
+    },
+    {
+      "id": "DS_24",
+      "description": "가장 긴 면 100cm 미만",
+      "price": 7000,
+      "type": "금고(가정용)"
+    },
+    {
+      "id": "DS_25",
+      "description": "가스, 석유, 전기 등",
+      "price": 2000,
+      "type": "난로"
+    },
+    {
+      "id": "DS_26",
+      "description": "스탠드형(가장 긴 면 90cm 이상)",
+      "price": 2000,
+      "type": "다리미판"
+    },
+    {
+      "id": "DS_27",
+      "description": "좌식형(가장 긴 면 90cm 미만)",
+      "price": 1000,
+      "type": "다리미판"
+    },
+    {
+      "id": "DS_28",
+      "description": "가정용 나무도마",
+      "price": 1000,
+      "type": "도마"
+    },
+    {
+      "id": "DS_29",
+      "description": "업소용 나무도마",
+      "price": 2000,
+      "type": "도마"
+    },
+    {
+      "id": "DS_30",
+      "description": "3.3㎡당",
+      "price": 1000,
+      "type": "돗자리"
+    },
+    {
+      "id": "DS_31",
+      "description": "테니스 라켓",
+      "price": 1000,
+      "type": "라켓"
+    },
+    {
+      "id": "DS_32",
+      "description": "베드민턴 라켓",
+      "price": 500,
+      "type": "라켓"
+    },
+    {
+      "id": "DS_33",
+      "description": "100cm 이상",
+      "price": 5000,
+      "type": "마네킹"
+    },
+    {
+      "id": "DS_34",
+      "description": "100cm 미만",
+      "price": 3000,
+      "type": "마네킹"
+    },
+    {
+      "id": "DS_35",
+      "description": "의료용",
+      "price": 2000,
+      "type": "목발"
+    },
+    {
+      "id": "DS_36",
+      "description": "플라스틱",
+      "price": 1000,
+      "type": "목욕탕 수건 함"
+    },
+    {
+      "id": "DS_37",
+      "description": "두께 6㎝ 이상",
+      "price": 2000,
+      "type": "바둑판"
+    },
+    {
+      "id": "DS_38",
+      "description": "두께 6㎝ 미만",
+      "price": 1000,
+      "type": "바둑판"
+    },
+    {
+      "id": "DS_39",
+      "description": "겨울용(1개당)",
+      "price": 1000,
+      "type": "방석"
+    },
+    {
+      "id": "DS_40",
+      "description": "여름용(1개당)",
+      "price": 500,
+      "type": "방석"
+    },
+    {
+      "id": "DS_41",
+      "description": "",
+      "price": 1000,
+      "type": "베개(라텍스베개)"
+    },
+    {
+      "id": "DS_42",
+      "description": "길이 100cm 이상, 지름 28cm 이상",
+      "price": 2000,
+      "type": "벽시계"
+    },
+    {
+      "id": "DS_43",
+      "description": "길이 100cm 미만, 지름 28cm 미만",
+      "price": 1000,
+      "type": "벽시계"
+    },
+    {
+      "id": "DS_44",
+      "description": "양변기",
+      "price": 5000,
+      "type": "변기"
+    },
+    {
+      "id": "DS_45",
+      "description": "좌변기",
+      "price": 4000,
+      "type": "변기"
+    },
+    {
+      "id": "DS_46",
+      "description": "",
+      "price": 2000,
+      "type": "보행기"
+    },
+    {
+      "id": "DS_47",
+      "description": "1㎡당",
+      "price": 1000,
+      "type": "블라인드"
+    },
+    {
+      "id": "DS_48",
+      "description": "접이식",
+      "price": 2000,
+      "type": "빨래건조대"
+    },
+    {
+      "id": "DS_49",
+      "description": "이동식(바퀴방식)",
+      "price": 3000,
+      "type": "빨래건조대"
+    },
+    {
+      "id": "DS_50",
+      "description": "",
+      "price": 3000,
+      "type": "쌀통"
+    },
+    {
+      "id": "DS_51",
+      "description": "10m당",
+      "price": 1000,
+      "type": "수도호스"
+    },
+    {
+      "id": "DS_52",
+      "description": "",
+      "price": 2500,
+      "type": "스노보드"
+    },
+    {
+      "id": "DS_53",
+      "description": "모든 규격",
+      "price": 3000,
+      "type": "스키"
+    },
+    {
+      "id": "DS_54",
+      "description": "스키부츠",
+      "price": 2000,
+      "type": "스키"
+    },
+    {
+      "id": "DS_55",
+      "description": "높이 100cm 이상",
+      "price": 2500,
+      "type": "액자"
+    },
+    {
+      "id": "DS_56",
+      "description": "높이 50cm 이상 100cm 미만",
+      "price": 2000,
+      "type": "액자"
+    },
+    {
+      "id": "DS_57",
+      "description": "높이 50cm 미만",
+      "price": 1000,
+      "type": "액자"
+    },
+    {
+      "id": "DS_58",
+      "description": "가로 100cm 높이 60cm 초과",
+      "price": 6000,
+      "type": "어항(수족관)"
+    },
+    {
+      "id": "DS_59",
+      "description": "가로 100cm 높이 60cm 이하",
+      "price": 4000,
+      "type": "어항(수족관)"
+    },
+    {
+      "id": "DS_60",
+      "description": "",
+      "price": 500,
+      "type": "우산"
+    },
+    {
+      "id": "DS_61",
+      "description": "1㎡당",
+      "price": 2000,
+      "type": "유리 (강화유리 별도)"
+    },
+    {
+      "id": "DS_62",
+      "description": "",
+      "price": 2000,
+      "type": "유모차"
+    },
+    {
+      "id": "DS_63",
+      "description": "",
+      "price": 3000,
+      "type": "유아용 주방 장난감"
+    },
+    {
+      "id": "DS_64",
+      "description": "",
+      "price": 2000,
+      "type": "유아용 카시트"
+    },
+    {
+      "id": "DS_65",
+      "description": "높이 90cm 이상",
+      "price": 7000,
+      "type": "유아용 미끄럼"
+    },
+    {
+      "id": "DS_66",
+      "description": "높이 90cm 미만",
+      "price": 5000,
+      "type": "유아용 미끄럼"
+    },
+    {
+      "id": "DS_67",
+      "description": "전동",
+      "price": 3000,
+      "type": "유아용 자동차"
+    },
+    {
+      "id": "DS_68",
+      "description": "수동",
+      "price": 2000,
+      "type": "유아용 자동차"
+    },
+    {
+      "id": "DS_69",
+      "description": "의료용",
+      "price": 10000,
+      "type": "의료용 침대"
+    },
+    {
+      "id": "DS_70",
+      "description": "겨울용(1채당)",
+      "price": 2000,
+      "type": "이불"
+    },
+    {
+      "id": "DS_71",
+      "description": "여름용(1채당)",
+      "price": 1000,
+      "type": "이불"
+    },
+    {
+      "id": "DS_72",
+      "description": "1개당",
+      "price": 1500,
+      "type": "인형"
+    },
+    {
+      "id": "DS_73",
+      "description": "성인용",
+      "price": 3000,
+      "type": "자전거"
+    },
+    {
+      "id": "DS_74",
+      "description": "아동용(2륜)",
+      "price": 3000,
+      "type": "자전거"
+    },
+    {
+      "id": "DS_75",
+      "description": "아동용(3륜)",
+      "price": 2000,
+      "type": "자전거"
+    },
+    {
+      "id": "DS_76",
+      "description": "길이 50cm 이상",
+      "price": 2000,
+      "type": "장난감"
+    },
+    {
+      "id": "DS_77",
+      "description": "길이 50cm 미만",
+      "price": 1000,
+      "type": "장난감"
+    },
+    {
+      "id": "DS_78",
+      "description": "3.3㎡당",
+      "price": 2000,
+      "type": "장판"
+    },
+    {
+      "id": "DS_79",
+      "description": "전기장판(1인용)",
+      "price": 2000,
+      "type": "장판"
+    },
+    {
+      "id": "DS_80",
+      "description": "전기장판(2인용)",
+      "price": 2500,
+      "type": "장판"
+    },
+    {
+      "id": "DS_81",
+      "description": "옥·자석·온수 등 1인용",
+      "price": 3000,
+      "type": "장판"
+    },
+    {
+      "id": "DS_82",
+      "description": "옥·자석·온수 등 2인용",
+      "price": 5000,
+      "type": "장판"
+    },
+    {
+      "id": "DS_83",
+      "description": "1인용",
+      "price": 1000,
+      "type": "전기담요"
+    },
+    {
+      "id": "DS_84",
+      "description": "2인용",
+      "price": 2000,
+      "type": "전기담요"
+    },
+    {
+      "id": "DS_85",
+      "description": "",
+      "price": 3000,
+      "type": "제기함"
+    },
+    {
+      "id": "DS_86",
+      "description": "폭, 높이 1m 이상",
+      "price": 2000,
+      "type": "조명기구"
+    },
+    {
+      "id": "DS_87",
+      "description": "폭, 높이 1m 미만",
+      "price": 1000,
+      "type": "조명기구"
+    },
+    {
+      "id": "DS_88",
+      "description": "샹들리에",
+      "price": 2000,
+      "type": "조명기구"
+    },
+    {
+      "id": "DS_89",
+      "description": "길이 6m 미만",
+      "price": 5000,
+      "type": "천막"
+    },
+    {
+      "id": "DS_90",
+      "description": "길이 6m 이상",
+      "price": 7000,
+      "type": "천막"
+    },
+    {
+      "id": "DS_91",
+      "description": "3.3㎡당",
+      "price": 2000,
+      "type": "카펫(양탄자)"
+    },
+    {
+      "id": "DS_92",
+      "description": "2m 이상",
+      "price": 2000,
+      "type": "커튼"
+    },
+    {
+      "id": "DS_93",
+      "description": "2m 미만",
+      "price": 1000,
+      "type": "커튼"
+    },
+    {
+      "id": "DS_94",
+      "description": "",
+      "price": 1000,
+      "type": "커튼봉"
+    },
+    {
+      "id": "DS_95",
+      "description": "",
+      "price": 2000,
+      "type": "킥보드"
+    },
+    {
+      "id": "DS_96",
+      "description": "4인용 이상",
+      "price": 4000,
+      "type": "텐트"
+    },
+    {
+      "id": "DS_97",
+      "description": "4인용 미만",
+      "price": 3000,
+      "type": "텐트"
+    },
+    {
+      "id": "DS_98",
+      "description": "일반",
+      "price": 17000,
+      "type": "피아노"
+    },
+    {
+      "id": "DS_99",
+      "description": "디지털(다리 포함)",
+      "price": 5000,
+      "type": "피아노"
+    },
+    {
+      "id": "DS_100",
+      "description": "디지털",
+      "price": 3000,
+      "type": "피아노"
+    },
+    {
+      "id": "DS_101",
+      "description": "높이 100cm 이상",
+      "price": 5000,
+      "type": "항아리"
+    },
+    {
+      "id": "DS_102",
+      "description": "높이 50cm 이상",
+      "price": 3000,
+      "type": "항아리"
+    },
+    {
+      "id": "DS_103",
+      "description": "높이 50cm 미만",
+      "price": 1000,
+      "type": "항아리"
+    },
+    {
+      "id": "DS_104",
+      "description": "",
+      "price": 2000,
+      "type": "행거"
+    },
+    {
+      "id": "DS_105",
+      "description": "러닝머신",
+      "price": 10000,
+      "type": "헬스기구"
+    },
+    {
+      "id": "DS_106",
+      "description": "헬스자전거",
+      "price": 6000,
+      "type": "헬스기구"
+    },
+    {
+      "id": "DS_107",
+      "description": "스텝퍼",
+      "price": 3000,
+      "type": "헬스기구"
+    },
+    {
+      "id": "DS_108",
+      "description": "3단",
+      "price": 3000,
+      "type": "화환"
+    },
+    {
+      "id": "DS_109",
+      "description": "의료용",
+      "price": 2500,
+      "type": "휠체어"
+    }
+  ],
+  "생활가전": [
+    {
+      "id": "HA_1",
+      "description": "(전신,대형)",
+      "price": 20000,
+      "type": "안마의자"
+    },
+    {
+      "id": "HA_2",
+      "description": "50인치 이상",
+      "price": 5000,
+      "type": "TV(PDP·LCD·LED 방식)"
+    },
+    {
+      "id": "HA_3",
+      "description": "32인치 이상",
+      "price": 3000,
+      "type": "TV(PDP·LCD·LED 방식)"
+    },
+    {
+      "id": "HA_4",
+      "description": "32인치 미만",
+      "price": 2000,
+      "type": "TV(PDP·LCD·LED 방식)"
+    },
+    {
+      "id": "HA_5",
+      "description": "42인치 이상",
+      "price": 6000,
+      "type": "TV(브라운관 방식)"
+    },
+    {
+      "id": "HA_6",
+      "description": "25인치 이상",
+      "price": 4000,
+      "type": "TV(브라운관 방식)"
+    },
+    {
+      "id": "HA_7",
+      "description": "25인치 미만",
+      "price": 3000,
+      "type": "TV(브라운관 방식)"
+    },
+    {
+      "id": "HA_8",
+      "description": "전문 업소용",
+      "price": 11000,
+      "type": "게임기·오락기"
+    },
+    {
+      "id": "HA_9",
+      "description": "50cm 이상",
+      "price": 5000,
+      "type": "게임기·오락기"
+    },
+    {
+      "id": "HA_10",
+      "description": "50cm 미만",
+      "price": 3000,
+      "type": "게임기·오락기"
+    },
+    {
+      "id": "HA_11",
+      "description": "업소용(대형)",
+      "price": 10000,
+      "type": "공기청정기"
+    },
+    {
+      "id": "HA_12",
+      "description": "높이 1m 이상",
+      "price": 4000,
+      "type": "공기청정기"
+    },
+    {
+      "id": "HA_13",
+      "description": "130ℓ 이상",
+      "price": 5000,
+      "type": "김치냉장고"
+    },
+    {
+      "id": "HA_14",
+      "description": "130ℓ 미만",
+      "price": 4000,
+      "type": "김치냉장고"
+    },
+    {
+      "id": "HA_15",
+      "description": "업소용(대형)",
+      "price": 15000,
+      "type": "냉·난방기"
+    },
+    {
+      "id": "HA_16",
+      "description": "264㎡ 이상",
+      "price": 8000,
+      "type": "냉·난방기"
+    },
+    {
+      "id": "HA_17",
+      "description": "66㎡ 이상",
+      "price": 6000,
+      "type": "냉·난방기"
+    },
+    {
+      "id": "HA_18",
+      "description": "66㎡ 미만",
+      "price": 4000,
+      "type": "냉·난방기"
+    },
+    {
+      "id": "HA_19",
+      "description": "업소용(대형)",
+      "price": 15000,
+      "type": "냉장고"
+    },
+    {
+      "id": "HA_20",
+      "description": "500ℓ 이상",
+      "price": 9000,
+      "type": "냉장고"
+    },
+    {
+      "id": "HA_21",
+      "description": "300ℓ 이상",
+      "price": 6500,
+      "type": "냉장고"
+    },
+    {
+      "id": "HA_22",
+      "description": "300ℓ 미만",
+      "price": 4500,
+      "type": "냉장고"
+    },
+    {
+      "id": "HA_23",
+      "description": "",
+      "price": 3000,
+      "type": "발마사지 기계"
+    },
+    {
+      "id": "HA_24",
+      "description": "영업용",
+      "price": 10000,
+      "type": "복사기(영업용 프린터)"
+    },
+    {
+      "id": "HA_25",
+      "description": "높이 1m 이상",
+      "price": 5000,
+      "type": "복사기(영업용 프린터)"
+    },
+    {
+      "id": "HA_26",
+      "description": "업소용(스텐드형)",
+      "price": 3000,
+      "type": "선풍기"
+    },
+    {
+      "id": "HA_27",
+      "description": "높이 1m 이상",
+      "price": 5000,
+      "type": "세단기"
+    },
+    {
+      "id": "HA_28",
+      "description": "10kg 이상",
+      "price": 5000,
+      "type": "세탁기"
+    },
+    {
+      "id": "HA_29",
+      "description": "10kg 미만",
+      "price": 3000,
+      "type": "세탁기"
+    },
+    {
+      "id": "HA_30",
+      "description": "높이 1m 이상",
+      "price": 3000,
+      "type": "식기건조기"
+    },
+    {
+      "id": "HA_31",
+      "description": "높이 1m 이상",
+      "price": 3000,
+      "type": "식기세척기"
+    },
+    {
+      "id": "HA_32",
+      "description": "",
+      "price": 2000,
+      "type": "안마기"
+    },
+    {
+      "id": "HA_33",
+      "description": "(전신,대형 별도)",
+      "price": 10000,
+      "type": "안마의자"
+    },
+    {
+      "id": "HA_34",
+      "description": "1m 이상",
+      "price": 2000,
+      "type": "에어컨 실외기"
+    },
+    {
+      "id": "HA_35",
+      "description": "높이 1m 이상",
+      "price": 5000,
+      "type": "오디오 본체"
+    },
+    {
+      "id": "HA_36",
+      "description": "높이 1m 이상",
+      "price": 1000,
+      "type": "오디오 스피커"
+    },
+    {
+      "id": "HA_37",
+      "description": "",
+      "price": 4000,
+      "type": "오르간"
+    },
+    {
+      "id": "HA_38",
+      "description": "높이 1m 이상",
+      "price": 2000,
+      "type": "온수기"
+    },
+    {
+      "id": "HA_39",
+      "description": "음료, 담배",
+      "price": 15000,
+      "type": "자동판매기"
+    },
+    {
+      "id": "HA_40",
+      "description": "자가 소형",
+      "price": 5000,
+      "type": "자동판매기"
+    },
+    {
+      "id": "HA_41",
+      "description": "가장 긴 면 120cm 이상",
+      "price": 2000,
+      "type": "전기 패널(판넬)"
+    },
+    {
+      "id": "HA_42",
+      "description": "가장 긴 면 120cm 미만",
+      "price": 1000,
+      "type": "전기 패널(판넬)"
+    },
+    {
+      "id": "HA_43",
+      "description": "높이 1m 이상",
+      "price": 5000,
+      "type": "정수기"
+    },
+    {
+      "id": "HA_44",
+      "description": "영업용",
+      "price": 3000,
+      "type": "청소기"
+    },
+    {
+      "id": "HA_45",
+      "description": "벽걸이형",
+      "price": 1000,
+      "type": "팬히터"
+    },
+    {
+      "id": "HA_46",
+      "description": "업소용(대형)",
+      "price": 3000,
+      "type": "환풍기"
+    }
+  ],
+  "생활가구": [
+    {
+      "id": "HF_1",
+      "description": "가장 긴 면 100cm 이상",
+      "price": 3000,
+      "type": "거울 (전신)"
+    },
+    {
+      "id": "HF_2",
+      "description": "(킹사이즈)",
+      "price": 30000,
+      "type": "저상용 패밀리침대셋트"
+    },
+    {
+      "id": "HF_3",
+      "description": "",
+      "price": 14000,
+      "type": "1인용 범퍼침대셋트"
+    },
+    {
+      "id": "HF_4",
+      "description": "(100*180) 이상",
+      "price": 10000,
+      "type": "책장"
+    },
+    {
+      "id": "HF_5",
+      "description": "(플라스틱파렛트)",
+      "price": 4000,
+      "type": "나무파렛트 100*100"
+    },
+    {
+      "id": "HF_6",
+      "description": "2인용 세트(매트리스,침대틀,침대헤드)",
+      "price": 20000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_7",
+      "description": "1인용 세트(매트리스,침대틀,침대헤드)",
+      "price": 14000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_8",
+      "description": "TV 전용",
+      "price": 3000,
+      "type": "TV 받침"
+    },
+    {
+      "id": "HF_9",
+      "description": "길이 180cm 이상",
+      "price": 10000,
+      "type": "거실장(유리별도)"
+    },
+    {
+      "id": "HF_10",
+      "description": "길이 120cm 이상",
+      "price": 6500,
+      "type": "거실장(유리별도)"
+    },
+    {
+      "id": "HF_11",
+      "description": "길이 120cm 미만",
+      "price": 4000,
+      "type": "거실장(유리별도)"
+    },
+    {
+      "id": "HF_12",
+      "description": "가장 긴 면 50cm 이상 100cm 미만",
+      "price": 2000,
+      "type": "거울"
+    },
+    {
+      "id": "HF_13",
+      "description": "가장 긴 면 50cm 미만",
+      "price": 1000,
+      "type": "거울"
+    },
+    {
+      "id": "HF_14",
+      "description": "업소용 대형 1㎡당",
+      "price": 2000,
+      "type": "거울"
+    },
+    {
+      "id": "HF_15",
+      "description": "2단 미만",
+      "price": 1000,
+      "type": "공간박스"
+    },
+    {
+      "id": "HF_16",
+      "description": "3단 이상",
+      "price": 2000,
+      "type": "공간박스"
+    },
+    {
+      "id": "HF_17",
+      "description": "",
+      "price": 4000,
+      "type": "레인지 수납장"
+    },
+    {
+      "id": "HF_18",
+      "description": "10리터",
+      "price": 1000,
+      "type": "목재"
+    },
+    {
+      "id": "HF_19",
+      "description": "너비 30cm당",
+      "price": 1000,
+      "type": "문갑(유리별도)"
+    },
+    {
+      "id": "HF_20",
+      "description": "쪽당",
+      "price": 2500,
+      "type": "문짝"
+    },
+    {
+      "id": "HF_21",
+      "description": "폭당",
+      "price": 500,
+      "type": "병풍"
+    },
+    {
+      "id": "HF_22",
+      "description": "",
+      "price": 3000,
+      "type": "비키니 옷장"
+    },
+    {
+      "id": "HF_23",
+      "description": "서랍(1개당)",
+      "price": 1000,
+      "type": "서랍장"
+    },
+    {
+      "id": "HF_24",
+      "description": "4인용 이상",
+      "price": 10000,
+      "type": "소파 (너비 80cm 이하, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_25",
+      "description": "3인용",
+      "price": 8000,
+      "type": "소파 (너비 80cm 이하, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_26",
+      "description": "2인용",
+      "price": 5000,
+      "type": "소파 (너비 80cm 이하, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_27",
+      "description": "1인용",
+      "price": 3000,
+      "type": "소파 (너비 80cm 이하, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_28",
+      "description": "스툴(1인용)",
+      "price": 3000,
+      "type": "소파 (너비 80cm 이하)"
+    },
+    {
+      "id": "HF_29",
+      "description": "스툴(2인용)",
+      "price": 5000,
+      "type": "소파 (너비 80cm 이하)"
+    },
+    {
+      "id": "HF_30",
+      "description": "4인용 이상",
+      "price": 15000,
+      "type": "소파 (너비 80cm 초과, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_31",
+      "description": "3인용",
+      "price": 11000,
+      "type": "소파 (너비 80cm 초과, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_32",
+      "description": "2인용",
+      "price": 7000,
+      "type": "소파 (너비 80cm 초과, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_33",
+      "description": "1인용",
+      "price": 5000,
+      "type": "소파 (너비 80cm 초과, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_34",
+      "description": "카우치 소파",
+      "price": 7000,
+      "type": "소파 (너비 80cm 초과, 리클라이너 별도)"
+    },
+    {
+      "id": "HF_35",
+      "description": "가정용(행거)",
+      "price": 2000,
+      "type": "스탠드 옷걸이"
+    },
+    {
+      "id": "HF_36",
+      "description": "3인이하",
+      "price": 3000,
+      "type": "식탁(나무) (의자별도)"
+    },
+    {
+      "id": "HF_37",
+      "description": "4인이상",
+      "price": 4000,
+      "type": "식탁(나무) (의자별도)"
+    },
+    {
+      "id": "HF_38",
+      "description": "6인이상",
+      "price": 5000,
+      "type": "식탁(나무) (의자별도)"
+    },
+    {
+      "id": "HF_39",
+      "description": "4인이상",
+      "price": 7000,
+      "type": "식탁(대리석) (의자별도)"
+    },
+    {
+      "id": "HF_40",
+      "description": "6인이상",
+      "price": 9000,
+      "type": "식탁(대리석) (의자별도)"
+    },
+    {
+      "id": "HF_41",
+      "description": "높이 150cm이상",
+      "price": 6000,
+      "type": "신발장"
+    },
+    {
+      "id": "HF_42",
+      "description": "높이100cm이상150cm미만",
+      "price": 4000,
+      "type": "신발장"
+    },
+    {
+      "id": "HF_43",
+      "description": "높이100cm 미만",
+      "price": 2000,
+      "type": "신발장"
+    },
+    {
+      "id": "HF_44",
+      "description": "상판길이 120cm 이상 개당",
+      "price": 6000,
+      "type": "싱크대"
+    },
+    {
+      "id": "HF_45",
+      "description": "상판길이 120cm 미만 개당",
+      "price": 4000,
+      "type": "싱크대"
+    },
+    {
+      "id": "HF_46",
+      "description": "상판(대리석) 120cm 이상 개당",
+      "price": 10000,
+      "type": "싱크대"
+    },
+    {
+      "id": "HF_47",
+      "description": "상판(대리석) 120cm 미만 개당",
+      "price": 8000,
+      "type": "싱크대"
+    },
+    {
+      "id": "HF_48",
+      "description": "대형",
+      "price": 2000,
+      "type": "쓰레기통"
+    },
+    {
+      "id": "HF_49",
+      "description": "가정용(소형)",
+      "price": 1000,
+      "type": "쓰레기통"
+    },
+    {
+      "id": "HF_50",
+      "description": "가장 긴면 60㎝이상",
+      "price": 3000,
+      "type": "욕실장"
+    },
+    {
+      "id": "HF_51",
+      "description": "가장 긴면 60㎝미만",
+      "price": 2000,
+      "type": "욕실장"
+    },
+    {
+      "id": "HF_52",
+      "description": "3인용",
+      "price": 5000,
+      "type": "의자"
+    },
+    {
+      "id": "HF_53",
+      "description": "2인용",
+      "price": 3500,
+      "type": "의자"
+    },
+    {
+      "id": "HF_54",
+      "description": "1인용",
+      "price": 2000,
+      "type": "의자"
+    },
+    {
+      "id": "HF_55",
+      "description": "좌식의자",
+      "price": 1000,
+      "type": "의자"
+    },
+    {
+      "id": "HF_56",
+      "description": "바퀴 달린 의자(대형)",
+      "price": 5000,
+      "type": "의자"
+    },
+    {
+      "id": "HF_57",
+      "description": "바퀴 달린 의자(소형)",
+      "price": 3000,
+      "type": "의자"
+    },
+    {
+      "id": "HF_58",
+      "description": "120cm 이상 1쪽",
+      "price": 16000,
+      "type": "장롱(옷장)"
+    },
+    {
+      "id": "HF_59",
+      "description": "120cm 미만 1쪽",
+      "price": 12000,
+      "type": "장롱(옷장,시스템장)"
+    },
+    {
+      "id": "HF_60",
+      "description": "높이180cm 이상",
+      "price": 10000,
+      "type": "장식장"
+    },
+    {
+      "id": "HF_61",
+      "description": "높이100cm이상 180cm 미만",
+      "price": 6000,
+      "type": "장식장"
+    },
+    {
+      "id": "HF_62",
+      "description": "높이100cm 미만",
+      "price": 4000,
+      "type": "장식장"
+    },
+    {
+      "id": "HF_63",
+      "description": "오디오용",
+      "price": 2500,
+      "type": "장식장"
+    },
+    {
+      "id": "HF_64",
+      "description": "1㎡당",
+      "price": 4000,
+      "type": "진열대(목재)"
+    },
+    {
+      "id": "HF_65",
+      "description": "폭130㎝ 이상",
+      "price": 10000,
+      "type": "찬장"
+    },
+    {
+      "id": "HF_66",
+      "description": "폭120㎝ 이상",
+      "price": 7000,
+      "type": "찬장"
+    },
+    {
+      "id": "HF_67",
+      "description": "폭90㎝ 이상",
+      "price": 5000,
+      "type": "찬장"
+    },
+    {
+      "id": "HF_68",
+      "description": "폭90㎝ 미만",
+      "price": 3000,
+      "type": "찬장"
+    },
+    {
+      "id": "HF_69",
+      "description": "쪽당",
+      "price": 2000,
+      "type": "창문"
+    },
+    {
+      "id": "HF_70",
+      "description": "3단 이상",
+      "price": 3000,
+      "type": "책꽂이"
+    },
+    {
+      "id": "HF_71",
+      "description": "3단 미만",
+      "price": 2000,
+      "type": "책꽂이"
+    },
+    {
+      "id": "HF_72",
+      "description": "서랍 없음",
+      "price": 3500,
+      "type": "책상 (유리별도)"
+    },
+    {
+      "id": "HF_73",
+      "description": "편수(한쪽 서랍)",
+      "price": 4500,
+      "type": "책상 (유리별도)"
+    },
+    {
+      "id": "HF_74",
+      "description": "양수(양쪽 서랍)",
+      "price": 7000,
+      "type": "책상 (유리별도)"
+    },
+    {
+      "id": "HF_75",
+      "description": "H형 책상(상판, 책장, 서랍 포함)",
+      "price": 10000,
+      "type": "책상 (유리별도)"
+    },
+    {
+      "id": "HF_76",
+      "description": "컴퓨터 전용",
+      "price": 3000,
+      "type": "책상 (유리별도)"
+    },
+    {
+      "id": "HF_77",
+      "description": "책상 상판",
+      "price": 2000,
+      "type": "책상 (유리별도)"
+    },
+    {
+      "id": "HF_78",
+      "description": "90cm × 180cm 이상",
+      "price": 8000,
+      "type": "책장"
+    },
+    {
+      "id": "HF_79",
+      "description": "90cm × 180cm 미만",
+      "price": 5000,
+      "type": "책장"
+    },
+    {
+      "id": "HF_80",
+      "description": "1인용 매트리스,라텍스",
+      "price": 7000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_81",
+      "description": "2인용 매트리스,라텍스",
+      "price": 9000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_82",
+      "description": "1인용 침대틀",
+      "price": 5000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_83",
+      "description": "2인용 침대틀",
+      "price": 8000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_84",
+      "description": "신생아용 침대",
+      "price": 4000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_85",
+      "description": "2층 침대",
+      "price": 16000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_86",
+      "description": "1인용 접이식",
+      "price": 5000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_87",
+      "description": "2인용 접이식",
+      "price": 7000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_88",
+      "description": "소파 겸용 침대",
+      "price": 15000,
+      "type": "침대"
+    },
+    {
+      "id": "HF_89",
+      "description": "1인용",
+      "price": 20000,
+      "type": "침대 (흙, 돌, 황토 침대 등)"
+    },
+    {
+      "id": "HF_90",
+      "description": "2인용",
+      "price": 30000,
+      "type": "침대 (흙, 돌, 황토 침대 등)"
+    },
+    {
+      "id": "HF_91",
+      "description": "2인용 이상",
+      "price": 3000,
+      "type": "침대헤드"
+    },
+    {
+      "id": "HF_92",
+      "description": "2인용 미만",
+      "price": 2000,
+      "type": "침대헤드"
+    },
+    {
+      "id": "HF_93",
+      "description": "90cm × 180cm",
+      "price": 4000,
+      "type": "캐비닛(파일)"
+    },
+    {
+      "id": "HF_94",
+      "description": "4단 이상",
+      "price": 3000,
+      "type": "캐비닛(파일)"
+    },
+    {
+      "id": "HF_95",
+      "description": "3단 이하",
+      "price": 2000,
+      "type": "캐비닛(파일)"
+    },
+    {
+      "id": "HF_96",
+      "description": "1세트",
+      "price": 10000,
+      "type": "탁구대"
+    },
+    {
+      "id": "HF_97",
+      "description": "협탁",
+      "price": 2000,
+      "type": "탁자"
+    },
+    {
+      "id": "HF_98",
+      "description": "응접용",
+      "price": 3000,
+      "type": "탁자"
+    },
+    {
+      "id": "HF_99",
+      "description": "가정용",
+      "price": 3500,
+      "type": "화장대(거울별도)"
+    },
+    {
+      "id": "HF_100",
+      "description": "소형",
+      "price": 1000,
+      "type": "화장품대(경대)"
+    },
+    {
+      "id": "HF_101",
+      "description": "10인용 이상",
+      "price": 9000,
+      "type": "회의용 탁자"
+    },
+    {
+      "id": "HF_102",
+      "description": "10인용 미만",
+      "price": 5000,
+      "type": "회의용 탁자"
+    }
+  ],
+  "기타용품": [
+    {
+      "id": "OI_1",
+      "description": "60*70",
+      "price": 4000,
+      "type": "아이스박스"
+    },
+    {
+      "id": "OI_2",
+      "description": "30*40",
+      "price": 2000,
+      "type": "아이스박스"
+    },
+    {
+      "id": "OI_3",
+      "description": "150*90 이하",
+      "price": 10000,
+      "type": "중문,사워부스(강화유리)"
+    },
+    {
+      "id": "OI_4",
+      "description": "50cm 미만",
+      "price": 1000,
+      "type": "앨범"
+    },
+    {
+      "id": "OI_5",
+      "description": "50cmX50cm 이상",
+      "price": 3000,
+      "type": "약탕기"
+    },
+    {
+      "id": "OI_6",
+      "description": "50cmX50cm 미만",
+      "price": 2000,
+      "type": "약탕기"
+    },
+    {
+      "id": "OI_7",
+      "description": "100cmX100cm 미만",
+      "price": 2000,
+      "type": "바운서"
+    },
+    {
+      "id": "OI_8",
+      "description": "100cm 이상",
+      "price": 2000,
+      "type": "기타"
+    },
+    {
+      "id": "OI_9",
+      "description": "40cm × 100cm당",
+      "price": 4000,
+      "type": "(입)간판"
+    },
+    {
+      "id": "OI_10",
+      "description": "가장 긴 면 1m 이상",
+      "price": 2000,
+      "type": "(입)간판"
+    },
+    {
+      "id": "OI_11",
+      "description": "가장 긴 면 1m 미만",
+      "price": 1000,
+      "type": "(입)간판"
+    },
+    {
+      "id": "OI_12",
+      "description": "고무 통 입간판",
+      "price": 5000,
+      "type": "(입)간판"
+    },
+    {
+      "id": "OI_13",
+      "description": "개당",
+      "price": 500,
+      "type": "골프채"
+    },
+    {
+      "id": "OI_14",
+      "description": "400ℓ 이상",
+      "price": 7000,
+      "type": "기름탱크"
+    },
+    {
+      "id": "OI_15",
+      "description": "400ℓ 미만",
+      "price": 4000,
+      "type": "기름탱크"
+    },
+    {
+      "id": "OI_16",
+      "description": "1톤당",
+      "price": 8000,
+      "type": "물탱크"
+    },
+    {
+      "id": "OI_17",
+      "description": "0.5톤 이상",
+      "price": 4500,
+      "type": "물탱크"
+    },
+    {
+      "id": "OI_18",
+      "description": "0.5톤 미만",
+      "price": 3000,
+      "type": "물탱크"
+    },
+    {
+      "id": "OI_19",
+      "description": "16kcal/h 이상",
+      "price": 10000,
+      "type": "보일러"
+    },
+    {
+      "id": "OI_20",
+      "description": "16kcal/h 미만",
+      "price": 8000,
+      "type": "보일러"
+    },
+    {
+      "id": "OI_21",
+      "description": "",
+      "price": 2000,
+      "type": "볼링공"
+    },
+    {
+      "id": "OI_22",
+      "description": "",
+      "price": 3500,
+      "type": "세면대"
+    },
+    {
+      "id": "OI_23",
+      "description": "중형 이상(3.3kg 초과)",
+      "price": 3000,
+      "type": "소화기(분말식)"
+    },
+    {
+      "id": "OI_24",
+      "description": "소형(3.3kg 이하)",
+      "price": 1000,
+      "type": "소화기(분말식)"
+    },
+    {
+      "id": "OI_25",
+      "description": "일반용",
+      "price": 5000,
+      "type": "욕조"
+    },
+    {
+      "id": "OI_26",
+      "description": "유아용",
+      "price": 3000,
+      "type": "욕조"
+    },
+    {
+      "id": "OI_27",
+      "description": "1인",
+      "price": 5000,
+      "type": "차량 시트"
+    },
+    {
+      "id": "OI_28",
+      "description": "3인",
+      "price": 7000,
+      "type": "차량 시트"
+    },
+    {
+      "id": "OI_29",
+      "description": "높이 150cm 이상",
+      "price": 7000,
+      "type": "캣타워(캣트리)"
+    },
+    {
+      "id": "OI_30",
+      "description": "높이 60cm 이상 150cm 미만",
+      "price": 5000,
+      "type": "캣타워(캣트리)"
+    },
+    {
+      "id": "OI_31",
+      "description": "높이 60cm 미만",
+      "price": 3000,
+      "type": "캣타워(캣트리)"
+    },
+    {
+      "id": "OI_32",
+      "description": "지름 110cm 이상",
+      "price": 12000,
+      "type": "타이어"
+    },
+    {
+      "id": "OI_33",
+      "description": "지름 60cm 이상 110cm 미만",
+      "price": 5000,
+      "type": "타이어"
+    },
+    {
+      "id": "OI_34",
+      "description": "지름 60cm 미만",
+      "price": 3000,
+      "type": "타이어"
+    },
+    {
+      "id": "OI_35",
+      "description": "모든 규격",
+      "price": 2000,
+      "type": "파라솔"
+    },
+    {
+      "id": "OI_36",
+      "description": "높이 150cm, 너비 90cm 이상",
+      "price": 5000,
+      "type": "파티션"
+    },
+    {
+      "id": "OI_37",
+      "description": "높이 150cm, 너비 90cm 미만",
+      "price": 3000,
+      "type": "파티션"
+    },
+    {
+      "id": "OI_38",
+      "description": "높이 50cm 이상",
+      "price": 2000,
+      "type": "화분"
+    },
+    {
+      "id": "OI_39",
+      "description": "높이 50cm 미만",
+      "price": 1000,
+      "type": "화분"
+    }
+  ],
+  "재활용품": [
+    {
+      "id": "PL",
+      "description": "kg당 평균 단가",
+      "price": 644,
+      "type": "플라스틱"
+    },
+    {
+      "id": "GL",
+      "description": "kg당 평균 단가",
+      "price": 110,
+      "type": "유리"
+    },
+    {
+      "id": "CN",
+      "description": "kg당 평균 단가",
+      "price": 918,
+      "type": "캔"
+    }
+  ]
+}

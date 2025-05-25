@@ -408,4 +408,9 @@ public class PickupDAOImpl implements PickupDAO {
             throw new IllegalStateException("위치 삭제 실패");
         }
     }
+
+    @Override
+    public List<MyPickupDTO> getPickupsName(String name) {
+        return List.of();
+    }
 }
