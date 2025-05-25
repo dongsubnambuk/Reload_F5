@@ -56,6 +56,7 @@ public class StompChatController {
                 messagingTemplate.convertAndSend(destination, messageDTO);
                 messageService.saveMessage(messageDTO);
                 log.info("메시지 전송 성공: " + messageDTO);
+                log.info("메시지 챗봇 내용 까봅시다: " + messageDTO.getContent());
             } else {
                 messagingTemplate.convertAndSend("/topic/admin/new-room", messageDTO);
                 messagingTemplate.convertAndSend(destination, messageDTO);

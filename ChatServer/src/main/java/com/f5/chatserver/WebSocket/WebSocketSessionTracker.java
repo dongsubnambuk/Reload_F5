@@ -39,7 +39,7 @@ public class WebSocketSessionTracker {
         return connectedSessions.size();
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 600000)
     public void logActiveConnections() {
         log.info("📊 현재 WebSocket 연결 수: {}", connectedSessions.size());
     }

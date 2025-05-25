@@ -55,7 +55,14 @@ public class SubscriptionEventListener {
                 MessageDTO welcomeMessage = MessageDTO.builder()
                         .chatId(chatId)
                         .sender("새로고침")
-                        .content(" 안녕하세요! 저는 새로고침의 진짜 친구, 에코봇이에요!<br/> 사이트 이용 방법, 환경 보호, 재활용, 쓰레기 수거, 업사이클링까지!<br/> 궁금한 게 있으면 언제든지 저를 불러주세요.")
+                        .content("""
+                               안녕하세요! 😊<br>\
+                               <br>새로고침의 고객 지원 챗봇 <span style="font-weight: 600;">에코봇</span>입니다.\
+                               <br>혹시 궁금하신 점이나 도움이 필요하시면 언제든 말씀해 주세요!<br>\
+                               <br>상담사와의 <span style="font-weight: 600;">1대1 문의</span>가 필요하신 경우<br>\
+                               좌측 하단의 <span style="font-weight: 600;">상담사</span> 버튼을 눌러주세요.<br>\
+                               <br>감사합니다. 💌
+                               """)
                         .build();
 
                 messagingTemplate.convertAndSend(destination, welcomeMessage);
