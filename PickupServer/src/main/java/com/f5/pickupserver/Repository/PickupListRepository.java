@@ -14,4 +14,5 @@ public interface PickupListRepository extends JpaRepository<PickupListEntity, Lo
     PickupListEntity findByPickupId(Long pickupId);
     @Query("SELECT p FROM PickupListEntity p WHERE DATE(p.pickupDate) = :pickupDate")
     List<PickupListEntity> findByPickupDateOnly(@Param("pickupDate") LocalDate pickupDate);
+    //List<PickupListEntity> findByName(LocalDate startDate, LocalDate endDate);
 }
