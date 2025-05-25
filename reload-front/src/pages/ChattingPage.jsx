@@ -14,8 +14,7 @@ const ChattingPage = () => {
   const [chatId, setChatId] = useState(null); // 동적으로 설정된 채팅방 ID
   const messageContainerRef = useRef(null);
   const [quickQuestions, setQuickQuestions] = useState([
-    '회원정보 수정 방법', '상품 구매 방법', '장바구니 담는 방법', 
-    '수거 신청 방법', '수거 일자 변경', '수거 진행 상태 확인', '상담사와 1:1 채팅 방법'
+    '회원정보 수정', '수거 신청 절차', '결제 내역 확인', '수거 진행 상태 확인', '장바구니 담는 방법',  '상담사와 1:1 채팅 방법'
   ]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [suggestionVisible, setSuggestionVisible] = useState(false);
@@ -54,7 +53,7 @@ const ChattingPage = () => {
 
       return `${amPm} ${hours.toString().padStart(2, '0')}:${minutes}`;
     } catch (error) {
-      console.error('시간 포맷팅 오류:', error);
+      //console.error('시간 포맷팅 오류:', error);
       return timeString; // 오류 발생 시 원본 문자열 반환
     }
   };
@@ -62,9 +61,9 @@ const ChattingPage = () => {
   // 카테고리별 자주 묻는 질문
   const categoryQuestions = {
     '계정 관리': ['회원정보 수정 방법'],
-    '쇼핑 정보': ['상품 구매 방법', '장바구니 담는 방법'],
-    '수거 서비스': ['수거 신청 방법', '수거 일자 변경', '수거 진행 상태 확인', '수거 당일 부재 시 집에 없을 시'],
-    '고객 지원': ['상담사와 1:1 채팅 방법']
+    '쇼핑 정보': ['상품 상세 정보 확인 방법', '상품 구매 방법', '장바구니 담는 방법'],
+    '수거 서비스': ['수거 신청 절차', '수거 신청 방법', '수거 일자 변경', '수거 위치 변경', '수거 진행 상태 확인', '수거 당일 부재 시 집에 없을 시'],
+    '고객 지원': ['결제 수단 종류', '결제 내역 확인', '상담사와 1:1 채팅 방법']
   };
 
   // 회원정보 조회 및 채팅방 초기화
@@ -192,13 +191,15 @@ const ChattingPage = () => {
       );
 
       return () => {
-        if (stompClient) {
-          stompClient.disconnect();
-          //console.log('WebSocket disconnected.');
+        //console.log('Cleaning up WebSocket connection...');
+        if (client && client.connected) {
+          client.disconnect(() => {
+            //console.log('WebSocket disconnected successfully.');
+          });
         }
       };
     }
-  }, [chatId]);
+  }, [chatId]); // 의존성 배열에서 stompClient 제거
 
   // 메시지 전송
   const sendMessage = (text = input) => {
@@ -283,9 +284,7 @@ const ChattingPage = () => {
     if (input.trim() && input.length > 1) {
       // 입력된 내용을 기반으로 추천 질문 필터링
       const allQuestions = [
-        '상품 구매 방법', '장바구니 담는 방법',
-        '수거 신청 방법', '수거 일자 변경', '수거 진행 상태 확인', '수거 당일 부재 시 집에 없을 시',
-        '상담사와 1:1 채팅 방법', '회원정보 수정 방법'
+        '상품 구매 방법', '장바구니 담는 방법', '상품 상세 정보 확인 방법', '수거 신청 절차', '수거 일자 변경', '수거 진행 상태 확인', '수거 당일 부재 시 집에 없을 시', '결제 수단 종류', '결제 내역 확인', '상담사와 1:1 채팅 방법', '회원정보 수정 방법'
       ];
 
       const filteredSuggestions = allQuestions.filter(q =>

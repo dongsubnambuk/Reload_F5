@@ -155,7 +155,7 @@ const MainPage = () => {
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to fetch products');
+                    throw new Error('상품 서버와의 연결에 실패했습니다.');
                 }
 
                 const data = await response.json();
