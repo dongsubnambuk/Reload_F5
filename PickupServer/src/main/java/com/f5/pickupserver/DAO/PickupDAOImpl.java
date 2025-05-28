@@ -16,7 +16,9 @@ import com.f5.pickupserver.Repository.AddressRepository;
 import com.f5.pickupserver.Repository.DetailsRepository;
 import com.f5.pickupserver.Repository.LocationRepository;
 import com.f5.pickupserver.Repository.PickupListRepository;
+import com.f5.pickupserver.waste.WasteCache;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import org.springframework.core.io.ClassPathResource;
@@ -34,18 +36,13 @@ import java.util.List;
 
 @Component
 @Transactional
+@RequiredArgsConstructor
 public class PickupDAOImpl implements PickupDAO {
     private final PickupListRepository pickupListRepository;
     private final DetailsRepository detailsRepository;
     private final AddressRepository addressRepository;
     private final LocationRepository locationRepository;
-
-    public PickupDAOImpl(PickupListRepository pickupListRepository, DetailsRepository detailsRepository, AddressRepository addressRepository, LocationRepository locationRepository) {
-        this.pickupListRepository = pickupListRepository;
-        this.detailsRepository = detailsRepository;
-        this.addressRepository = addressRepository;
-        this.locationRepository = locationRepository;
-    }
+    private final WasteCache wasteCache;
 
     @Override
     public PickupInfoMsgDTO createPickup(NewPickupDTO newPickup, AddressDTO addressDTO, List<DetailsDTO> details) throws IllegalArgumentException {
@@ -235,50 +232,57 @@ public class PickupDAOImpl implements PickupDAO {
                 DetailsResponseDTO response = new DetailsResponseDTO();
                 String wasteId = detailsEntity.getWasteId();
 
-                if (wasteId.startsWith("DS_")) {
-                    // DS_로 시작하는 경우의 처리
-                    System.out.println("DS_ 패턴 매칭");
-                    response.setWasteId(wasteId);
-                    response.setWasteName(findTypeById(wasteId, "DailySupplies"));
-                    response.setWeight(detailsEntity.getWeight());
-                    response.setPricePreview(detailsEntity.getPricePreview());
-                    response.setPrice(detailsEntity.getPrice());
-                } else if (wasteId.startsWith("HA_")) {
-                    // HA_로 시작하는 경우의 처리
-                    System.out.println("HA_ 패턴 매칭");
-                    response.setWasteId(wasteId);
-                    response.setWasteName(findTypeById(wasteId, "HouseholdAppliances"));
-                    response.setWeight(detailsEntity.getWeight());
-                    response.setPricePreview(detailsEntity.getPricePreview());
-                    response.setPrice(detailsEntity.getPrice());
-                } else if (wasteId.startsWith("HF_")) {
-                    // HF_로 시작하는 경우의 처리
-                    System.out.println("HF_ 패턴 매칭");
-                    response.setWasteId(wasteId);
-                    response.setWasteName(findTypeById(wasteId, "HouseholdFurniture"));
-                    response.setWeight(detailsEntity.getWeight());
-                    response.setPricePreview(detailsEntity.getPricePreview());
-                    response.setPrice(detailsEntity.getPrice());
-                } else if (wasteId.startsWith("OI_")) {
-                    // OI_로 시작하는 경우의 처리
-                    System.out.println("OI_ 패턴 매칭");
-                    response.setWasteId(wasteId);
-                    response.setWasteName(findTypeById(wasteId, "OtherItems"));
-                    response.setWeight(detailsEntity.getWeight());
-                    response.setPricePreview(detailsEntity.getPricePreview());
-                    response.setPrice(detailsEntity.getPrice());
-                } else if (wasteId.startsWith("PL") || wasteId.startsWith("GL") || wasteId.startsWith("CN")) {
-                    // 나머지 재활용품
-                    System.out.println("나머지 재활용품 패턴 매칭");
-                    response.setWasteId(wasteId);
-                    response.setWasteName(findTypeById(wasteId, "Recyclables"));
-                    response.setWeight(detailsEntity.getWeight());
-                    response.setPricePreview(detailsEntity.getPricePreview());
-                    response.setPrice(detailsEntity.getPrice());
-                } else {
-                    // 패턴 매칭되지 않는 경우의 처리
-                    throw new IllegalArgumentException("알 수 없는 패턴");
-                }
+                response.setWasteId(wasteId);
+                response.setWasteName(wasteCache.getById(wasteId).getType());
+                response.setWeight(detailsEntity.getWeight());
+                response.setPricePreview(detailsEntity.getPricePreview());
+                response.setPrice(detailsEntity.getPrice());
+
+//                if (wasteId.startsWith("DS_")) {
+//                    // DS_로 시작하는 경우의 처리
+//                    System.out.println("DS_ 패턴 매칭");
+//                    response.setWasteId(wasteId);
+//                    response.setWasteName(findTypeById(wasteId, "DailySupplies"));
+//                    response.setWeight(detailsEntity.getWeight());
+//                    response.setPricePreview(detailsEntity.getPricePreview());
+//                    response.setPrice(detailsEntity.getPrice());
+//                } else if (wasteId.startsWith("HA_")) {
+//                    // HA_로 시작하는 경우의 처리
+//                    System.out.println("HA_ 패턴 매칭");
+//                    response.setWasteId(wasteId);
+//                    response.setWasteName(findTypeById(wasteId, "HouseholdAppliances"));
+//                    response.setWeight(detailsEntity.getWeight());
+//                    response.setPricePreview(detailsEntity.getPricePreview());
+//                    response.setPrice(detailsEntity.getPrice());
+//                } else if (wasteId.startsWith("HF_")) {
+//                    // HF_로 시작하는 경우의 처리
+//                    System.out.println("HF_ 패턴 매칭");
+//                    response.setWasteId(wasteId);
+//                    response.setWasteName(findTypeById(wasteId, "HouseholdFurniture"));
+//                    response.setWeight(detailsEntity.getWeight());
+//                    response.setPricePreview(detailsEntity.getPricePreview());
+//                    response.setPrice(detailsEntity.getPrice());
+//                } else if (wasteId.startsWith("OI_")) {
+//                    // OI_로 시작하는 경우의 처리
+//                    System.out.println("OI_ 패턴 매칭");
+//                    response.setWasteId(wasteId);
+//                    response.setWasteName(findTypeById(wasteId, "OtherItems"));
+//                    response.setWeight(detailsEntity.getWeight());
+//                    response.setPricePreview(detailsEntity.getPricePreview());
+//                    response.setPrice(detailsEntity.getPrice());
+//                } else if (wasteId.startsWith("PL") || wasteId.startsWith("GL") || wasteId.startsWith("CN")) {
+//                    // 나머지 재활용품
+//                    System.out.println("나머지 재활용품 패턴 매칭");
+//                    response.setWasteId(wasteId);
+//                    response.setWasteName(findTypeById(wasteId, "Recyclables"));
+//                    response.setWeight(detailsEntity.getWeight());
+//                    response.setPricePreview(detailsEntity.getPricePreview());
+//                    response.setPrice(detailsEntity.getPrice());
+//                } else {
+//                    // 패턴 매칭되지 않는 경우의 처리
+//                    throw new IllegalArgumentException("알 수 없는 패턴");
+//                }
+
                 detailsResponseDTOList.add(response);
             }
             pickupDetailsDTO.setDetails(detailsResponseDTOList);
