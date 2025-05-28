@@ -1,5 +1,6 @@
 package com.f5.gatewayserver.Config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,12 +13,15 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+@Slf4j
 @Configuration
 @EnableWebFluxSecurity
+
 public class SecurityConfig {
 // 2차 CI/CD 테스트
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        log.info("SecurityConfig.securityWebFilterChain()" + http);
         http
                 .authorizeExchange(exchanges -> exchanges
                         // GET 요청 허용
