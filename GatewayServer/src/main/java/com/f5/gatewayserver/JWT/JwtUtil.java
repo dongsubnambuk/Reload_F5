@@ -5,6 +5,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,9 @@ public class JwtUtil {
     private final DiscoveryClient discoveryClient;
     private final RestTemplate restTemplate = new RestTemplate();
 
+    @Value("${AUTH_URI}")
+    private String AUTH_URI;
+
     public JwtUtil(DiscoveryClient discoveryClient) {
         this.discoveryClient = discoveryClient;
     }
@@ -39,7 +43,7 @@ public class JwtUtil {
         if (instances == null || instances.isEmpty()) {
             throw new IllegalStateException("No AUTH-SERVER instances available");
         }
-        // AUTH-SERVER의 URI를 가져와서 요청
+//         AUTH-SERVER의 URI를 가져와서 요청
         String authServerUri = instances.get(0).getUri().toString();
         String secretKeyString = restTemplate.getForObject(authServerUri + "/api/auth/key", String.class);
 
