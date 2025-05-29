@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -36,6 +37,8 @@ public class UserDetailController {
                             .Code(404L)
                             .Msg(e.getMessage())
                             .build());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
     }
 
