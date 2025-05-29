@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -23,7 +24,7 @@ public class CommunicationServiceImpl implements CommunicationService {
     }
 
     @Override
-    public String getEmail(Long id) {
+    public String getEmail(Long id) throws URISyntaxException {
         List<ServiceInstance> instances = discoveryClient.getInstances("AUTH-SERVER");
         if (instances == null || instances.isEmpty()) {
             throw new IllegalStateException("No Auth-Server instances available");
@@ -33,7 +34,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         ServiceInstance accountService = instances.get(new Random().nextInt(instances.size()));
 
         // URI 생성
-        URI uri = UriComponentsBuilder.fromUri(accountService.getUri())
+        URI uri = UriComponentsBuilder.fromUri(new URI("http://10.10.0.154:10000"))
                 .path("/api/auth/email/{id}")
                 .buildAndExpand(id)
                 .toUri();
@@ -58,7 +59,7 @@ public class CommunicationServiceImpl implements CommunicationService {
 
 
     @Override
-    public Long searchInfo(String email) {
+    public Long searchInfo(String email) throws URISyntaxException {
         List<ServiceInstance> instances = discoveryClient.getInstances("AUTH-SERVER");
         if (instances == null || instances.isEmpty()) {
             throw new IllegalStateException("No Auth-Server instances available");
@@ -68,7 +69,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         ServiceInstance accountService = instances.get(new Random().nextInt(instances.size()));
 
         // URI 생성
-        URI uri = UriComponentsBuilder.fromUri(accountService.getUri())
+        URI uri = UriComponentsBuilder.fromUri(new URI("http://10.10.0.154:10000"))
                 .path("/api/auth/user-info/{email}")
                 .buildAndExpand(email)
                 .toUri();
