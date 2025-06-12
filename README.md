@@ -4,15 +4,6 @@
 <h1 align="center">RELOAD_F5</h1>
 <h3 align="center">지구를 다시 새로고칠 때까지, 새로고침</h3>
 
-<div align="center">
-
-![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)
-![Status](https://img.shields.io/badge/status-in%20development-orange.svg?style=for-the-badge)
-![Team](https://img.shields.io/badge/team-코딩가딩가-brightgreen.svg?style=for-the-badge)
-
-</div>
-
----
 
 ## 🌍 프로젝트 소개
 
@@ -56,13 +47,6 @@
 
 ### 🤝 **팀 구성**
 
-<div align="center">
-
-저희 **코딩가딩가 팀**은 환경 보호에 대한 공통된 가치관을 바탕으로 모인 4명의 개발자로 구성되어 있습니다.  
-백엔드와 프론트엔드 개발자가 균형있게 협력하여 완성도 높은 서비스를 구현하고 있습니다.
-
-</div>
-
 | **개발자** | **[한동균](https://github.com/hdg5639)** | **[박상우](https://github.com/Babsang0826)** | **[손경락](https://github.com/ganglike248)** | **[서동섭](https://github.com/dongsubnambuk)** |
 | :-: | :-: | :-: | :-: | :-: |
 | **프로필** | ![동균](https://avatars.githubusercontent.com/u/107734276?v=4) | ![상우](https://avatars.githubusercontent.com/u/109581758?v=4) | ![경락](https://avatars.githubusercontent.com/u/81566899?v=4) | ![동섭](https://avatars.githubusercontent.com/u/105368619?v=40559e2f4-9356-4df9-b373-a06030bc0abb) |
@@ -92,11 +76,11 @@
 
 | 🔧 **기능** | 📝 **설명** | 📸 **이미지** |
 |:---:|:---|:---:|
-| **🏠 메인 페이지** | 업사이클링 상품구매, 서비스 소개 | <img src="readmeimage/유저 메인.png" alt="유저 메인" width="300"/> |
+| **🏠 메인페이지** | 업사이클링 상품구매, 서비스 소개 | <img src="readmeimage/유저 메인.png" alt="유저 메인" width="300"/> |
 | **💰 상품 구매** | 결제 전 확인 | <img src="readmeimage/유저 결제1.png" alt="상품 구매" width="300"/> |
 | **📋 상품 상세** | 상품 상세 정보, 구매 옵션 선택, 장바구니 담기 | <img src="readmeimage/유저 상품상세.png" alt="상품 상세" width="300"/> |
 | **🛒 장바구니** | 선택 상품 관리, 수량 조절, 총 금액 계산, 결제 진행 | <img src="readmeimage/유저 장바구니.png" alt="장바구니" width="300"/> |
-| **💳 결제 시스템** | 다양한 결제 수단, 최신 보안 프로토콜, 효율적인 결제 흐름 | <img src="readmeimage/유저 결제창.png" alt="결제창" width="300"/> |
+| **💳 결제시스템** | 다양한 결제 수단, 최신 보안 프로토콜, 효율적인 결제 흐름 | <img src="readmeimage/유저 결제창.png" alt="결제창" width="300"/> |
 | **📊 주문 내역** | 과거 주문 조회, 상세 내역 확인 | <img src="readmeimage/유저 주문내역.png" alt="주문 내역" width="300"/> |
 
 ### 🗑️ **스마트 수거 신청 시스템**
@@ -105,7 +89,7 @@
 
 | **단계** | **설명** | **화면** |
 |:---:|:---|:---:|
-| **🗑️ 수거 신청** | 폐기물 방문 수거 신청, 예상 비용 제공, 일정 예약 시스템 (4단계 프로세스) | <div align="center"><p><strong>📝 1단계: 예약 시스템</strong></p><img src="readmeimage/유저 수거신청1.png" alt="수거 신청1" width="250"/><br><p><strong>👤 2단계: 유저 정보</strong></p><img src="readmeimage/유저 수거신청2.png" alt="수거 신청2" width="250"/><br><p><strong>♻️ 3단계: 폐기물 선택</strong></p><img src="readmeimage/유저 수거신청3.png" alt="수거 신청3" width="250"/><br><p><strong>✅ 신청 완료</strong></p><img src="readmeimage/유저 수거신청 완.png" alt="수거 신청완료" width="250"/></div> |
+| **🗑️ 수거신청** | 폐기물 방문 수거 신청, 예상 비용 제공, 일정 예약 시스템 (4단계 프로세스) | <div align="center"><p><strong>📝 1단계: 예약 시스템</strong></p><img src="readmeimage/유저 수거신청1.png" alt="수거 신청1" width="250"/><br><p><strong>👤 2단계: 유저 정보</strong></p><img src="readmeimage/유저 수거신청2.png" alt="수거 신청2" width="250"/><br><p><strong>♻️ 3단계: 폐기물 선택</strong></p><img src="readmeimage/유저 수거신청3.png" alt="수거 신청3" width="250"/><br><p><strong>✅ 신청 완료</strong></p><img src="readmeimage/유저 수거신청 완.png" alt="수거 신청완료" width="250"/></div> |
 
 ### 📋 **수거 내역 관리**
 
@@ -122,7 +106,7 @@ AI 기술을 활용한 **24시간 고객 상담 서비스**를 제공합니다.
 | **기능** | **설명** | **화면** |
 |:---:|:---|:---:|
 | **🤖 AI 챗봇** | 자동 응답, GPT-4 기반 지능형 상담, 상담사 자동 연결 | <div align="center"><p><strong>💬 챗봇 대화</strong></p><img src="readmeimage/유저 챗봇 대화.png" alt="AI 챗봇" width="280"/><br><p><strong>🏷️ 카테고리 선택</strong></p><img src="readmeimage/유저 챗봇 카테고리.png" alt="AI 챗봇 카테고리" width="280"/></div> |
-| **💬 실시간 채팅** | 고객 상담, 문의 카테고리 선택, 실시간 응답, 상담 내역 저장 | <img src="readmeimage/유저 채팅.png" alt="실시간 채팅" width="300"/> |
+| **💬 실시간채팅** | 고객 상담, 문의 카테고리 선택, 실시간 응답, 상담 내역 저장 | <img src="readmeimage/유저 채팅.png" alt="실시간 채팅" width="300"/> |
 
 ### 👤 **개인 서비스 관리**
 
@@ -141,8 +125,8 @@ AI 기술을 활용한 **24시간 고객 상담 서비스**를 제공합니다.
 
 | 🔧 **기능** | 📝 **설명** | 📸 **이미지** |
 |:---:|:---|:---:|
-| **🏠 관리자 메인** | 전체 시스템 현황 모니터링, 실시간 통계 대시보드, 중요 알림 및 빠른 액세스 | <img src="readmeimage/관리자메인.png" alt="관리자 메인" width="350"/> |
-| **👨‍🎨 디자이너 관리** | 에코 디자이너 등록 및 승인, 프로필 관리, 작품 포트폴리오 검토 | <img src="readmeimage/관리자 디자이너.png" alt="디자이너 관리" width="350"/> |
+| **🏠 관리자메인** | 전체 시스템 현황 모니터링, 실시간 통계 대시보드, 중요 알림 및 빠른 액세스 | <img src="readmeimage/관리자메인.png" alt="관리자 메인" width="700"/> |
+| **👨‍🎨 디자이너관리** | 에코 디자이너 등록 및 승인, 프로필 관리, 작품 포트폴리오 검토 | <img src="readmeimage/관리자 디자이너.png" alt="디자이너 관리" width="500"/> |
 | **📦 상품 등록** | 업사이클링 상품 등록, 상품 정보 관리, 카테고리 분류, 가격 설정 | <img src="readmeimage/관리자 상품등록.png" alt="상품 등록" width="350"/> |
 | **🚛 수거 관리** | 수거 요청 관리, 수거기사 배정, 일정 조정, 수거량 분석 | <img src="readmeimage/관리자 수거관리.png" alt="수거 관리" width="350"/> |
 | **💬 고객 채팅** | 실시간 고객 문의 응답, 다중 채팅 관리, 문의 분류, 상담 히스토리 | <img src="readmeimage/관리자 채팅.png" alt="고객 채팅" width="350"/> |
