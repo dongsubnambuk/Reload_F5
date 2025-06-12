@@ -1,7 +1,7 @@
 <p align="center">
   <img width="200px;" src="./reload-front/src/images/mainLogo.png" alt="메인페이지"/>
 </p>
-<h1 align="center">RELOAD_F5</h1>
+<h1 align="center">Refresh_F5</h1>
 <h3 align="center">지구를 다시 새로고칠 때까지, 새로고침</h3>
 
 
@@ -41,6 +41,21 @@
 
 </div>
 
+## ✅ 확장 서비스
+### ♻️ Refresh_APP
+>  YOLO 모델을 적용한 폐기물 인식 하이브리드 앱
+
+> [Repository 바로가기](https://github.com/TEAM-CP6Q/F5_yolo.git)
+
+
+
+### 🚚 Refresh_DRIVER_APP
+> 수거 기사 전용 폐기물 수거 지원 앱
+
+> [Repository 바로가기](https://github.com/TEAM-CP6Q/navi-test)
+
+
+
 
 
 ## 👥 개발팀 소개
@@ -52,7 +67,7 @@
 | **프로필** | ![동균](https://avatars.githubusercontent.com/u/107734276?v=4) | ![상우](https://avatars.githubusercontent.com/u/109581758?v=4) | ![경락](https://avatars.githubusercontent.com/u/81566899?v=4) | ![동섭](https://avatars.githubusercontent.com/u/105368619?v=40559e2f4-9356-4df9-b373-a06030bc0abb) |
 | **기술 스택** | <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> | <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> |
 | **역할** | `백엔드` | `백엔드` | `프론트엔드` | `프론트엔드` |
-
+| **R&R** | MSA 서버 구축, 유저 서버(관리자/유저/드라이버/디자이너), 채팅 서버, 수거 서버, 챗봇 | 이미지 서버, 상품 서버, 결제 서버, 키클락 |메인페이지, 상품페이지, 결제, 수거신청, 관리자페이지(리팩토링), 챗봇, 수거기사 전용 앱(리팩토링) | 유저 관련 페이지, 관리자페이지, 채팅, 수거기사web, YOLO기반 하이브리드 앱 제작(+YOLO 서버 구현), 수거기사 전용 앱 제작 | 
 
 
 ## 🏗️ 시스템 구성
