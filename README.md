@@ -49,7 +49,7 @@
 
 
 
-### 🚚 Refresh_DRIVER_APP
+### 🚚 Refresh_Driver_App
 > 수거 기사 전용 폐기물 수거 지원 앱
 
 > [Repository 바로가기](https://github.com/TEAM-CP6Q/navi-test)
@@ -62,12 +62,25 @@
 
 ### 🤝 **팀 구성**
 
+
 | **개발자** | **[한동균](https://github.com/hdg5639)** | **[박상우](https://github.com/Babsang0826)** | **[손경락](https://github.com/ganglike248)** | **[서동섭](https://github.com/dongsubnambuk)** |
 | :-: | :-: | :-: | :-: | :-: |
 | **프로필** | ![동균](https://avatars.githubusercontent.com/u/107734276?v=4) | ![상우](https://avatars.githubusercontent.com/u/109581758?v=4) | ![경락](https://avatars.githubusercontent.com/u/81566899?v=4) | ![동섭](https://avatars.githubusercontent.com/u/105368619?v=40559e2f4-9356-4df9-b373-a06030bc0abb) |
 | **기술 스택** | <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> | <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> |
 | **역할** | `백엔드` | `백엔드` | `프론트엔드` | `프론트엔드` |
 | **R&R** | MSA 서버 구축, 유저 서버(관리자/유저/드라이버/디자이너), 채팅 서버, 수거 서버, 챗봇 | 이미지 서버, 상품 서버, 결제 서버, 키클락 |메인페이지, 상품페이지, 결제, 수거신청, 관리자페이지(리팩토링), 챗봇, 수거기사 전용 앱(리팩토링) | 유저 관련 페이지, 관리자페이지, 채팅, 수거기사web, YOLO기반 하이브리드 앱 제작(+YOLO 서버 구현), 수거기사 전용 앱 제작 | 
+---
+
+#### 🚚 Refresh_Driver_App
+
+| **개발자** | **[서동섭](https://github.com/dongsubnambuk)** |**[손경락](https://github.com/ganglike248)** | **[김채원](https://github.com/chaeone1)** | 
+| :-: | :-: | :-: |:-: |
+| **프로필** | ![동섭](https://avatars.githubusercontent.com/u/105368619?v=40559e2f4-9356-4df9-b373-a06030bc0abb) | ![경락](https://avatars.githubusercontent.com/u/81566899?v=4) | ![채원](https://avatars.githubusercontent.com/u/150317567?v=4) |
+| **역할** | `제작` | `네비게이션 리팩토링` | `초기 CSS 수정` |
+
+
+
+
 
 
 ## 🏗️ 시스템 구성
